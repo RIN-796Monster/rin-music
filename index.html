@@ -9,7 +9,7 @@
   <meta property="og:description" content="誰かのために生きるより、自分を愛することを選んだとき。" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@RIN_796Monster" />
+  <meta name="twitter:site" content="@RIN_796" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -328,7 +328,7 @@
     /* ── SNS ── */
     .sns-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
@@ -572,37 +572,18 @@
       <a class="sns-item" href="https://x.com/RIN_796" target="_blank" rel="noopener">
         <span class="sns-item-icon">X</span>
         <span class="sns-item-name">X · Twitter</span>
-        <span class="sns-item-handle">@RIN_796Monster</span>
+        <span class="sns-item-handle">@RIN_796</span>
       </a>
       <a class="sns-item" href="https://www.tiktok.com/@rin_796monster" target="_blank" rel="noopener">
         <span class="sns-item-icon">Tk</span>
         <span class="sns-item-name">TikTok</span>
         <span class="sns-item-handle">@rin_796monster</span>
       </a>
-      <a class="sns-item" href="https://www.instagram.com/rin.okabe" target="_blank" rel="noopener">
-        <span class="sns-item-icon">ig</span>
-        <span class="sns-item-name">Instagram</span>
-        <span class="sns-item-handle">@rin.okabe</span>
-      </a>
+
     </div>
   </section>
 
   <!-- EMAIL -->
-  <section class="section" id="contact">
-    <div class="section-label">Stay connected</div>
-    <p class="email-desc">
-      RIN.の新曲・活動情報をいち早くお届けします。<br>
-      メールアドレスを登録してください。
-    </p>
-    <div class="email-form">
-      <input type="email" placeholder="your@email.com" id="email-input" />
-      <button type="button" id="email-submit">登録する</button>
-    </div>
-    <p id="email-thanks" style="display:none; margin-top:1rem; font-family:var(--font-sans-jp); font-size:0.8rem; color:var(--accent); letter-spacing:0.1em;">
-      ありがとうございます。お知らせをお届けします。
-    </p>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="footer-name">RIN.</div>
@@ -621,16 +602,6 @@
       });
     }, { threshold: 0.1 });
     sections.forEach(s => observer.observe(s));
-
-    // Email mock submit
-    document.getElementById('email-submit').addEventListener('click', () => {
-      const val = document.getElementById('email-input').value.trim();
-      if (!val || !val.includes('@')) return;
-      document.getElementById('email-thanks').style.display = 'block';
-      document.getElementById('email-input').value = '';
-      document.getElementById('email-submit').textContent = '登録済み';
-      document.getElementById('email-submit').style.background = 'var(--accent)';
-    });
   </script>
 
 </body>
