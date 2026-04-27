@@ -11,10 +11,26 @@
       "aboutQuote": "その言葉が胸に刺さって、気がついたら10分で書き上げていた。",
       "aboutPost": "恋愛の中で立ち止まって、自分を見つめ直す瞬間—\n<strong>愛することと、自分であることは、矛盾しない。</strong>\n\nこの曲は、そう気づいた夜に生まれた。",
       "lyrics": [
-        { "type": "verse", "tag": "VERSE 1", "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" },
-        { "type": "verse", "tag": "VERSE 2", "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" }
+        {
+          "type": "verse",
+          "tag": "VERSE 1",
+          "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE 2",
+          "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        }
       ]
     },
     {
@@ -23,10 +39,10 @@
       "subtitle": "Single · 2026",
       "youtubeUrl": "https://www.youtube.com/shorts/V_QQ-Mobov8",
       "youtubeId": "V_QQ-Mobov8",
-      "description": "",
-      "aboutPre": "",
+      "description": "毎週のように週末遊びに来ては帰っていく女友達、\n彼氏ができたからとぱったり来なくなった。\nそんな、独りぼっちの夜に作った曲",
+      "aboutPre": "Weekend lonely  \nストレートのスコッチ  \n乾いた心に流し込む  \n\n来るのなら  \n安酒でよかったのにと  \nありもしない冗談　浮かべて  \nひとり飲む  \n\nあなたのいない Weekend  \n時の止まった Weekend  \nただ　グラスの中だけが  \nゆっくり揺れている",
       "aboutQuote": "",
-      "aboutPost": "",
+      "aboutPost": "氷の音だけが  \nやけに大きく響いて  \n言葉の代わりになる  \n\nグラス越しに  \n思い出を薄めながら  \n夜に溶けていく  \n\nあなたのいない Weekend  \n時の止まった Weekend  \nただ　グラスの中だけが  \nゆっくり揺れている",
       "lyrics": []
     }
   ]
