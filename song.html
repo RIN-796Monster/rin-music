@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIN.</title>
+  <meta name="description" content="RIN. — song" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@RIN_796" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --ink: #1A1714;
+      --ink-light: #4A4540;
+      --ink-muted: #8A837A;
+      --accent: #B8622A;
+      --accent-light: #D4855A;
+      --accent-pale: #F0DDD0;
+      --line: rgba(26,23,20,0.12);
+      --font-serif-jp: 'Shippori Mincho', 'Noto Serif JP', serif;
+      --font-display: 'DM Serif Display', serif;
+      --font-sans-jp: 'Zen Kaku Gothic New', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-serif-jp);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    .top-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      background: rgba(245,240,232,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-back {
+      font-family: var(--font-sans-jp);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--ink-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--accent); }
+
+    .nav-back::before {
+      content: '';
+      display: inline-block;
+      width: 0; height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-right: 7px solid currentColor;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .hero-bg-line {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 79px,
+        var(--line) 79px, var(--line) 80px
+      );
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .artist-label {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-style: italic;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .divider-line {
+      width: 60px;
+      height: 1px;
+      background: var(--accent);
+      margin: 1.2rem auto;
+    }
+
+    .song-title-jp {
+      font-family: var(--font-serif-jp);
+      font-weight: 400;
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      color: var(--ink);
+      letter-spacing: 0.25em;
+      margin-bottom: 0.5rem;
+    }
+
+    .song-subtitle {
+      font-family: var(--font-sans-jp);
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-copy {
+      font-family: var(--font-serif-jp);
+      font-weight: 300;
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      color: var(--ink-light);
+      line-height: 2.2;
+      max-width: 420px;
+      margin: 0 auto 3rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 32px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      background: transparent;
+      font-family: var(--font-sans-jp);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      transform: translateX(-101%);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .cta-btn:hover::after { transform: translateX(0); }
+    .cta-btn:hover { color: var(--cream); }
+    .cta-btn span { position: relative; z-index: 1; }
+
+    .play-triangle {
+      width: 0; height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid currentColor;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      font-family: var(--font-sans-jp);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--accent-pale);
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 2.4;
+      color: var(--ink-light);
+      white-space: pre-line;
+    }
+
+    .about-quote {
+      margin: 2.5rem 0;
+      padding: 1.5rem 2rem;
+      border-left: 2px solid var(--accent);
+      background: var(--accent-pale);
+    }
+
+    .about-quote p {
+      font-family: var(--font-serif-jp);
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 2;
+    }
+
+    /* ── LYRICS ── */
+    .lyrics-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .lyric-block {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lyric-block:last-child { border-bottom: none; }
+
+    .lyric-tag {
+      font-family: var(--font-sans-jp);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      color: var(--ink-muted);
+      margin-bottom: 1rem;
+    }
+
+    .lyric-text {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 2.5;
+      color: var(--ink);
+      white-space: pre-line;
+    }
+
+    .lyric-block.chorus {
+      padding: 1.5rem;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .lyric-block.chorus .lyric-tag { color: var(--accent-light); }
+    .lyric-block.chorus .lyric-text {
+      color: var(--cream);
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    /* ── SNS ── */
+    .sns-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .sns-item {
+      background: var(--cream);
+      padding: 2rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sns-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .sns-item:hover::before { transform: scaleY(1); }
+    .sns-item:hover .sns-item-icon,
+    .sns-item:hover .sns-item-name,
+    .sns-item:hover .sns-item-handle { color: var(--cream); }
+
+    .sns-item-icon {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 0.5rem;
+      position: relative; z-index: 1;
+      transition: color 0.25s;
+    }
+
+    .sns-item-name {
+      font-family: var(--font-sans-jp);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 0.3rem;
+      position: relative; z-index: 1;
+      transition: color 0.25s;
+    }
+
+    .sns-item-handle {
+      font-family: var(--font-sans-jp);
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      display: block;
+      position: relative; z-index: 1;
+      transition: color 0.25s;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-copy {
+      font-family: var(--font-sans-jp);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--ink-muted);
+    }
+
+    /* ── ERROR ── */
+    .error-msg {
+      text-align: center;
+      padding: 6rem 2rem;
+      font-family: var(--font-sans-jp);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 2;
+    }
+
+    @media (max-width: 480px) {
+      .sns-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a class="nav-back" href="index.html">すべての曲</a>
+    <a class="nav-logo" href="index.html">RIN.</a>
+  </nav>
+
+  <div id="page-content"></div>
+
+  <footer>
+    <div class="footer-name">RIN.</div>
+    <p class="footer-copy">© 2026 RIN. · All rights reserved.</p>
+  </footer>
+
+  <script>
+    async function loadSong() {
+      const params = new URLSearchParams(location.search);
+      const id = params.get('id');
+      const content = document.getElementById('page-content');
+
+      if (!id) {
+        content.innerHTML = '<div class="error-msg">曲が見つかりません。<br><a href="index.html">トップへ戻る</a></div>';
+        return;
+      }
+
+      try {
+        const res = await fetch('./songs.json');
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const song = data.songs.find(s => s.id === id);
+
+        if (!song) {
+          content.innerHTML = '<div class="error-msg">曲が見つかりません。<br><a href="index.html">トップへ戻る</a></div>';
+          return;
+        }
+
+        document.title = `RIN. — ${song.title}`;
+        document.querySelector('meta[name="description"]').content = song.description || `RIN. — ${song.title}`;
+        document.querySelector('meta[property="og:title"]') || (() => {
+          const m = document.createElement('meta');
+          m.setAttribute('property','og:title');
+          document.head.appendChild(m);
+        })();
+
+        renderSong(song, content);
+      } catch {
+        content.innerHTML = '<div class="error-msg">読み込みに失敗しました。<br><a href="index.html">トップへ戻る</a></div>';
+      }
+    }
+
+    function renderSong(song, container) {
+      let html = `
+        <section class="hero">
+          <div class="hero-bg-line"></div>
+          <div class="hero-content">
+            <div class="artist-label">RIN.</div>
+            <div class="divider-line"></div>
+            <div class="song-title-jp">${esc(song.title)}</div>
+            <div class="song-subtitle">${esc(song.subtitle || '')}</div>
+            ${song.description ? `<p class="hero-copy">${esc(song.description)}</p>` : ''}
+            <a class="cta-btn" href="${esc(song.youtubeUrl)}" target="_blank" rel="noopener">
+              <span class="play-triangle"></span>
+              <span>今すぐ聴く</span>
+            </a>
+          </div>
+        </section>
+      `;
+
+      const hasAbout = song.aboutPre || song.aboutQuote || song.aboutPost;
+      if (hasAbout) {
+        html += `
+          <section class="section" id="about">
+            <div class="section-label">About this song</div>
+            ${song.aboutPre ? `<p class="about-text">${song.aboutPre}</p>` : ''}
+            ${song.aboutQuote ? `
+              <div class="about-quote"><p>${esc(song.aboutQuote)}</p></div>
+            ` : ''}
+            ${song.aboutPost ? `<p class="about-text">${song.aboutPost}</p>` : ''}
+          </section>
+        `;
+      }
+
+      if (song.lyrics && song.lyrics.length > 0) {
+        const lyricBlocks = song.lyrics.map(block => `
+          <div class="lyric-block ${block.type === 'chorus' ? 'chorus' : ''}">
+            <div class="lyric-tag">${esc(block.tag)}</div>
+            <div class="lyric-text">${esc(block.text)}</div>
+          </div>
+        `).join('');
+
+        html += `
+          <section class="section" id="lyrics">
+            <div class="section-label">Lyrics</div>
+            <div class="lyrics-container">${lyricBlocks}</div>
+          </section>
+        `;
+      }
+
+      html += `
+        <section class="section" id="follow">
+          <div class="section-label">Follow RIN.</div>
+          <div class="sns-grid">
+            <a class="sns-item" href="https://x.com/RIN_796" target="_blank" rel="noopener">
+              <span class="sns-item-icon">X</span>
+              <span class="sns-item-name">X · Twitter</span>
+              <span class="sns-item-handle">@RIN_796</span>
+            </a>
+            <a class="sns-item" href="https://www.tiktok.com/@rin_796monster" target="_blank" rel="noopener">
+              <span class="sns-item-icon">Tk</span>
+              <span class="sns-item-name">TikTok</span>
+              <span class="sns-item-handle">@rin_796monster</span>
+            </a>
+          </div>
+        </section>
+      `;
+
+      container.innerHTML = html;
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      container.querySelectorAll('.section').forEach(s => observer.observe(s));
+    }
+
+    function esc(str) {
+      return String(str)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;');
+    }
+
+    loadSong();
+  </script>
+
+</body>
+</html>

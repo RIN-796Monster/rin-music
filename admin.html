@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIN. Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --ink: #1A1714;
+      --ink-light: #4A4540;
+      --ink-muted: #8A837A;
+      --accent: #B8622A;
+      --accent-light: #D4855A;
+      --accent-pale: #F0DDD0;
+      --line: rgba(26,23,20,0.12);
+      --danger: #c0392b;
+      --success: #2d6a4f;
+      --font-serif-jp: 'Shippori Mincho', serif;
+      --font-display: 'DM Serif Display', serif;
+      --font-sans: 'Zen Kaku Gothic New', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+    }
+
+    /* ── LOGIN ── */
+    #login {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 380px;
+      border: 1px solid var(--line);
+      padding: 3rem 2.5rem;
+      background: var(--cream);
+    }
+
+    .login-logo {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 2.5rem;
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .login-sub {
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--ink-muted);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 300;
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus { border-color: var(--accent); }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.6;
+    }
+
+    select.form-input {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A837A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, opacity 0.2s;
+      text-decoration: none;
+    }
+
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary { background: var(--ink); color: var(--cream); }
+    .btn-primary:hover:not(:disabled) { background: var(--accent); }
+
+    .btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    .btn-secondary:hover:not(:disabled) { background: var(--ink); color: var(--cream); }
+
+    .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
+    .btn-danger:hover:not(:disabled) { background: var(--danger); color: #fff; }
+
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-success:hover:not(:disabled) { opacity: 0.85; }
+
+    .btn-full { width: 100%; justify-content: center; }
+
+    .error-text { font-size: 0.75rem; color: var(--danger); margin-top: 0.8rem; text-align: center; }
+
+    /* ── APP ── */
+    #app { display: none; min-height: 100vh; }
+
+    /* ── HEADER ── */
+    .app-header {
+      position: sticky;
+      top: 0; z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-logo {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--cream);
+    }
+
+    .header-badge {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      background: rgba(255,255,255,0.15);
+      color: var(--cream);
+      padding: 3px 8px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: none;
+      color: rgba(245,240,232,0.6);
+      cursor: pointer;
+      padding: 6px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+
+    .icon-btn:hover { color: var(--cream); }
+
+    /* ── MAIN ── */
+    .app-main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+
+    .main-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .main-title {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── SONG LIST ── */
+    .song-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .song-row {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .song-row-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      min-width: 2rem;
+      text-align: center;
+    }
+
+    .song-row-info { min-width: 0; }
+
+    .song-row-title {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .song-row-sub {
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      letter-spacing: 0.15em;
+      margin-top: 2px;
+    }
+
+    .song-row-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink-muted);
+      cursor: pointer;
+      padding: 6px 10px;
+      font-size: 0.7rem;
+      font-family: var(--font-sans);
+      letter-spacing: 0.1em;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn-icon:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+    .btn-icon.danger:hover { background: var(--danger); color: #fff; border-color: var(--danger); }
+
+    .empty-list {
+      background: var(--cream);
+      padding: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.15em;
+    }
+
+    /* ── STATUS BAR ── */
+    .status-bar {
+      margin-top: 1.5rem;
+      padding: 0.8rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      border-left: 3px solid transparent;
+      display: none;
+    }
+
+    .status-bar.visible { display: block; }
+    .status-bar.success { border-color: var(--success); background: rgba(45,106,79,0.08); color: var(--success); }
+    .status-bar.error { border-color: var(--danger); background: rgba(192,57,43,0.08); color: var(--danger); }
+    .status-bar.info { border-color: var(--accent); background: var(--accent-pale); color: var(--accent); }
+
+    /* ── MODAL OVERLAY ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,23,20,0.6);
+      z-index: 200;
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+    .modal {
+      background: var(--cream);
+      width: 100%;
+      max-width: 640px;
+      border: 1px solid var(--line);
+      margin: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-title {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--ink);
+      letter-spacing: 0.1em;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--ink-muted);
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover { color: var(--ink); }
+
+    .modal-body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .modal-footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    /* ── LYRICS EDITOR ── */
+    .lyrics-editor-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .lyric-blocks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .lyric-block-editor {
+      border: 1px solid var(--line);
+      padding: 1rem;
+      background: #faf8f4;
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 8px;
+      align-start: start;
+    }
+
+    .lyric-block-editor textarea {
+      grid-column: 1 / -1;
+    }
+
+    .add-block-btn {
+      margin-top: 4px;
+      padding: 8px 14px;
+      font-size: 0.7rem;
+      background: transparent;
+      border: 1px dashed var(--line);
+      color: var(--ink-muted);
+      cursor: pointer;
+      width: 100%;
+      font-family: var(--font-sans);
+      letter-spacing: 0.1em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .add-block-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .remove-block-btn {
+      background: transparent;
+      border: none;
+      color: var(--ink-muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 2px 6px;
+      transition: color 0.2s;
+      align-self: center;
+    }
+
+    .remove-block-btn:hover { color: var(--danger); }
+
+    /* ── SETTINGS MODAL ── */
+    .settings-section-title {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--accent-pale);
+    }
+
+    .settings-note {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .settings-note a {
+      color: var(--accent);
+    }
+
+    /* ── DIVIDER ── */
+    .form-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 560px) {
+      .song-row { grid-template-columns: auto 1fr; }
+      .song-row-actions { grid-column: 1 / -1; }
+      .lyric-block-editor { grid-template-columns: 1fr auto; }
+      .lyric-block-editor select { grid-column: 1; }
+      .lyric-block-editor input { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN ── -->
+<div id="login">
+  <div class="login-box">
+    <div class="login-logo">RIN.</div>
+    <div class="login-sub">Admin Console</div>
+    <div class="form-group">
+      <label class="form-label" for="pw-input">パスワード</label>
+      <input class="form-input" type="password" id="pw-input" placeholder="パスワードを入力" />
+    </div>
+    <button class="btn btn-primary btn-full" id="login-btn">ログイン</button>
+    <div class="error-text" id="login-error" style="display:none">パスワードが違います</div>
+  </div>
+</div>
+
+<!-- ── APP ── -->
+<div id="app">
+  <header class="app-header">
+    <div class="header-left">
+      <span class="header-logo">RIN.</span>
+      <span class="header-badge">Admin</span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="settings-btn" title="設定">⚙</button>
+      <button class="icon-btn" id="logout-btn" title="ログアウト">⏻</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="main-top">
+      <div class="main-title">曲の管理</div>
+      <button class="btn btn-primary" id="add-btn">＋ 曲を追加</button>
+    </div>
+
+    <div class="song-list" id="song-list">
+      <div class="empty-list">読み込み中...</div>
+    </div>
+
+    <div class="status-bar" id="status-bar"></div>
+
+    <div style="margin-top:1.5rem; display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="btn btn-secondary" id="export-btn">JSONをダウンロード</button>
+      <a class="btn btn-secondary" href="index.html" target="_blank">サイトを確認 ↗</a>
+    </div>
+  </main>
+</div>
+
+<!-- ── SONG MODAL ── -->
+<div class="modal-overlay" id="song-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="song-modal-title">曲を追加</div>
+      <button class="modal-close" id="song-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label" for="f-id">ID（URLに使用 / 半角英数とハイフンのみ）</label>
+        <input class="form-input" type="text" id="f-id" placeholder="my-new-song" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-title">タイトル</label>
+        <input class="form-input" type="text" id="f-title" placeholder="曲名" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-subtitle">サブタイトル（例: Single · 2026）</label>
+        <input class="form-input" type="text" id="f-subtitle" placeholder="Single · 2026" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-youtube">YouTube URL</label>
+        <input class="form-input" type="url" id="f-youtube" placeholder="https://www.youtube.com/shorts/..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-description">説明文（ヒーロー下に表示）</label>
+        <textarea class="form-input" id="f-description" rows="2" placeholder="この曲について一言..."></textarea>
+      </div>
+      <div class="form-divider"></div>
+      <div class="form-group">
+        <label class="form-label" for="f-about-pre">About — 前半テキスト（HTMLタグ使用可）</label>
+        <textarea class="form-input" id="f-about-pre" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-about-quote">About — 引用（ボックス表示）</label>
+        <input class="form-input" type="text" id="f-about-quote" placeholder="印象的な一言..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-about-post">About — 後半テキスト（HTMLタグ使用可）</label>
+        <textarea class="form-input" id="f-about-post" rows="3"></textarea>
+      </div>
+      <div class="form-divider"></div>
+      <div>
+        <div class="lyrics-editor-label">Lyrics</div>
+        <div class="lyric-blocks-list" id="lyric-blocks"></div>
+        <button class="add-block-btn" id="add-lyric-block">＋ ブロックを追加</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="song-modal-cancel">キャンセル</button>
+      <button class="btn btn-primary" id="song-modal-save">保存する</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── SETTINGS MODAL ── -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">設定</div>
+      <button class="modal-close" id="settings-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="settings-section-title">GitHub 連携（自動保存）</div>
+      <div class="settings-note">
+        GitHubと連携すると「保存する」を押したとき自動でサイトに反映されます。<br>
+        連携しない場合は「JSONをダウンロード」して手動でコミットしてください。<br><br>
+        トークンは <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> で発行してください。<br>
+        必要なスコープ: <strong>repo</strong>（または public_repo）
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="s-owner">GitHubユーザー名</label>
+        <input class="form-input" type="text" id="s-owner" placeholder="RIN-796Monster" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="s-repo">リポジトリ名</label>
+        <input class="form-input" type="text" id="s-repo" placeholder="rin-music" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="s-branch">ブランチ</label>
+        <input class="form-input" type="text" id="s-branch" placeholder="main" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="s-token">Personal Access Token</label>
+        <input class="form-input" type="password" id="s-token" placeholder="ghp_..." />
+      </div>
+      <button class="btn btn-secondary" id="test-github-btn" style="margin-top:0.5rem">接続テスト</button>
+      <div class="status-bar" id="github-test-status"></div>
+      <div class="form-divider"></div>
+      <div class="settings-section-title">パスワード変更</div>
+      <div class="form-group">
+        <label class="form-label" for="s-new-pw">新しいパスワード</label>
+        <input class="form-input" type="password" id="s-new-pw" placeholder="新しいパスワード" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="s-confirm-pw">確認</label>
+        <input class="form-input" type="password" id="s-confirm-pw" placeholder="もう一度入力" />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="settings-modal-cancel">キャンセル</button>
+      <button class="btn btn-primary" id="settings-modal-save">保存する</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── CONSTANTS ──
+  const DEFAULT_PASSWORD = 'rin2026';
+
+  // ── STATE ──
+  let songs = [];
+  let editingIndex = -1;
+
+  // ── AUTH ──
+  function getPassword() {
+    return localStorage.getItem('adminPassword') || DEFAULT_PASSWORD;
+  }
+
+  function isLoggedIn() {
+    return sessionStorage.getItem('adminAuth') === '1';
+  }
+
+  function checkAuth() {
+    if (isLoggedIn()) showApp();
+  }
+
+  document.getElementById('login-btn').addEventListener('click', () => {
+    const pw = document.getElementById('pw-input').value;
+    if (pw === getPassword()) {
+      sessionStorage.setItem('adminAuth', '1');
+      document.getElementById('login-error').style.display = 'none';
+      showApp();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  });
+
+  document.getElementById('pw-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('login-btn').click();
+  });
+
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    sessionStorage.removeItem('adminAuth');
+    location.reload();
+  });
+
+  function showApp() {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadSongs();
+  }
+
+  // ── SONGS ──
+  async function loadSongs() {
+    try {
+      const res = await fetch('./songs.json?t=' + Date.now());
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      songs = data.songs || [];
+    } catch {
+      songs = [];
+    }
+    renderSongList();
+  }
+
+  function renderSongList() {
+    const list = document.getElementById('song-list');
+    if (songs.length === 0) {
+      list.innerHTML = '<div class="empty-list">曲がありません。「曲を追加」から追加してください。</div>';
+      return;
+    }
+    list.innerHTML = songs.map((song, i) => `
+      <div class="song-row">
+        <div class="song-row-num">${i + 1}</div>
+        <div class="song-row-info">
+          <div class="song-row-title">${escHtml(song.title)}</div>
+          <div class="song-row-sub">${escHtml(song.subtitle || '')} &nbsp;·&nbsp; ${escHtml(song.id)}</div>
+        </div>
+        <div class="song-row-actions">
+          <button class="btn-icon" onclick="openEdit(${i})">編集</button>
+          <button class="btn-icon danger" onclick="deleteSong(${i})">削除</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ── MODAL: SONG ──
+  function openModal() {
+    document.getElementById('song-modal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('song-modal').classList.remove('open');
+    editingIndex = -1;
+  }
+
+  document.getElementById('add-btn').addEventListener('click', () => {
+    editingIndex = -1;
+    document.getElementById('song-modal-title').textContent = '曲を追加';
+    clearSongForm();
+    openModal();
+  });
+
+  document.getElementById('song-modal-close').addEventListener('click', closeModal);
+  document.getElementById('song-modal-cancel').addEventListener('click', closeModal);
+
+  function openEdit(i) {
+    editingIndex = i;
+    document.getElementById('song-modal-title').textContent = '曲を編集';
+    fillSongForm(songs[i]);
+    openModal();
+  }
+
+  function clearSongForm() {
+    ['f-id','f-title','f-subtitle','f-youtube','f-description',
+     'f-about-pre','f-about-quote','f-about-post'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('lyric-blocks').innerHTML = '';
+  }
+
+  function fillSongForm(song) {
+    document.getElementById('f-id').value = song.id || '';
+    document.getElementById('f-title').value = song.title || '';
+    document.getElementById('f-subtitle').value = song.subtitle || '';
+    document.getElementById('f-youtube').value = song.youtubeUrl || '';
+    document.getElementById('f-description').value = song.description || '';
+    document.getElementById('f-about-pre').value = song.aboutPre || '';
+    document.getElementById('f-about-quote').value = song.aboutQuote || '';
+    document.getElementById('f-about-post').value = song.aboutPost || '';
+    const blocksEl = document.getElementById('lyric-blocks');
+    blocksEl.innerHTML = '';
+    (song.lyrics || []).forEach(block => addLyricBlock(block));
+  }
+
+  function readSongForm() {
+    const youtubeUrl = document.getElementById('f-youtube').value.trim();
+    const youtubeId = extractYoutubeId(youtubeUrl);
+    return {
+      id: document.getElementById('f-id').value.trim().replace(/[^a-z0-9\-]/gi, '-').toLowerCase(),
+      title: document.getElementById('f-title').value.trim(),
+      subtitle: document.getElementById('f-subtitle').value.trim(),
+      youtubeUrl,
+      youtubeId,
+      description: document.getElementById('f-description').value.trim(),
+      aboutPre: document.getElementById('f-about-pre').value.trim(),
+      aboutQuote: document.getElementById('f-about-quote').value.trim(),
+      aboutPost: document.getElementById('f-about-post').value.trim(),
+      lyrics: readLyricBlocks(),
+    };
+  }
+
+  function extractYoutubeId(url) {
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:shorts\/|watch\?v=|embed\/))([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : '';
+  }
+
+  document.getElementById('song-modal-save').addEventListener('click', () => {
+    const song = readSongForm();
+    if (!song.id || !song.title || !song.youtubeUrl) {
+      showStatus('ID・タイトル・YouTube URLは必須です', 'error');
+      return;
+    }
+    const conflict = songs.findIndex((s, i) => s.id === song.id && i !== editingIndex);
+    if (conflict !== -1) {
+      showStatus('同じIDの曲がすでに存在します', 'error');
+      return;
+    }
+    if (editingIndex === -1) {
+      songs.push(song);
+    } else {
+      songs[editingIndex] = song;
+    }
+    renderSongList();
+    closeModal();
+    saveToGitHub();
+  });
+
+  function deleteSong(i) {
+    if (!confirm(`「${songs[i].title}」を削除しますか？`)) return;
+    songs.splice(i, 1);
+    renderSongList();
+    saveToGitHub();
+  }
+
+  // ── LYRICS EDITOR ──
+  document.getElementById('add-lyric-block').addEventListener('click', () => addLyricBlock());
+
+  function addLyricBlock(data = {}) {
+    const container = document.getElementById('lyric-blocks');
+    const el = document.createElement('div');
+    el.className = 'lyric-block-editor';
+    el.innerHTML = `
+      <select class="form-input" data-field="type">
+        <option value="verse" ${data.type === 'verse' ? 'selected' : ''}>Verse</option>
+        <option value="chorus" ${data.type === 'chorus' ? 'selected' : ''}>Chorus</option>
+        <option value="bridge" ${data.type === 'bridge' ? 'selected' : ''}>Bridge</option>
+        <option value="outro" ${data.type === 'outro' ? 'selected' : ''}>Outro</option>
+      </select>
+      <input class="form-input" type="text" data-field="tag" placeholder="VERSE 1" value="${escHtml(data.tag || '')}" />
+      <button class="remove-block-btn" title="削除">✕</button>
+      <textarea class="form-input" data-field="text" rows="3" placeholder="歌詞をここに...">${escHtml(data.text || '')}</textarea>
+    `;
+    el.querySelector('.remove-block-btn').addEventListener('click', () => el.remove());
+    container.appendChild(el);
+  }
+
+  function readLyricBlocks() {
+    return Array.from(document.querySelectorAll('#lyric-blocks .lyric-block-editor')).map(el => ({
+      type: el.querySelector('[data-field="type"]').value,
+      tag: el.querySelector('[data-field="tag"]').value.trim(),
+      text: el.querySelector('[data-field="text"]').value.trim(),
+    }));
+  }
+
+  // ── SETTINGS MODAL ──
+  document.getElementById('settings-btn').addEventListener('click', () => {
+    loadSettingsForm();
+    document.getElementById('settings-modal').classList.add('open');
+  });
+
+  document.getElementById('settings-modal-close').addEventListener('click', () => {
+    document.getElementById('settings-modal').classList.remove('open');
+  });
+
+  document.getElementById('settings-modal-cancel').addEventListener('click', () => {
+    document.getElementById('settings-modal').classList.remove('open');
+  });
+
+  function loadSettingsForm() {
+    document.getElementById('s-owner').value = localStorage.getItem('ghOwner') || '';
+    document.getElementById('s-repo').value = localStorage.getItem('ghRepo') || '';
+    document.getElementById('s-branch').value = localStorage.getItem('ghBranch') || 'main';
+    document.getElementById('s-token').value = localStorage.getItem('ghToken') || '';
+  }
+
+  document.getElementById('settings-modal-save').addEventListener('click', () => {
+    const owner = document.getElementById('s-owner').value.trim();
+    const repo = document.getElementById('s-repo').value.trim();
+    const branch = document.getElementById('s-branch').value.trim() || 'main';
+    const token = document.getElementById('s-token').value.trim();
+    const newPw = document.getElementById('s-new-pw').value;
+    const confirmPw = document.getElementById('s-confirm-pw').value;
+
+    if (owner) localStorage.setItem('ghOwner', owner);
+    if (repo) localStorage.setItem('ghRepo', repo);
+    localStorage.setItem('ghBranch', branch);
+    if (token) localStorage.setItem('ghToken', token);
+
+    if (newPw) {
+      if (newPw !== confirmPw) {
+        alert('パスワードが一致しません');
+        return;
+      }
+      localStorage.setItem('adminPassword', newPw);
+    }
+
+    document.getElementById('settings-modal').classList.remove('open');
+    showStatus('設定を保存しました', 'success');
+  });
+
+  document.getElementById('test-github-btn').addEventListener('click', async () => {
+    const owner = document.getElementById('s-owner').value.trim();
+    const repo = document.getElementById('s-repo').value.trim();
+    const token = document.getElementById('s-token').value.trim();
+    const statusEl = document.getElementById('github-test-status');
+
+    if (!owner || !repo || !token) {
+      showEl(statusEl, 'ユーザー名・リポジトリ名・トークンを入力してください', 'error');
+      return;
+    }
+
+    showEl(statusEl, '接続確認中...', 'info');
+    try {
+      const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+        headers: { Authorization: `token ${token}` }
+      });
+      if (res.ok) {
+        showEl(statusEl, '✓ 接続成功', 'success');
+      } else {
+        showEl(statusEl, `接続失敗: ${res.status} ${res.statusText}`, 'error');
+      }
+    } catch {
+      showEl(statusEl, 'ネットワークエラー', 'error');
+    }
+  });
+
+  // ── GITHUB SAVE ──
+  async function saveToGitHub() {
+    const owner = localStorage.getItem('ghOwner');
+    const repo = localStorage.getItem('ghRepo');
+    const branch = localStorage.getItem('ghBranch') || 'main';
+    const token = localStorage.getItem('ghToken');
+
+    const json = buildJson();
+
+    if (!owner || !repo || !token) {
+      showStatus('GitHub未設定のため自動保存できません。⚙設定からGitHub連携を行うか、「JSONをダウンロード」して手動更新してください。', 'info');
+      return;
+    }
+
+    showStatus('GitHubに保存中...', 'info');
+    try {
+      const path = 'songs.json';
+      const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+      // Get current SHA
+      const getRes = await fetch(`${apiBase}?ref=${branch}`, {
+        headers: { Authorization: `token ${token}` }
+      });
+
+      let sha = undefined;
+      if (getRes.ok) {
+        const fileData = await getRes.json();
+        sha = fileData.sha;
+      }
+
+      const content = btoa(unescape(encodeURIComponent(json)));
+      const body = {
+        message: 'Update songs.json via admin console',
+        content,
+        branch,
+        ...(sha ? { sha } : {}),
+      };
+
+      const putRes = await fetch(apiBase, {
+        method: 'PUT',
+        headers: {
+          Authorization: `token ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (putRes.ok) {
+        showStatus('✓ GitHubに保存しました。Vercelが自動デプロイします。', 'success');
+      } else {
+        const err = await putRes.json();
+        showStatus(`保存失敗: ${err.message}`, 'error');
+      }
+    } catch (e) {
+      showStatus('保存中にエラーが発生しました', 'error');
+    }
+  }
+
+  function buildJson() {
+    return JSON.stringify({ songs }, null, 2);
+  }
+
+  // ── EXPORT ──
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const blob = new Blob([buildJson()], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'songs.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showStatus('songs.json をダウンロードしました。GitHubのファイルと置き換えてください。', 'info');
+  });
+
+  // ── UTILS ──
+  function showStatus(msg, type) {
+    const el = document.getElementById('status-bar');
+    showEl(el, msg, type);
+  }
+
+  function showEl(el, msg, type) {
+    el.textContent = msg;
+    el.className = `status-bar visible ${type}`;
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+  });
+
+  // ── INIT ──
+  checkAuth();
+</script>
+
+</body>
+</html>

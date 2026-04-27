@@ -1,0 +1,33 @@
+{
+  "songs": [
+    {
+      "id": "watashi-wa-koko-ni-iru",
+      "title": "私はここにいる",
+      "subtitle": "Single · 2026",
+      "youtubeUrl": "https://www.youtube.com/shorts/YQNBSLv04dM",
+      "youtubeId": "YQNBSLv04dM",
+      "description": "誰かのために生きるより、自分を愛することを選んだとき—あなたはどこに立っていますか。",
+      "aboutPre": "ある夜、親友の話を聞いた。\n一生懸命に愛していたのに、ふと気がついたら<strong>「自分が誰かわからなくなっていた」</strong>と。",
+      "aboutQuote": "その言葉が胸に刺さって、気がついたら10分で書き上げていた。",
+      "aboutPost": "恋愛の中で立ち止まって、自分を見つめ直す瞬間—\n<strong>愛することと、自分であることは、矛盾しない。</strong>\n\nこの曲は、そう気づいた夜に生まれた。",
+      "lyrics": [
+        { "type": "verse", "tag": "VERSE 1", "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに" },
+        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" },
+        { "type": "verse", "tag": "VERSE 2", "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ" },
+        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" }
+      ]
+    },
+    {
+      "id": "weekend-lonely",
+      "title": "Weekend Lonely",
+      "subtitle": "Single · 2026",
+      "youtubeUrl": "https://www.youtube.com/shorts/V_QQ-Mobov8",
+      "youtubeId": "V_QQ-Mobov8",
+      "description": "",
+      "aboutPre": "",
+      "aboutQuote": "",
+      "aboutPost": "",
+      "lyrics": []
+    }
+  ]
+}

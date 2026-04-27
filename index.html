@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RIN. — 私はここにいる</title>
-  <meta name="description" content="RIN. 新曲「私はここにいる」。誰かのために生きるより、自分を愛することを選んだとき。" />
-  <meta property="og:title" content="RIN. — 私はここにいる" />
-  <meta property="og:description" content="誰かのために生きるより、自分を愛することを選んだとき。" />
+  <title>RIN.</title>
+  <meta name="description" content="RIN. official music page" />
+  <meta property="og:title" content="RIN." />
+  <meta property="og:description" content="RIN. official music page" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@RIN_796" />
@@ -31,7 +31,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -39,10 +38,8 @@
       color: var(--ink);
       font-family: var(--font-serif-jp);
       overflow-x: hidden;
-      cursor: default;
     }
 
-    /* ── NOISE TEXTURE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -70,14 +67,11 @@
     .hero-bg-line {
       position: absolute;
       inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 79px,
-          var(--line) 79px,
-          var(--line) 80px
-        );
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 79px,
+        var(--line) 79px, var(--line) 80px
+      );
       opacity: 0.4;
     }
 
@@ -95,7 +89,7 @@
 
     .artist-label {
       font-family: var(--font-display);
-      font-size: clamp(3.5rem, 12vw, 8rem);
+      font-size: clamp(4rem, 14vw, 10rem);
       font-style: italic;
       color: var(--ink);
       letter-spacing: -0.02em;
@@ -110,82 +104,13 @@
       margin: 1.5rem auto;
     }
 
-    .song-title-jp {
-      font-family: var(--font-serif-jp);
-      font-weight: 400;
-      font-size: clamp(1.3rem, 4vw, 2rem);
-      color: var(--ink);
-      letter-spacing: 0.25em;
-      margin-bottom: 0.5rem;
-    }
-
-    .song-subtitle {
+    .hero-tagline {
       font-family: var(--font-sans-jp);
       font-size: 0.75rem;
       font-weight: 300;
       color: var(--ink-muted);
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-copy {
-      font-family: var(--font-serif-jp);
-      font-weight: 300;
-      font-size: clamp(0.9rem, 2vw, 1.05rem);
-      color: var(--ink-light);
-      line-height: 2.2;
-      max-width: 420px;
-      margin: 0 auto 3rem;
-    }
-
-    .hero-copy em {
-      font-style: normal;
-      color: var(--accent);
-      border-bottom: 1px solid var(--accent-light);
-      padding-bottom: 1px;
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 32px;
-      border: 1px solid var(--ink);
-      color: var(--ink);
-      background: transparent;
-      font-family: var(--font-sans-jp);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-btn::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--ink);
-      transform: translateX(-101%);
-      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
-    }
-
-    .cta-btn:hover::after { transform: translateX(0); }
-    .cta-btn:hover { color: var(--cream); }
-    .cta-btn span { position: relative; z-index: 1; }
-
-    .play-triangle {
-      width: 0; height: 0;
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-left: 8px solid currentColor;
-      position: relative;
-      z-index: 1;
-      transition: border-left-color 0.3s;
     }
 
     .scroll-hint {
@@ -218,7 +143,7 @@
 
     /* ── SECTIONS ── */
     .section {
-      max-width: 680px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 5rem 2rem;
       border-bottom: 1px solid var(--line);
@@ -238,7 +163,7 @@
       font-weight: 500;
       letter-spacing: 0.35em;
       color: var(--accent);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -251,78 +176,126 @@
       background: var(--accent-pale);
     }
 
-    /* ── ABOUT ── */
-    .about-text {
-      font-weight: 300;
-      font-size: 1rem;
-      line-height: 2.4;
-      color: var(--ink-light);
+    /* ── MUSIC GRID ── */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
     }
 
-    .about-text strong {
-      color: var(--ink);
-      font-weight: 500;
-    }
-
-    .about-quote {
-      margin: 2.5rem 0;
-      padding: 1.5rem 2rem;
-      border-left: 2px solid var(--accent);
-      background: var(--accent-pale);
-    }
-
-    .about-quote p {
-      font-family: var(--font-serif-jp);
-      font-weight: 400;
-      font-size: 1.05rem;
-      color: var(--ink);
-      line-height: 2;
-    }
-
-    /* ── LYRICS ── */
-    .lyrics-container {
+    .song-card {
+      background: var(--cream);
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .lyric-block {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--line);
+    .song-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
     }
 
-    .lyric-block:last-child { border-bottom: none; }
+    .song-card:hover::before { transform: scaleY(1); }
 
-    .lyric-tag {
-      font-family: var(--font-sans-jp);
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
+    .song-card-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .song-card-index {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.75rem;
       color: var(--ink-muted);
-      margin-bottom: 1rem;
+      transition: color 0.25s;
     }
 
-    .lyric-text {
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 2.5;
+    .song-card:hover .song-card-index { color: var(--accent-light); }
+
+    .song-card-title {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
       color: var(--ink);
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+      transition: color 0.25s;
     }
 
-    .lyric-block.chorus {
-      padding: 1.5rem;
+    .song-card:hover .song-card-title { color: var(--cream); }
+
+    .song-card-subtitle {
+      font-family: var(--font-sans-jp);
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      letter-spacing: 0.2em;
+      transition: color 0.25s;
+    }
+
+    .song-card:hover .song-card-subtitle { color: rgba(245,240,232,0.5); }
+
+    .song-card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    .btn-small {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-family: var(--font-sans-jp);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-small.primary {
       background: var(--ink);
       color: var(--cream);
     }
 
-    .lyric-block.chorus .lyric-tag {
-      color: var(--accent-light);
+    .btn-small.secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
     }
 
-    .lyric-block.chorus .lyric-text {
+    .song-card:hover .btn-small.primary {
+      background: var(--accent);
+    }
+
+    .song-card:hover .btn-small.secondary {
       color: var(--cream);
-      font-size: 1.1rem;
-      font-weight: 500;
+      border-color: rgba(245,240,232,0.3);
+    }
+
+    .play-triangle {
+      width: 0; height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 7px solid currentColor;
     }
 
     /* ── SNS ── */
@@ -356,6 +329,7 @@
     }
 
     .sns-item:hover::before { transform: scaleY(1); }
+    .sns-item:hover .sns-item-icon,
     .sns-item:hover .sns-item-name,
     .sns-item:hover .sns-item-handle { color: var(--cream); }
 
@@ -370,7 +344,6 @@
       z-index: 1;
       transition: color 0.25s;
     }
-    .sns-item:hover .sns-item-icon { color: var(--cream); }
 
     .sns-item-name {
       font-family: var(--font-sans-jp);
@@ -396,53 +369,6 @@
       transition: color 0.25s;
     }
 
-    /* ── EMAIL ── */
-    .email-desc {
-      font-family: var(--font-sans-jp);
-      font-weight: 300;
-      font-size: 0.9rem;
-      color: var(--ink-light);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
-    .email-form {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--ink);
-    }
-
-    .email-form input {
-      flex: 1;
-      padding: 14px 16px;
-      font-family: var(--font-sans-jp);
-      font-size: 0.85rem;
-      font-weight: 300;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--ink);
-      min-width: 0;
-    }
-
-    .email-form input::placeholder { color: var(--ink-muted); }
-
-    .email-form button {
-      padding: 14px 24px;
-      font-family: var(--font-sans-jp);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      background: var(--ink);
-      color: var(--cream);
-      border: none;
-      cursor: pointer;
-      transition: background 0.25s;
-      white-space: nowrap;
-    }
-
-    .email-form button:hover { background: var(--accent); }
-
     /* ── FOOTER ── */
     footer {
       padding: 3rem 2rem;
@@ -465,32 +391,30 @@
       color: var(--ink-muted);
     }
 
-    /* ── RESPONSIVE ── */
+    /* ── LOADING ── */
+    .loading-placeholder {
+      text-align: center;
+      padding: 3rem;
+      font-family: var(--font-sans-jp);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.2em;
+    }
+
     @media (max-width: 480px) {
       .sns-grid { grid-template-columns: 1fr; }
-      .email-form { flex-direction: column; }
-      .email-form button { padding: 12px; }
+      .music-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg-line"></div>
     <div class="hero-content">
       <div class="artist-label">RIN.</div>
       <div class="divider-line"></div>
-      <div class="song-title-jp">私はここにいる</div>
-      <div class="song-subtitle">New Single · 2026</div>
-      <p class="hero-copy">
-        誰かのために生きるより、<em>自分を愛すること</em>を選んだとき—<br>
-        あなたはどこに立っていますか。
-      </p>
-      <a class="cta-btn" href="https://www.youtube.com/shorts/YQNBSLv04dM" target="_blank" rel="noopener" id="listen-btn">
-        <span class="play-triangle"></span>
-        <span>今すぐ聴く</span>
-      </a>
+      <div class="hero-tagline">Music · 2026</div>
     </div>
     <div class="scroll-hint">
       <div class="scroll-hint-line"></div>
@@ -498,74 +422,13 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <div class="section-label">About this song</div>
-    <p class="about-text">
-      ある夜、親友の話を聞いた。<br>
-      一生懸命に愛していたのに、ふと気がついたら<strong>「自分が誰かわからなくなっていた」</strong>と。
-    </p>
-    <div class="about-quote">
-      <p>その言葉が胸に刺さって、気がついたら10分で書き上げていた。</p>
-    </div>
-    <p class="about-text">
-      恋愛の中で立ち止まって、自分を見つめ直す瞬間—<br>
-      <strong>愛することと、自分であることは、矛盾しない。</strong><br><br>
-      この曲は、そう気づいた夜に生まれた。
-    </p>
-  </section>
-
-  <!-- LYRICS -->
-  <section class="section" id="lyrics">
-    <div class="section-label">Lyrics</div>
-    <div class="lyrics-container">
-
-      <div class="lyric-block">
-        <div class="lyric-tag">VERSE 1</div>
-        <div class="lyric-text">
-          朝の光にあの頃の私を思い出す<br>
-          手探りの愛を愛おしむフリをして<br>
-          何のために愛を注ぐ<br>
-          誰のために愛を紡ぐ<br>
-          私はわたしで居たいのに
-        </div>
-      </div>
-
-      <div class="lyric-block chorus">
-        <div class="lyric-tag">CHORUS</div>
-        <div class="lyric-text">
-          愛は誰のため<br>
-          恋は誰のため<br>
-          誰のためでもなく<br>
-          私はここにいる
-        </div>
-      </div>
-
-      <div class="lyric-block">
-        <div class="lyric-tag">VERSE 2</div>
-        <div class="lyric-text">
-          夕暮れの多摩川をひとり歩く<br>
-          ひとりになった今あの頃の私を思い出す<br>
-          生きる自由をかみしめる<br>
-          私のために愛を紡ぐ<br>
-          私はわたしで居たいだけ
-        </div>
-      </div>
-
-      <div class="lyric-block chorus">
-        <div class="lyric-tag">CHORUS</div>
-        <div class="lyric-text">
-          愛は誰のため<br>
-          恋は誰のため<br>
-          誰のためでもなく<br>
-          私はここにいる
-        </div>
-      </div>
-
+  <section class="section" id="music">
+    <div class="section-label">Music</div>
+    <div class="music-grid" id="music-grid">
+      <div class="loading-placeholder">Loading...</div>
     </div>
   </section>
 
-  <!-- SNS -->
   <section class="section" id="follow">
     <div class="section-label">Follow RIN.</div>
     <div class="sns-grid">
@@ -579,29 +442,64 @@
         <span class="sns-item-name">TikTok</span>
         <span class="sns-item-handle">@rin_796monster</span>
       </a>
-
     </div>
   </section>
 
-  <!-- EMAIL -->
-  <!-- FOOTER -->
   <footer>
     <div class="footer-name">RIN.</div>
     <p class="footer-copy">© 2026 RIN. · All rights reserved.</p>
   </footer>
 
   <script>
-    // Scroll-triggered fade-in
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver((entries) => {
+    async function loadSongs() {
+      const grid = document.getElementById('music-grid');
+      try {
+        const res = await fetch('./songs.json');
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        renderSongs(data.songs);
+      } catch {
+        grid.innerHTML = '<div class="loading-placeholder">曲の読み込みに失敗しました</div>';
+      }
+    }
+
+    function renderSongs(songs) {
+      const grid = document.getElementById('music-grid');
+      if (!songs || songs.length === 0) {
+        grid.innerHTML = '<div class="loading-placeholder">曲はまだありません</div>';
+        return;
+      }
+      grid.innerHTML = songs.map((song, i) => `
+        <div class="song-card">
+          <div class="song-card-inner">
+            <div class="song-card-index">0${i + 1}</div>
+            <div class="song-card-title">${escHtml(song.title)}</div>
+            <div class="song-card-subtitle">${escHtml(song.subtitle || '')}</div>
+            <div class="song-card-actions">
+              <a class="btn-small primary" href="${escHtml(song.youtubeUrl)}" target="_blank" rel="noopener">
+                <span class="play-triangle"></span>
+                <span>聴く</span>
+              </a>
+              <a class="btn-small secondary" href="song.html?id=${escHtml(song.id)}">詳しく</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function escHtml(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
     }, { threshold: 0.1 });
-    sections.forEach(s => observer.observe(s));
+    document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+    loadSongs();
   </script>
 
 </body>
