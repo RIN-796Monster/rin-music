@@ -11,6 +11,15 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@RIN_796" />
 
+  <!-- Google Analytics ─ 測定IDをご自身のものに書き換えてください -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -111,6 +120,42 @@
       color: var(--ink-muted);
       letter-spacing: 0.3em;
       text-transform: uppercase;
+    }
+
+    /* ── HERO GIF ── */
+    .hero-gif-wrap {
+      margin: 2rem auto 0;
+      position: relative;
+      width: 180px;
+    }
+
+    .hero-gif-wrap::before,
+    .hero-gif-wrap::after {
+      content: '';
+      position: absolute;
+      background: var(--accent);
+    }
+
+    .hero-gif-wrap::before {
+      top: -8px; left: -8px;
+      right: 8px; bottom: 8px;
+      z-index: 0;
+    }
+
+    .hero-gif-wrap::after {
+      top: 8px; left: 8px;
+      right: -8px; bottom: -8px;
+      z-index: 0;
+      opacity: 0.25;
+    }
+
+    .hero-gif {
+      display: block;
+      width: 100%;
+      height: auto;
+      position: relative;
+      z-index: 1;
+      filter: sepia(10%) contrast(1.04);
     }
 
     .scroll-hint {
@@ -415,6 +460,9 @@
       <div class="artist-label">RIN.</div>
       <div class="divider-line"></div>
       <div class="hero-tagline">Music · 2026</div>
+      <div class="hero-gif-wrap">
+        <img class="hero-gif" src="hero.gif" alt="RIN." loading="lazy" />
+      </div>
     </div>
     <div class="scroll-hint">
       <div class="scroll-hint-line"></div>
