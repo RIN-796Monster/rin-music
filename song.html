@@ -225,6 +225,32 @@
 
     .cta-btn span { position: relative; z-index: 1; }
 
+    /* ── HERO BUTTONS ── */
+    .hero-btns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .cta-btn.karaoke-btn {
+      background: transparent;
+      color: var(--accent);
+      border-color: rgba(200,154,58,0.5);
+    }
+
+    .cta-btn.karaoke-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .mic-icon {
+      font-size: 0.9em;
+      position: relative;
+      z-index: 1;
+    }
+
     .play-triangle {
       width: 0; height: 0;
       border-top: 5px solid transparent;
@@ -514,10 +540,17 @@
             <div class="song-title-jp">${esc(song.title)}</div>
             <div class="song-subtitle">${esc(song.subtitle || '')}</div>
             ${song.description ? `<p class="hero-copy">${esc(song.description)}</p>` : ''}
-            <a class="cta-btn" href="${esc(song.youtubeUrl)}" target="_blank" rel="noopener">
-              <span class="play-triangle"></span>
-              <span>今すぐ聴く</span>
-            </a>
+            <div class="hero-btns">
+              <a class="cta-btn" href="${esc(song.youtubeUrl)}" target="_blank" rel="noopener">
+                <span class="play-triangle"></span>
+                <span>今すぐ聴く</span>
+              </a>
+              ${song.karaokeUrl ? `
+              <a class="cta-btn karaoke-btn" href="${esc(song.karaokeUrl)}" target="_blank" rel="noopener">
+                <span class="mic-icon">🎤</span>
+                <span>カラオケで歌う</span>
+              </a>` : ''}
+            </div>
           </div>
         </section>
       `;

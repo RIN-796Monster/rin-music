@@ -236,10 +236,34 @@
     .song-row {
       background: var(--cream);
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: auto auto 1fr auto;
       align-items: center;
       gap: 1rem;
       padding: 1.2rem 1.5rem;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    .drag-handle {
+      cursor: grab;
+      color: var(--ink-muted);
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 2px 4px;
+      user-select: none;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .drag-handle:active { cursor: grabbing; }
+    .song-row:hover .drag-handle { opacity: 1; }
+
+    .song-row.dragging {
+      opacity: 0.35;
+      background: var(--accent-pale);
+    }
+
+    .song-row.drag-over {
+      border-top: 2px solid var(--accent);
     }
 
     .song-row-num {
@@ -472,7 +496,7 @@
     }
 
     @media (max-width: 560px) {
-      .song-row { grid-template-columns: auto 1fr; }
+      .song-row { grid-template-columns: auto auto 1fr; }
       .song-row-actions { grid-column: 1 / -1; }
       .lyric-block-editor { grid-template-columns: 1fr auto; }
       .lyric-block-editor select { grid-column: 1; }
@@ -551,6 +575,10 @@
       <div class="form-group">
         <label class="form-label" for="f-youtube">YouTube URL</label>
         <input class="form-input" type="url" id="f-youtube" placeholder="https://www.youtube.com/shorts/..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-karaoke">カラオケ YouTube URL（任意）</label>
+        <input class="form-input" type="url" id="f-karaoke" placeholder="https://www.youtube.com/shorts/..." />
       </div>
       <div class="form-group">
         <label class="form-label" for="f-description">説明文（ヒーロー下に表示）</label>
@@ -701,11 +729,12 @@
       return;
     }
     list.innerHTML = songs.map((song, i) => `
-      <div class="song-row">
+      <div class="song-row" draggable="true" data-index="${i}">
+        <div class="drag-handle" title="ドラッグして並び替え">⠿</div>
         <div class="song-row-num">${i + 1}</div>
         <div class="song-row-info">
           <div class="song-row-title">${escHtml(song.title)}</div>
-          <div class="song-row-sub">${escHtml(song.subtitle || '')} &nbsp;·&nbsp; ${escHtml(song.id)}</div>
+          <div class="song-row-sub">${escHtml(song.subtitle || '')} &nbsp;·&nbsp; ${escHtml(song.id)}${song.karaokeUrl ? ' &nbsp;<span style="color:var(--accent);font-size:0.6rem;letter-spacing:0.1em">🎤 カラオケあり</span>' : ''}</div>
         </div>
         <div class="song-row-actions">
           <button class="btn-icon" onclick="openEdit(${i})">編集</button>
@@ -713,6 +742,49 @@
         </div>
       </div>
     `).join('');
+
+    initDragDrop();
+  }
+
+  // ── DRAG AND DROP ──
+  let dragSrcIndex = null;
+
+  function initDragDrop() {
+    document.querySelectorAll('.song-row').forEach(row => {
+      const idx = parseInt(row.dataset.index);
+
+      row.addEventListener('dragstart', e => {
+        dragSrcIndex = idx;
+        setTimeout(() => row.classList.add('dragging'), 0);
+        e.dataTransfer.effectAllowed = 'move';
+      });
+
+      row.addEventListener('dragend', () => {
+        row.classList.remove('dragging');
+        document.querySelectorAll('.song-row').forEach(r => r.classList.remove('drag-over'));
+      });
+
+      row.addEventListener('dragover', e => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        document.querySelectorAll('.song-row').forEach(r => r.classList.remove('drag-over'));
+        if (idx !== dragSrcIndex) row.classList.add('drag-over');
+      });
+
+      row.addEventListener('dragleave', () => {
+        row.classList.remove('drag-over');
+      });
+
+      row.addEventListener('drop', e => {
+        e.preventDefault();
+        if (dragSrcIndex === null || dragSrcIndex === idx) return;
+        const moved = songs.splice(dragSrcIndex, 1)[0];
+        songs.splice(idx, 0, moved);
+        dragSrcIndex = null;
+        renderSongList();
+        saveToGitHub();
+      });
+    });
   }
 
   // ── MODAL: SONG ──
@@ -743,7 +815,7 @@
   }
 
   function clearSongForm() {
-    ['f-id','f-title','f-subtitle','f-youtube','f-description',
+    ['f-id','f-title','f-subtitle','f-youtube','f-karaoke','f-description',
      'f-about-pre','f-about-quote','f-about-post'].forEach(id => {
       document.getElementById(id).value = '';
     });
@@ -755,6 +827,7 @@
     document.getElementById('f-title').value = song.title || '';
     document.getElementById('f-subtitle').value = song.subtitle || '';
     document.getElementById('f-youtube').value = song.youtubeUrl || '';
+    document.getElementById('f-karaoke').value = song.karaokeUrl || '';
     document.getElementById('f-description').value = song.description || '';
     document.getElementById('f-about-pre').value = song.aboutPre || '';
     document.getElementById('f-about-quote').value = song.aboutQuote || '';
@@ -767,12 +840,16 @@
   function readSongForm() {
     const youtubeUrl = document.getElementById('f-youtube').value.trim();
     const youtubeId = extractYoutubeId(youtubeUrl);
+    const karaokeUrl = document.getElementById('f-karaoke').value.trim();
+    const karaokeId = extractYoutubeId(karaokeUrl);
     return {
       id: document.getElementById('f-id').value.trim().replace(/[^a-z0-9\-]/gi, '-').toLowerCase(),
       title: document.getElementById('f-title').value.trim(),
       subtitle: document.getElementById('f-subtitle').value.trim(),
       youtubeUrl,
       youtubeId,
+      karaokeUrl,
+      karaokeId,
       description: document.getElementById('f-description').value.trim(),
       aboutPre: document.getElementById('f-about-pre').value.trim(),
       aboutQuote: document.getElementById('f-about-quote').value.trim(),
