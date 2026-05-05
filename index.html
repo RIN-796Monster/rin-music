@@ -389,6 +389,18 @@
       border-color: rgba(200,154,58,0.4);
     }
 
+    .btn-small.karaoke {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(200,154,58,0.4);
+    }
+
+    .btn-small.karaoke:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
     .play-triangle {
       width: 0; height: 0;
       border-top: 4px solid transparent;
@@ -595,6 +607,7 @@
                 <span class="play-triangle"></span>
                 <span>聴く</span>
               </a>
+              ${song.karaokeUrl ? `<a class="btn-small karaoke" href="${escHtml(song.karaokeUrl)}" target="_blank" rel="noopener">🎤 カラオケ</a>` : ''}
               <a class="btn-small secondary" href="song.html?id=${escHtml(song.id)}">歌詞・エピソード</a>
             </div>
           </div>
