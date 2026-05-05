@@ -506,7 +506,7 @@
       }
 
       try {
-        const res = await fetch('./songs.json');
+        const res = await fetch('./songs.json?t=' + Date.now());
         if (!res.ok) throw new Error();
         const data = await res.json();
         const song = data.songs.find(s => s.id === id);

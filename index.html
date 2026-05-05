@@ -569,7 +569,7 @@
     async function loadSongs() {
       const grid = document.getElementById('music-grid');
       try {
-        const res = await fetch('./songs.json');
+        const res = await fetch('./songs.json?t=' + Date.now());
         if (!res.ok) throw new Error('fetch failed');
         const data = await res.json();
         renderSongs(data.songs);
