@@ -1,11 +1,11 @@
 {
   "songs": [
     {
-      "id": "watashi-wa-koko-ni-iru",
-      "title": "私はここにいる",
-      "subtitle": "Single · 2026",
-      "youtubeUrl": "https://www.youtube.com/shorts/YQNBSLv04dM",
-      "youtubeId": "YQNBSLv04dM",
+      "id": "i-am-here-adlutver",
+      "title": "私はここにいる（Adult Voice Ver.)",
+      "subtitle": "Single・2026",
+      "youtubeUrl": "https://youtube.com/shorts/BbqR_wUAPn8?feature=share",
+      "youtubeId": "BbqR_wUAPn8",
       "karaokeUrl": "",
       "karaokeId": "",
       "description": "誰かのために生きるより、自分を愛することを選んだとき—あなたはどこに立っていますか。",
@@ -15,7 +15,7 @@
       "lyrics": [
         {
           "type": "verse",
-          "tag": "VERSE 1",
+          "tag": "",
           "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに"
         },
         {
@@ -25,7 +25,7 @@
         },
         {
           "type": "verse",
-          "tag": "VERSE 2",
+          "tag": "VERSE2",
           "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ"
         },
         {
@@ -99,11 +99,11 @@
       ]
     },
     {
-      "id": "i-am-here-adlutver",
-      "title": "私はここにいる（Adult Voice Ver.)",
-      "subtitle": "Single・2026",
-      "youtubeUrl": "https://youtube.com/shorts/BbqR_wUAPn8?feature=share",
-      "youtubeId": "BbqR_wUAPn8",
+      "id": "watashi-wa-koko-ni-iru",
+      "title": "私はここにいる（Original Ver.)",
+      "subtitle": "Single · 2026",
+      "youtubeUrl": "https://www.youtube.com/shorts/YQNBSLv04dM",
+      "youtubeId": "YQNBSLv04dM",
       "karaokeUrl": "",
       "karaokeId": "",
       "description": "誰かのために生きるより、自分を愛することを選んだとき—あなたはどこに立っていますか。",
@@ -113,7 +113,7 @@
       "lyrics": [
         {
           "type": "verse",
-          "tag": "",
+          "tag": "VERSE 1",
           "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに"
         },
         {
@@ -123,7 +123,7 @@
         },
         {
           "type": "verse",
-          "tag": "VERSE2",
+          "tag": "VERSE 2",
           "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ"
         },
         {
