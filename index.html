@@ -522,6 +522,118 @@
       letter-spacing: 0.2em;
     }
 
+    /* ── INVITE SECTION ── */
+    .invite-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4.5rem 2rem;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .invite-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .invite-tag {
+      font-family: var(--font-sans-jp);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.45em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .invite-tag::before,
+    .invite-tag::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent-pale));
+    }
+
+    .invite-tag::before {
+      background: linear-gradient(to left, transparent, var(--accent-pale));
+    }
+
+    .invite-headline {
+      font-family: var(--font-serif-jp);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+    }
+
+    .invite-sub {
+      font-family: var(--font-sans-jp);
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--ink-light);
+      letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+    }
+
+    .invite-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      font-family: var(--font-sans-jp);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid rgba(200,154,58,0.35);
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .invite-link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200,154,58,0.18), rgba(200,154,58,0.06));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .invite-link:hover { color: var(--bg); border-color: var(--accent); }
+    .invite-link:hover::before { opacity: 0; }
+    .invite-link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      z-index: -1;
+    }
+    .invite-link:hover::after { transform: scaleX(1); }
+
+    .invite-link-arrow {
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .invite-link span {
+      position: relative;
+      z-index: 1;
+    }
+
     @media (max-width: 480px) {
       .sns-grid { grid-template-columns: 1fr; }
       .music-grid { grid-template-columns: 1fr; }
@@ -547,6 +659,16 @@
       scroll
     </div>
   </section>
+
+  <div class="invite-section">
+    <div class="invite-tag">Cover Song</div>
+    <div class="invite-headline">あなたの声で、完成する</div>
+    <div class="invite-sub">サイトの楽曲はすべて歌ってOK！</div>
+    <a class="invite-link" href="guidelines.html">
+      <span class="invite-link-arrow">▶</span>
+      <span>詳細はこちら</span>
+    </a>
+  </div>
 
   <section class="section" id="music">
     <div class="section-label">Music</div>
@@ -625,7 +747,7 @@
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.section').forEach(s => observer.observe(s));
+    document.querySelectorAll('.section, .invite-section').forEach(s => observer.observe(s));
 
     loadSongs();
   </script>

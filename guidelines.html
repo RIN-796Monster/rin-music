@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>楽曲利用ガイドライン — RIN.</title>
+  <meta name="description" content="RIN.の楽曲利用ガイドライン。歌ってみた・カバー・SNS投稿などの利用条件について。" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CQLR1WLX4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0CQLR1WLX4');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:           #0E0C0A;
+      --surface:      #161410;
+      --cream:        #EDE8DC;
+      --ink:          #EDE8DC;
+      --ink-light:    #C0B8AC;
+      --ink-muted:    #5C564E;
+      --accent:       #C89A3A;
+      --accent-light: #E0B860;
+      --accent-pale:  rgba(200,154,58,0.10);
+      --line:         rgba(237,232,220,0.08);
+      --font-serif-jp: 'Shippori Mincho', 'Noto Serif JP', serif;
+      --font-display: 'DM Serif Display', serif;
+      --font-sans-jp: 'Zen Kaku Gothic New', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans-jp);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    .top-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      background: rgba(14,12,10,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-back {
+      font-family: var(--font-sans-jp);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--ink-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back::before {
+      content: '';
+      display: inline-block;
+      width: 0; height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-right: 7px solid currentColor;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--accent);
+      text-decoration: none;
+      text-shadow: 0 0 24px rgba(200,154,58,0.3);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%,
+        rgba(200,154,58,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-bg-line {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 79px,
+        var(--line) 79px, var(--line) 80px
+      );
+      opacity: 0.5;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-label {
+      font-family: var(--font-sans-jp);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.5em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif-jp);
+      font-weight: 400;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      color: var(--ink);
+      letter-spacing: 0.2em;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .hero-artist {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── WRAPPER ── */
+    .guidelines-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    /* ── INTRO ── */
+    .gl-intro {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--font-serif-jp);
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      line-height: 2.2;
+    }
+
+    /* ── SECTION ── */
+    .gl-section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .gl-section.visible { opacity: 1; transform: translateY(0); }
+
+    .gl-h2 {
+      font-family: var(--font-sans-jp);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.45em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .gl-h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent-pale), transparent);
+    }
+
+    .gl-body {
+      font-family: var(--font-sans-jp);
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 2;
+      margin-bottom: 1rem;
+    }
+
+    .gl-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+    }
+    .gl-list li {
+      position: relative;
+      padding: 0.35rem 0 0.35rem 1.4rem;
+      font-family: var(--font-sans-jp);
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+    }
+    .gl-list li::before {
+      content: '·';
+      position: absolute;
+      left: 0.2rem;
+      color: var(--accent);
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+
+    .gl-note {
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      border-left: 2px solid rgba(200,154,58,0.3);
+      font-family: var(--font-sans-jp);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.9;
+    }
+
+    .gl-credit-box {
+      background: var(--surface);
+      border: 1px solid rgba(200,154,58,0.2);
+      padding: 1.5rem 1.8rem;
+      margin-top: 1rem;
+    }
+    .gl-credit-box p {
+      font-family: var(--font-serif-jp);
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 2;
+      letter-spacing: 0.05em;
+    }
+    .gl-credit-box p + p { margin-top: 0.5rem; }
+
+    /* ── MESSAGE ── */
+    .gl-message {
+      margin-top: 3rem;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, rgba(200,154,58,0.09) 0%, rgba(200,154,58,0.03) 100%);
+      border: 1px solid rgba(200,154,58,0.18);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .gl-message.visible { opacity: 1; transform: translateY(0); }
+
+    .gl-message-text {
+      font-family: var(--font-serif-jp);
+      font-weight: 400;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--ink);
+      line-height: 2.4;
+      margin-bottom: 1.5rem;
+    }
+
+    .gl-message-sig {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--accent);
+      text-shadow: 0 0 30px rgba(200,154,58,0.25);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .gl-message-year {
+      font-family: var(--font-sans-jp);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--ink-muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 4rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+    .footer-name {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 40px rgba(200,154,58,0.25);
+    }
+    .footer-copy {
+      font-family: var(--font-sans-jp);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a class="nav-back" href="index.html">Midnight Lounge</a>
+    <a class="nav-logo" href="index.html">RIN.</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-bg-line"></div>
+    <div class="hero-content">
+      <div class="hero-label">Guidelines</div>
+      <h1 class="hero-title">楽曲利用ガイドライン</h1>
+      <div class="hero-artist">RIN.</div>
+    </div>
+  </div>
+
+  <div class="guidelines-wrap">
+
+    <p class="gl-intro">
+      RIN.が制作した楽曲は、以下の条件のもとで自由にご利用いただけます。<br>
+      多くの方に歌っていただけることを歓迎します。
+    </p>
+
+    <div class="gl-section">
+      <div class="gl-h2">利用可能な内容</div>
+      <p class="gl-body">事前の許可なく、以下の用途でご利用いただけます。</p>
+      <ul class="gl-list">
+        <li>YouTube / TikTok / SNS での「歌ってみた」投稿</li>
+        <li>カバー演奏・弾き語り</li>
+        <li>個人制作の動画作品での使用</li>
+        <li>非商用・個人利用全般</li>
+      </ul>
+    </div>
+
+    <div class="gl-section">
+      <div class="gl-h2">収益化について</div>
+      <p class="gl-body">以下の範囲で収益化を許可します。</p>
+      <ul class="gl-list">
+        <li>YouTube の広告収益</li>
+        <li>TikTok などプラットフォーム内での収益化</li>
+      </ul>
+      <div class="gl-note">
+        ※ ただし、楽曲そのものの配信リリースや販売は対象外です。
+      </div>
+    </div>
+
+    <div class="gl-section">
+      <div class="gl-h2">禁止事項・要許可事項</div>
+      <p class="gl-body">以下の利用は禁止、または事前の許可が必要です。</p>
+      <ul class="gl-list">
+        <li>楽曲の配信リリース（Spotify / Apple Music 等）</li>
+        <li>CD・ダウンロード販売などの商用販売</li>
+        <li>歌詞やメロディの大幅な改変</li>
+        <li>公序良俗に反する内容での使用</li>
+        <li>作品イメージを著しく損なう使用</li>
+        <li>著作者を偽る行為</li>
+      </ul>
+    </div>
+
+    <div class="gl-section">
+      <div class="gl-h2">クレジット表記（必須）</div>
+      <p class="gl-body">ご利用の際は、以下いずれかの表記を必ず記載してください。</p>
+      <div class="gl-credit-box">
+        <p>Music &amp; Lyrics by RIN.（Produced with AI）</p>
+        <p>作詞・作曲：RIN.（Produced with AI）</p>
+      </div>
+      <div class="gl-note">
+        可能であれば、当サイトまたは公式 SNS へのリンクもご記載ください。
+      </div>
+    </div>
+
+    <div class="gl-section">
+      <div class="gl-h2">音源の利用について</div>
+      <p class="gl-body">
+        当サイトで配布しているカラオケ音源・楽曲データはご利用いただけます。<br>
+        ただし、音源ファイル自体の再配布は禁止します。
+      </p>
+    </div>
+
+    <div class="gl-section">
+      <div class="gl-h2">商用利用について</div>
+      <p class="gl-body">以下の用途での利用を希望される場合は、事前にご連絡ください。</p>
+      <ul class="gl-list">
+        <li>映像作品・広告・商業プロジェクトでの使用</li>
+        <li>楽曲の配信リリース・CD 化</li>
+        <li>その他、営利目的での大規模利用</li>
+      </ul>
+    </div>
+
+    <div class="gl-section">
+      <div class="gl-h2">公式カバーについて</div>
+      <p class="gl-body">
+        投稿いただいた作品は、公式サイトや SNS にてご紹介させていただく場合があります。
+      </p>
+    </div>
+
+    <div class="gl-section">
+      <div class="gl-h2">その他</div>
+      <p class="gl-body">
+        本ガイドラインは予告なく変更される場合があります。<br>
+        不明点がある場合は、お問い合わせください。
+      </p>
+    </div>
+
+    <div class="gl-message">
+      <p class="gl-message-text">
+        あなたの声で、この曲は完成します。<br>
+        自由に歌い、広げていただけたら嬉しいです。
+      </p>
+      <span class="gl-message-sig">RIN.</span>
+      <span class="gl-message-year">2026</span>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-name">RIN.</div>
+    <p class="footer-copy">© 2026 RIN. · All rights reserved.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.gl-section, .gl-message').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
