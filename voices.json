@@ -13,6 +13,20 @@
           "thumbnail": "",
           "published_date": "2026-05-10",
           "first_voice": true
+        },
+        {
+          "song_title": "Weekend Lonely",
+          "media_url": "https://youtu.be/1tEJfvGa11Q",
+          "thumbnail": "",
+          "published_date": "2026-05-10",
+          "first_voice": false
+        },
+        {
+          "song_title": "Alternative Love",
+          "media_url": "https://youtube.com/shorts/cBuhgXzgYiQ?feature=share",
+          "thumbnail": "",
+          "published_date": "2026-05-10",
+          "first_voice": false
         }
       ]
     }
