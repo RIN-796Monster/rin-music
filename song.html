@@ -463,6 +463,89 @@
       color: var(--ink-muted);
     }
 
+    /* ── VOICES BY SONG ── */
+    .voices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .vbs-card {
+      background: var(--surface);
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .vbs-card:hover { background: #1E1A15; }
+    .vbs-card::after {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      transform: scaleY(0); transform-origin: center;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .vbs-card:hover::after { transform: scaleY(1); }
+
+    .vbs-thumb {
+      width: 100%; aspect-ratio: 16/9; overflow: hidden;
+      background: var(--surface);
+    }
+    .vbs-thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: brightness(0.85) saturate(0.85);
+      transition: filter 0.3s, transform 0.4s;
+    }
+    .vbs-card:hover .vbs-thumb img { filter: brightness(1) saturate(1); transform: scale(1.04); }
+
+    .vbs-body {
+      padding: 1rem 1.2rem 1.3rem;
+      display: flex; flex-direction: column; gap: 0.45rem;
+      flex: 1; position: relative; z-index: 1;
+    }
+
+    .vbs-badges { display: flex; gap: 4px; flex-wrap: wrap; min-height: 1rem; }
+    .vbs-badge {
+      font-family: var(--font-sans-jp); font-size: 0.5rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 2px 5px; border: 1px solid;
+    }
+    .vbs-badge.featured { color: var(--accent); border-color: rgba(200,154,58,0.4); background: rgba(200,154,58,0.08); }
+    .vbs-badge.first    { color: var(--ink-muted); border-color: rgba(237,232,220,0.13); }
+
+    .vbs-name {
+      font-family: var(--font-serif-jp); font-weight: 500;
+      font-size: 0.9rem; color: var(--ink); letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .vbs-card:hover .vbs-name { color: var(--accent-light); }
+
+    .vbs-date {
+      font-family: var(--font-sans-jp); font-size: 0.58rem; font-weight: 300;
+      color: var(--ink-muted); letter-spacing: 0.1em;
+    }
+
+    .vbs-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 13px; margin-top: 0.35rem;
+      font-family: var(--font-sans-jp); font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.15em; text-decoration: none;
+      background: var(--accent); color: var(--bg); width: fit-content;
+      transition: background 0.2s;
+    }
+    .vbs-btn:hover { background: var(--accent-light); }
+
+    .vbs-all-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 1.5rem;
+      font-family: var(--font-sans-jp); font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.2em; color: var(--accent); text-decoration: none;
+      border-bottom: 1px solid rgba(200,154,58,0.3); padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .vbs-all-link:hover { border-color: var(--accent); }
+
     /* ── ERROR ── */
     .error-msg {
       text-align: center;
@@ -506,10 +589,15 @@
       }
 
       try {
-        const res = await fetch('./songs.json?t=' + Date.now());
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const song = data.songs.find(s => s.id === id);
+        const t = Date.now();
+        const [songsRes, voicesRes] = await Promise.all([
+          fetch('./songs.json?t=' + t),
+          fetch('./voices.json?t=' + t),
+        ]);
+        if (!songsRes.ok) throw new Error();
+        const data   = await songsRes.json();
+        const vData  = voicesRes.ok ? await voicesRes.json() : { voices: [] };
+        const song   = data.songs.find(s => s.id === id);
 
         if (!song) {
           content.innerHTML = '<div class="error-msg">曲が見つかりません。<br><a href="index.html">トップへ戻る</a></div>';
@@ -524,13 +612,16 @@
           document.head.appendChild(m);
         })();
 
-        renderSong(song, content);
+        const songVoices = (vData.voices || []).filter(
+          v => v.status === 'published' && v.song_title === song.title
+        );
+        renderSong(song, songVoices, content);
       } catch {
         content.innerHTML = '<div class="error-msg">読み込みに失敗しました。<br><a href="index.html">トップへ戻る</a></div>';
       }
     }
 
-    function renderSong(song, container) {
+    function renderSong(song, songVoices, container) {
       let html = `
         <section class="hero">
           <div class="hero-bg-line"></div>
@@ -585,6 +676,39 @@
         `;
       }
 
+      /* ── Voices by Song ── */
+      if (songVoices.length > 0) {
+        songVoices.sort((a, b) => {
+          if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
+          return new Date(b.published_date || 0) - new Date(a.published_date || 0);
+        });
+        const cards = songVoices.map(v => {
+          const thumb = v.thumbnail || ytThumb(v.media_url);
+          return `
+            <div class="vbs-card">
+              ${thumb ? `<div class="vbs-thumb"><img src="${esc(thumb)}" alt="${esc(v.vocal_name)}" loading="lazy" onerror="this.parentElement.style.display='none'" /></div>` : ''}
+              <div class="vbs-body">
+                <div class="vbs-badges">
+                  ${v.featured    ? '<span class="vbs-badge featured">★ Featured</span>' : ''}
+                  ${v.first_voice ? '<span class="vbs-badge first">First Voice</span>'   : ''}
+                </div>
+                <div class="vbs-name">${esc(v.vocal_name)}</div>
+                ${v.published_date ? `<div class="vbs-date">${fmtDate(v.published_date)}</div>` : ''}
+                <a class="vbs-btn" href="${esc(v.media_url)}" target="_blank" rel="noopener">
+                  <span style="width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid currentColor;flex-shrink:0"></span>
+                  <span>聴く</span>
+                </a>
+              </div>
+            </div>`;
+        }).join('');
+        html += `
+          <section class="section" id="voices">
+            <div class="section-label">Voices</div>
+            <div class="voices-grid">${cards}</div>
+            <a class="vbs-all-link" href="voices.html">すべての Voices を見る →</a>
+          </section>`;
+      }
+
       html += `
         <section class="section" id="follow">
           <div class="section-label">Follow RIN.</div>
@@ -615,10 +739,19 @@
 
     function esc(str) {
       return String(str)
-        .replace(/&/g,'&amp;')
-        .replace(/</g,'&lt;')
-        .replace(/>/g,'&gt;')
-        .replace(/"/g,'&quot;');
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function ytThumb(url) {
+      const m = String(url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:shorts\/|watch\?v=|embed\/))([A-Za-z0-9_-]{11})/);
+      return m ? `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg` : '';
+    }
+
+    function fmtDate(str) {
+      const d = new Date(str);
+      if (isNaN(d)) return '';
+      return d.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     loadSong();
