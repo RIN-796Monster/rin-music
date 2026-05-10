@@ -18,6 +18,7 @@
       --accent-light: #D4855A;
       --accent-pale: #F0DDD0;
       --line: rgba(26,23,20,0.12);
+      --surface: #FAF7F2;
       --danger: #c0392b;
       --success: #2d6a4f;
       --font-serif-jp: 'Shippori Mincho', serif;
@@ -26,340 +27,171 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: var(--font-sans);
-      min-height: 100vh;
-    }
+    body { background: var(--cream); color: var(--ink); font-family: var(--font-sans); min-height: 100vh; }
 
     /* ── LOGIN ── */
-    #login {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 2rem;
-    }
+    #login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .login-box { width: 100%; max-width: 380px; border: 1px solid var(--line); padding: 3rem 2.5rem; }
+    .login-logo { font-family: var(--font-display); font-style: italic; font-size: 2.5rem; color: var(--ink); text-align: center; margin-bottom: 0.3rem; }
+    .login-sub  { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; color: var(--ink-muted); text-align: center; margin-bottom: 2.5rem; }
 
-    .login-box {
-      width: 100%; max-width: 380px;
-      border: 1px solid var(--line);
-      padding: 3rem 2.5rem;
-      background: var(--cream);
-    }
-
-    .login-logo {
-      font-family: var(--font-display); font-style: italic;
-      font-size: 2.5rem; color: var(--ink); text-align: center; margin-bottom: 0.3rem;
-    }
-
-    .login-sub {
-      font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em;
-      color: var(--ink-muted); text-align: center; margin-bottom: 2.5rem;
-    }
-
+    /* ── FORM ── */
     .form-group { margin-bottom: 1.2rem; }
-
-    .form-label {
-      display: block; font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.2em; color: var(--ink-muted); margin-bottom: 0.5rem;
-    }
-
-    .form-input {
-      width: 100%; padding: 10px 12px;
-      font-family: var(--font-sans); font-size: 0.85rem; font-weight: 300;
-      background: transparent; border: 1px solid var(--line);
-      color: var(--ink); outline: none; transition: border-color 0.2s;
-    }
+    .form-label { display: block; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; color: var(--ink-muted); margin-bottom: 0.5rem; }
+    .form-input { width: 100%; padding: 10px 12px; font-family: var(--font-sans); font-size: 0.85rem; font-weight: 300; background: transparent; border: 1px solid var(--line); color: var(--ink); outline: none; transition: border-color 0.2s; }
     .form-input:focus { border-color: var(--accent); }
-
     textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
+    select.form-input { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A837A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+    .form-divider { height: 1px; background: var(--line); margin: 0.5rem 0; }
 
-    select.form-input {
-      cursor: pointer; appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A837A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 12px center;
-      padding-right: 32px;
-    }
-
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 11px 24px;
-      font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.15em; border: none; cursor: pointer;
-      transition: background 0.2s, color 0.2s, opacity 0.2s;
-      text-decoration: none;
-    }
+    /* ── BUTTONS ── */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 24px; font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; border: none; cursor: pointer; transition: background 0.2s, color 0.2s, opacity 0.2s; text-decoration: none; }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .btn-primary { background: var(--ink); color: var(--cream); }
+    .btn-primary   { background: var(--ink); color: var(--cream); }
     .btn-primary:hover:not(:disabled) { background: var(--accent); }
     .btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
     .btn-secondary:hover:not(:disabled) { background: var(--ink); color: var(--cream); }
-    .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
-    .btn-danger:hover:not(:disabled) { background: var(--danger); color: #fff; }
-    .btn-success { background: var(--success); color: #fff; }
-    .btn-success:hover:not(:disabled) { opacity: 0.85; }
     .btn-full { width: 100%; justify-content: center; }
-
     .error-text { font-size: 0.75rem; color: var(--danger); margin-top: 0.8rem; text-align: center; }
+
+    .btn-icon { background: transparent; border: 1px solid var(--line); color: var(--ink-muted); cursor: pointer; padding: 6px 10px; font-size: 0.7rem; font-family: var(--font-sans); letter-spacing: 0.1em; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+    .btn-icon:hover         { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+    .btn-icon.danger:hover  { background: var(--danger); color: #fff; border-color: var(--danger); }
+    .btn-icon.publish       { color: var(--success); border-color: rgba(45,106,79,0.35); }
+    .btn-icon.publish:hover { background: var(--success); color: #fff; border-color: var(--success); }
 
     /* ── APP ── */
     #app { display: none; min-height: 100vh; }
 
-    /* ── HEADER ── */
-    .app-header {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2rem;
-      background: var(--ink); color: var(--cream);
-    }
+    .app-header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: var(--ink); color: var(--cream); }
     .header-left { display: flex; align-items: center; gap: 1rem; }
     .header-logo { font-family: var(--font-display); font-style: italic; font-size: 1.4rem; color: var(--cream); }
-    .header-badge {
-      font-size: 0.6rem; letter-spacing: 0.2em;
-      background: rgba(255,255,255,0.15); color: var(--cream); padding: 3px 8px;
-    }
+    .header-badge { font-size: 0.6rem; letter-spacing: 0.2em; background: rgba(255,255,255,0.15); color: var(--cream); padding: 3px 8px; }
     .header-actions { display: flex; align-items: center; gap: 8px; }
-    .icon-btn {
-      background: transparent; border: none; color: rgba(245,240,232,0.6);
-      cursor: pointer; padding: 6px; font-size: 1rem;
-      display: flex; align-items: center; transition: color 0.2s;
-    }
+    .icon-btn { background: transparent; border: none; color: rgba(245,240,232,0.6); cursor: pointer; padding: 6px; font-size: 1rem; display: flex; align-items: center; transition: color 0.2s; }
     .icon-btn:hover { color: var(--cream); }
 
-    /* ── MAIN ── */
     .app-main { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem; }
-
-    .main-top {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 1.5rem;
-    }
-    .main-title {
-      font-family: var(--font-serif-jp); font-weight: 500;
-      font-size: 1.1rem; color: var(--ink); letter-spacing: 0.1em;
-    }
+    .main-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+    .main-title { font-family: var(--font-serif-jp); font-weight: 500; font-size: 1.1rem; color: var(--ink); letter-spacing: 0.1em; }
 
     /* ── TABS ── */
-    .tab-nav {
-      display: flex;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 2rem;
-    }
-    .tab-btn {
-      background: transparent; border: none;
-      border-bottom: 2px solid transparent; margin-bottom: -1px;
-      padding: 0.8rem 1.6rem;
-      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.15em; color: var(--ink-muted); cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-    }
+    .tab-nav { display: flex; border-bottom: 1px solid var(--line); margin-bottom: 2rem; }
+    .tab-btn { background: transparent; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: 0.8rem 1.6rem; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; color: var(--ink-muted); cursor: pointer; transition: color 0.2s, border-color 0.2s; }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
     .tab-btn:hover:not(.active) { color: var(--ink); }
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
 
     /* ── SONG LIST ── */
-    .song-list {
-      display: flex; flex-direction: column; gap: 1px;
-      background: var(--line); border: 1px solid var(--line);
-    }
-    .song-row {
-      background: var(--cream);
-      display: grid; grid-template-columns: auto auto 1fr auto;
-      align-items: center; gap: 1rem; padding: 1.2rem 1.5rem;
-      transition: background 0.15s, opacity 0.15s;
-    }
-    .drag-handle {
-      cursor: grab; color: var(--ink-muted); font-size: 1.1rem;
-      line-height: 1; padding: 2px 4px; user-select: none;
-      opacity: 0.5; transition: opacity 0.2s;
-    }
+    .song-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .song-row { background: var(--cream); display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; transition: background 0.15s, opacity 0.15s; }
+    .drag-handle { cursor: grab; color: var(--ink-muted); font-size: 1.1rem; line-height: 1; padding: 2px 4px; user-select: none; opacity: 0.5; transition: opacity 0.2s; }
     .drag-handle:active { cursor: grabbing; }
     .song-row:hover .drag-handle { opacity: 1; }
     .song-row.dragging { opacity: 0.35; background: var(--accent-pale); }
     .song-row.drag-over { border-top: 2px solid var(--accent); }
-    .song-row-num {
-      font-family: var(--font-display); font-style: italic;
-      font-size: 1.1rem; color: var(--ink-muted); min-width: 2rem; text-align: center;
-    }
+    .song-row-num { font-family: var(--font-display); font-style: italic; font-size: 1.1rem; color: var(--ink-muted); min-width: 2rem; text-align: center; }
     .song-row-info { min-width: 0; }
-    .song-row-title {
-      font-family: var(--font-serif-jp); font-weight: 500;
-      font-size: 1rem; color: var(--ink);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .song-row-sub {
-      font-size: 0.65rem; font-weight: 300; color: var(--ink-muted);
-      letter-spacing: 0.15em; margin-top: 2px;
-    }
+    .song-row-title { font-family: var(--font-serif-jp); font-weight: 500; font-size: 1rem; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .song-row-sub { font-size: 0.65rem; font-weight: 300; color: var(--ink-muted); letter-spacing: 0.15em; margin-top: 2px; }
     .song-row-actions { display: flex; gap: 6px; flex-shrink: 0; }
 
-    /* ── VOICE LIST ── */
-    .voice-list {
-      display: flex; flex-direction: column; gap: 1px;
-      background: var(--line); border: 1px solid var(--line);
-    }
-    .voice-row {
-      background: var(--cream);
-      display: grid; grid-template-columns: 1fr auto auto;
-      align-items: center; gap: 0.8rem; padding: 1rem 1.5rem;
-      transition: background 0.15s;
-    }
-    .voice-row:hover { background: #faf7f2; }
-    .voice-row-info { min-width: 0; }
-    .voice-row-song {
-      font-family: var(--font-serif-jp); font-weight: 500;
-      font-size: 0.9rem; color: var(--ink);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .voice-row-sub {
-      font-size: 0.62rem; font-weight: 300; color: var(--ink-muted);
-      letter-spacing: 0.1em; margin-top: 2px;
-    }
-    .voice-row-badges { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-    .status-pill {
-      font-family: var(--font-sans); font-size: 0.58rem; font-weight: 500;
-      letter-spacing: 0.1em; padding: 2px 8px; border: 1px solid;
-    }
+    /* ── VOICE (ARTIST) LIST ── */
+    .voice-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+
+    .artist-row { background: var(--cream); padding: 1.2rem 1.5rem; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; transition: background 0.15s; }
+    .artist-row:hover { background: var(--surface); }
+
+    .artist-row-main { min-width: 0; }
+    .artist-row-name { font-family: var(--font-serif-jp); font-weight: 500; font-size: 1rem; color: var(--ink); margin-bottom: 0.25rem; display: flex; align-items: center; gap: 8px; }
+    .artist-row-profile { font-size: 0.72rem; font-weight: 300; color: var(--ink-muted); letter-spacing: 0.05em; line-height: 1.6; margin-bottom: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px; }
+    .artist-row-songs { display: flex; flex-wrap: wrap; gap: 5px; }
+    .song-chip { font-family: var(--font-sans); font-size: 0.62rem; font-weight: 300; color: var(--ink-light); background: rgba(26,23,20,0.05); border: 1px solid var(--line); padding: 2px 8px; letter-spacing: 0.05em; }
+
+    .status-pill { font-family: var(--font-sans); font-size: 0.58rem; font-weight: 500; letter-spacing: 0.1em; padding: 2px 8px; border: 1px solid; flex-shrink: 0; }
     .status-pill.published { color: var(--success); border-color: rgba(45,106,79,0.3); background: rgba(45,106,79,0.06); }
     .status-pill.draft     { color: var(--ink-muted); border-color: var(--line); }
-    .featured-star {
-      font-size: 0.75rem; color: var(--accent); cursor: pointer;
-      opacity: 0.4; transition: opacity 0.2s;
-    }
+    .featured-star { font-size: 0.75rem; color: var(--accent); cursor: pointer; opacity: 0.3; transition: opacity 0.2s; margin-left: 2px; }
     .featured-star.on { opacity: 1; }
-    .voice-row-actions { display: flex; gap: 5px; flex-shrink: 0; }
 
-    .btn-icon {
-      background: transparent; border: 1px solid var(--line);
-      color: var(--ink-muted); cursor: pointer;
-      padding: 6px 10px; font-size: 0.7rem;
-      font-family: var(--font-sans); letter-spacing: 0.1em;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-    }
-    .btn-icon:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-    .btn-icon.danger:hover { background: var(--danger); color: #fff; border-color: var(--danger); }
-    .btn-icon.publish { color: var(--success); border-color: rgba(45,106,79,0.35); }
-    .btn-icon.publish:hover { background: var(--success); color: #fff; border-color: var(--success); }
+    .artist-row-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+    .artist-row-actions { display: flex; gap: 5px; }
 
-    .empty-list {
-      background: var(--cream); padding: 3rem; text-align: center;
-      font-size: 0.8rem; color: var(--ink-muted); letter-spacing: 0.15em;
-    }
+    .empty-list { background: var(--cream); padding: 3rem; text-align: center; font-size: 0.8rem; color: var(--ink-muted); letter-spacing: 0.15em; }
 
     /* ── STATUS BAR ── */
-    .status-bar {
-      margin-top: 1.5rem; padding: 0.8rem 1rem;
-      font-size: 0.75rem; font-weight: 300; letter-spacing: 0.1em;
-      border-left: 3px solid transparent; display: none;
-    }
+    .status-bar { margin-top: 1.5rem; padding: 0.8rem 1rem; font-size: 0.75rem; font-weight: 300; letter-spacing: 0.1em; border-left: 3px solid transparent; display: none; }
     .status-bar.visible { display: block; }
     .status-bar.success { border-color: var(--success); background: rgba(45,106,79,0.08); color: var(--success); }
     .status-bar.error   { border-color: var(--danger);  background: rgba(192,57,43,0.08);  color: var(--danger); }
     .status-bar.info    { border-color: var(--accent);  background: var(--accent-pale);     color: var(--accent); }
 
-    /* ── MODAL OVERLAY ── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(26,23,20,0.6); z-index: 200;
-      overflow-y: auto; padding: 2rem;
-    }
+    /* ── MODAL ── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,23,20,0.6); z-index: 200; overflow-y: auto; padding: 2rem; }
     .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
-    .modal {
-      background: var(--cream); width: 100%; max-width: 640px;
-      border: 1px solid var(--line); margin: auto;
-    }
-    .modal-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 2rem; border-bottom: 1px solid var(--line);
-    }
-    .modal-title {
-      font-family: var(--font-serif-jp); font-weight: 500;
-      font-size: 1rem; color: var(--ink); letter-spacing: 0.1em;
-    }
-    .modal-close {
-      background: transparent; border: none; cursor: pointer;
-      font-size: 1.2rem; color: var(--ink-muted); line-height: 1;
-      padding: 4px; transition: color 0.2s;
-    }
+    .modal { background: var(--cream); width: 100%; max-width: 660px; border: 1px solid var(--line); margin: auto; }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 2rem; border-bottom: 1px solid var(--line); }
+    .modal-title { font-family: var(--font-serif-jp); font-weight: 500; font-size: 1rem; color: var(--ink); letter-spacing: 0.1em; }
+    .modal-close { background: transparent; border: none; cursor: pointer; font-size: 1.2rem; color: var(--ink-muted); line-height: 1; padding: 4px; transition: color 0.2s; }
     .modal-close:hover { color: var(--ink); }
-    .modal-body {
-      padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem;
-    }
-    .modal-footer {
-      padding: 1.5rem 2rem; border-top: 1px solid var(--line);
-      display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap;
-    }
+    .modal-body { padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    .modal-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--line); display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
 
     /* ── LYRICS EDITOR ── */
-    .lyrics-editor-label {
-      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em;
-      color: var(--ink-muted); margin-bottom: 0.5rem;
-    }
+    .lyrics-editor-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; color: var(--ink-muted); margin-bottom: 0.5rem; }
     .lyric-blocks-list { display: flex; flex-direction: column; gap: 8px; }
-    .lyric-block-editor {
-      border: 1px solid var(--line); padding: 1rem; background: #faf8f4;
-      display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-start: start;
-    }
+    .lyric-block-editor { border: 1px solid var(--line); padding: 1rem; background: var(--surface); display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; }
     .lyric-block-editor textarea { grid-column: 1 / -1; }
-    .add-block-btn {
-      margin-top: 4px; padding: 8px 14px; font-size: 0.7rem;
-      background: transparent; border: 1px dashed var(--line);
-      color: var(--ink-muted); cursor: pointer; width: 100%;
-      font-family: var(--font-sans); letter-spacing: 0.1em;
-      transition: border-color 0.2s, color 0.2s;
-    }
+    .add-block-btn { margin-top: 4px; padding: 8px 14px; font-size: 0.7rem; background: transparent; border: 1px dashed var(--line); color: var(--ink-muted); cursor: pointer; width: 100%; font-family: var(--font-sans); letter-spacing: 0.1em; transition: border-color 0.2s, color 0.2s; }
     .add-block-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .remove-block-btn {
-      background: transparent; border: none; color: var(--ink-muted);
-      cursor: pointer; font-size: 1rem; padding: 2px 6px;
-      transition: color 0.2s; align-self: center;
-    }
+    .remove-block-btn { background: transparent; border: none; color: var(--ink-muted); cursor: pointer; font-size: 1rem; padding: 2px 6px; transition: color 0.2s; align-self: center; }
     .remove-block-btn:hover { color: var(--danger); }
 
-    /* ── CHECKBOX ROW ── */
-    .check-row {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 0.8rem; font-weight: 300; color: var(--ink-light); cursor: pointer;
-    }
-    .check-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+    /* ── VOICE SONG EDITOR (per song within artist) ── */
+    .voice-songs-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--accent-pale); }
+    .voice-songs-list { display: flex; flex-direction: column; gap: 10px; }
 
-    /* ── THUMB PREVIEW ── */
-    .thumb-preview {
-      display: none; margin-top: 0.5rem;
+    .voice-song-editor {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 1rem 1.2rem;
+      display: flex; flex-direction: column; gap: 0.7rem;
+      position: relative;
     }
-    .thumb-preview img {
-      max-width: 160px; height: auto; border: 1px solid var(--line);
-      filter: brightness(0.9);
+    .voice-song-editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
     }
-    .thumb-preview-label {
-      font-size: 0.58rem; color: var(--ink-muted); letter-spacing: 0.1em; margin-bottom: 4px;
+    .voice-song-editor-grid .full { grid-column: 1 / -1; }
+    .voice-song-remove {
+      position: absolute; top: 0.8rem; right: 0.8rem;
+      background: transparent; border: none; cursor: pointer;
+      font-size: 0.9rem; color: var(--ink-muted); line-height: 1;
+      transition: color 0.2s;
     }
+    .voice-song-remove:hover { color: var(--danger); }
+
+    .voice-song-thumb-preview { display: none; margin-top: 0.3rem; }
+    .voice-song-thumb-preview img { max-width: 120px; height: auto; border: 1px solid var(--line); }
+    .voice-song-thumb-label { font-size: 0.55rem; color: var(--ink-muted); letter-spacing: 0.1em; margin-bottom: 3px; }
+
+    .check-row { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 300; color: var(--ink-light); cursor: pointer; }
+    .check-row input[type="checkbox"] { width: 14px; height: 14px; accent-color: var(--accent); cursor: pointer; }
 
     /* ── SETTINGS ── */
-    .settings-section-title {
-      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.25em;
-      color: var(--accent); margin-bottom: 1rem;
-      padding-bottom: 0.5rem; border-bottom: 1px solid var(--accent-pale);
-    }
-    .settings-note {
-      font-size: 0.75rem; font-weight: 300; color: var(--ink-muted);
-      line-height: 1.8; margin-bottom: 1rem;
-    }
+    .settings-section-title { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--accent-pale); }
+    .settings-note { font-size: 0.75rem; font-weight: 300; color: var(--ink-muted); line-height: 1.8; margin-bottom: 1rem; }
     .settings-note a { color: var(--accent); }
 
-    /* ── DIVIDER ── */
-    .form-divider { height: 1px; background: var(--line); margin: 0.5rem 0; }
-
-    @media (max-width: 560px) {
+    @media (max-width: 600px) {
       .song-row { grid-template-columns: auto auto 1fr; }
       .song-row-actions { grid-column: 1 / -1; }
       .lyric-block-editor { grid-template-columns: 1fr auto; }
-      .lyric-block-editor select { grid-column: 1; }
       .lyric-block-editor input { display: none; }
-      .voice-row { grid-template-columns: 1fr; }
-      .voice-row-badges, .voice-row-actions { justify-content: flex-start; }
+      .artist-row { grid-template-columns: 1fr; }
+      .voice-song-editor-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -393,22 +225,18 @@
   </header>
 
   <main class="app-main">
-
-    <!-- ── TAB NAV ── -->
     <div class="tab-nav">
       <button class="tab-btn active" data-tab="songs">曲の管理</button>
       <button class="tab-btn" data-tab="voices">Voices</button>
     </div>
 
-    <!-- ── SONGS TAB ── -->
+    <!-- SONGS TAB -->
     <div id="tab-songs" class="tab-pane active">
       <div class="main-top">
         <div class="main-title">曲の管理</div>
         <button class="btn btn-primary" id="add-btn">＋ 曲を追加</button>
       </div>
-      <div class="song-list" id="song-list">
-        <div class="empty-list">読み込み中...</div>
-      </div>
+      <div class="song-list" id="song-list"><div class="empty-list">読み込み中...</div></div>
       <div class="status-bar" id="status-bar"></div>
       <div style="margin-top:1.5rem; display:flex; gap:8px; flex-wrap:wrap;">
         <button class="btn btn-secondary" id="export-btn">songs.json をダウンロード</button>
@@ -416,22 +244,19 @@
       </div>
     </div>
 
-    <!-- ── VOICES TAB ── -->
+    <!-- VOICES TAB -->
     <div id="tab-voices" class="tab-pane">
       <div class="main-top">
         <div class="main-title">Voices 管理</div>
-        <button class="btn btn-primary" id="add-voice-btn">＋ 投稿を追加</button>
+        <button class="btn btn-primary" id="add-voice-btn">＋ アーティストを追加</button>
       </div>
-      <div class="voice-list" id="voice-list">
-        <div class="empty-list">読み込み中...</div>
-      </div>
+      <div class="voice-list" id="voice-list"><div class="empty-list">読み込み中...</div></div>
       <div class="status-bar" id="voices-status-bar"></div>
       <div style="margin-top:1.5rem; display:flex; gap:8px; flex-wrap:wrap;">
         <button class="btn btn-secondary" id="export-voices-btn">voices.json をダウンロード</button>
-        <a class="btn btn-secondary" href="voices.html" target="_blank">Voicesページを確認 ↗</a>
+        <a class="btn btn-secondary" href="voices.html" target="_blank">Voices ページを確認 ↗</a>
       </div>
     </div>
-
   </main>
 </div>
 
@@ -449,7 +274,7 @@
       </div>
       <div class="form-group">
         <label class="form-label" for="f-title">タイトル</label>
-        <input class="form-input" type="text" id="f-title" placeholder="曲名" />
+        <input class="form-input" type="text" id="f-title" />
       </div>
       <div class="form-group">
         <label class="form-label" for="f-subtitle">サブタイトル（例: Single · 2026）</label>
@@ -457,27 +282,27 @@
       </div>
       <div class="form-group">
         <label class="form-label" for="f-youtube">YouTube URL</label>
-        <input class="form-input" type="url" id="f-youtube" placeholder="https://www.youtube.com/shorts/..." />
+        <input class="form-input" type="url" id="f-youtube" />
       </div>
       <div class="form-group">
         <label class="form-label" for="f-karaoke">カラオケ YouTube URL（任意）</label>
-        <input class="form-input" type="url" id="f-karaoke" placeholder="https://www.youtube.com/shorts/..." />
+        <input class="form-input" type="url" id="f-karaoke" />
       </div>
       <div class="form-group">
-        <label class="form-label" for="f-description">説明文（ヒーロー下に表示）</label>
-        <textarea class="form-input" id="f-description" rows="2" placeholder="この曲について一言..."></textarea>
+        <label class="form-label" for="f-description">説明文</label>
+        <textarea class="form-input" id="f-description" rows="2"></textarea>
       </div>
       <div class="form-divider"></div>
       <div class="form-group">
-        <label class="form-label" for="f-about-pre">About — 前半テキスト（HTMLタグ使用可）</label>
+        <label class="form-label" for="f-about-pre">About — 前半（HTMLタグ使用可）</label>
         <textarea class="form-input" id="f-about-pre" rows="3"></textarea>
       </div>
       <div class="form-group">
-        <label class="form-label" for="f-about-quote">About — 引用（ボックス表示）</label>
-        <input class="form-input" type="text" id="f-about-quote" placeholder="印象的な一言..." />
+        <label class="form-label" for="f-about-quote">About — 引用</label>
+        <input class="form-input" type="text" id="f-about-quote" />
       </div>
       <div class="form-group">
-        <label class="form-label" for="f-about-post">About — 後半テキスト（HTMLタグ使用可）</label>
+        <label class="form-label" for="f-about-post">About — 後半（HTMLタグ使用可）</label>
         <textarea class="form-input" id="f-about-post" rows="3"></textarea>
       </div>
       <div class="form-divider"></div>
@@ -494,61 +319,28 @@
   </div>
 </div>
 
-<!-- ── VOICE MODAL ── -->
+<!-- ── VOICE (ARTIST) MODAL ── -->
 <div class="modal-overlay" id="voice-modal">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title" id="voice-modal-title">投稿を追加</div>
+      <div class="modal-title" id="voice-modal-title">アーティストを追加</div>
       <button class="modal-close" id="voice-modal-close">✕</button>
     </div>
     <div class="modal-body">
 
-      <!-- 曲名 -->
+      <!-- アーティスト情報 -->
       <div class="form-group">
-        <label class="form-label" for="vf-song">曲名 <span style="color:var(--danger)">*</span></label>
-        <input class="form-input" type="text" id="vf-song" list="song-titles-list"
-               placeholder="曲を選択または入力" autocomplete="off" />
-        <datalist id="song-titles-list"></datalist>
-      </div>
-
-      <!-- Vocal名 -->
-      <div class="form-group">
-        <label class="form-label" for="vf-vocal">Vocal名 <span style="color:var(--danger)">*</span></label>
-        <input class="form-input" type="text" id="vf-vocal" list="vocal-names-list"
-               placeholder="Vocal名を入力" autocomplete="off" />
+        <label class="form-label" for="vf-vocal">アーティスト名 <span style="color:var(--danger)">*</span></label>
+        <input class="form-input" type="text" id="vf-vocal" list="vocal-names-list" placeholder="アーティスト名を入力" autocomplete="off" />
         <datalist id="vocal-names-list"></datalist>
       </div>
 
-      <!-- プロフィール -->
       <div class="form-group">
-        <label class="form-label" for="vf-profile">プロフィール（任意 / 100〜200文字目安）</label>
+        <label class="form-label" for="vf-profile">プロフィール（任意）</label>
         <textarea class="form-input" id="vf-profile" rows="3" placeholder="アーティストの紹介を簡単に..."></textarea>
       </div>
 
-      <!-- 音源URL -->
-      <div class="form-group">
-        <label class="form-label" for="vf-media">音源URL <span style="color:var(--danger)">*</span>（YouTube推奨）</label>
-        <input class="form-input" type="url" id="vf-media"
-               placeholder="https://www.youtube.com/..." autocomplete="off" />
-        <div class="thumb-preview" id="auto-thumb-preview">
-          <div class="thumb-preview-label">AUTO THUMBNAIL</div>
-          <img id="auto-thumb-img" src="" alt="thumbnail preview" />
-        </div>
-      </div>
-
-      <!-- サムネイル -->
-      <div class="form-group">
-        <label class="form-label" for="vf-thumb">サムネイル URL（任意 / 空欄でYouTubeから自動取得）</label>
-        <input class="form-input" type="url" id="vf-thumb" placeholder="https://..." autocomplete="off" />
-      </div>
-
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-        <!-- 公開日 -->
-        <div class="form-group" style="margin:0">
-          <label class="form-label" for="vf-date">公開日（任意 / 空欄で今日）</label>
-          <input class="form-input" type="date" id="vf-date" />
-        </div>
-        <!-- ステータス -->
         <div class="form-group" style="margin:0">
           <label class="form-label" for="vf-status">ステータス</label>
           <select class="form-input" id="vf-status">
@@ -556,17 +348,21 @@
             <option value="published">公開</option>
           </select>
         </div>
+        <div class="form-group" style="margin:0; display:flex; align-items:flex-end; padding-bottom:2px;">
+          <label class="check-row">
+            <input type="checkbox" id="vf-featured" />
+            ★ Featured（上部固定）
+          </label>
+        </div>
       </div>
 
-      <div style="display:flex; gap:2rem; flex-wrap:wrap;">
-        <label class="check-row">
-          <input type="checkbox" id="vf-featured" />
-          ★ Featured（上部固定）
-        </label>
-        <label class="check-row">
-          <input type="checkbox" id="vf-first" />
-          🎤 First Voice（最初の1件）
-        </label>
+      <div class="form-divider"></div>
+
+      <!-- 曲リスト -->
+      <div>
+        <div class="voice-songs-label">カバー曲</div>
+        <div class="voice-songs-list" id="voice-songs-list"></div>
+        <button class="add-block-btn" id="add-voice-song-btn" style="margin-top:8px">＋ 曲を追加</button>
       </div>
 
     </div>
@@ -614,11 +410,11 @@
       <div class="settings-section-title">パスワード変更</div>
       <div class="form-group">
         <label class="form-label" for="s-new-pw">新しいパスワード</label>
-        <input class="form-input" type="password" id="s-new-pw" placeholder="新しいパスワード" />
+        <input class="form-input" type="password" id="s-new-pw" />
       </div>
       <div class="form-group">
         <label class="form-label" for="s-confirm-pw">確認</label>
-        <input class="form-input" type="password" id="s-confirm-pw" placeholder="もう一度入力" />
+        <input class="form-input" type="password" id="s-confirm-pw" />
       </div>
     </div>
     <div class="modal-footer">
@@ -629,24 +425,19 @@
 </div>
 
 <script>
-  // ── CONSTANTS ──
   const DEFAULT_PASSWORD = 'rin2026';
-
-  // ── STATE ──
-  let songs = [];
-  let voices = [];
-  let editingIndex = -1;
+  let songs  = [];
+  let voices = [];   // [ { id, vocal_name, profile, featured, status, songs:[{song_title,media_url,thumbnail,published_date,first_voice}] } ]
+  let editingIndex      = -1;
   let editingVoiceIndex = -1;
 
   // ── AUTH ──
-  function getPassword() { return localStorage.getItem('adminPassword') || DEFAULT_PASSWORD; }
-  function isLoggedIn()  { return sessionStorage.getItem('adminAuth') === '1'; }
-
+  const getPassword = () => localStorage.getItem('adminPassword') || DEFAULT_PASSWORD;
+  const isLoggedIn  = () => sessionStorage.getItem('adminAuth') === '1';
   function checkAuth() { if (isLoggedIn()) showApp(); }
 
   document.getElementById('login-btn').addEventListener('click', () => {
-    const pw = document.getElementById('pw-input').value;
-    if (pw === getPassword()) {
+    if (document.getElementById('pw-input').value === getPassword()) {
       sessionStorage.setItem('adminAuth', '1');
       document.getElementById('login-error').style.display = 'none';
       showApp();
@@ -654,15 +445,8 @@
       document.getElementById('login-error').style.display = 'block';
     }
   });
-
-  document.getElementById('pw-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') document.getElementById('login-btn').click();
-  });
-
-  document.getElementById('logout-btn').addEventListener('click', () => {
-    sessionStorage.removeItem('adminAuth');
-    location.reload();
-  });
+  document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('login-btn').click(); });
+  document.getElementById('logout-btn').addEventListener('click', () => { sessionStorage.removeItem('adminAuth'); location.reload(); });
 
   function showApp() {
     document.getElementById('login').style.display = 'none';
@@ -671,7 +455,7 @@
     loadVoices();
   }
 
-  // ── TAB SWITCHING ──
+  // ── TABS ──
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -682,73 +466,47 @@
   });
 
   // ══════════════════════════════
-  // ── SONGS ──
+  // SONGS
   // ══════════════════════════════
   async function loadSongs() {
     try {
       const res = await fetch('./songs.json?t=' + Date.now());
-      if (!res.ok) throw new Error();
-      const data = await res.json();
-      songs = data.songs || [];
+      songs = res.ok ? (await res.json()).songs || [] : [];
     } catch { songs = []; }
     renderSongList();
   }
 
   function renderSongList() {
     const list = document.getElementById('song-list');
-    if (songs.length === 0) {
-      list.innerHTML = '<div class="empty-list">曲がありません。「曲を追加」から追加してください。</div>';
-      return;
-    }
-    list.innerHTML = songs.map((song, i) => `
+    if (!songs.length) { list.innerHTML = '<div class="empty-list">曲がありません</div>'; return; }
+    list.innerHTML = songs.map((s, i) => `
       <div class="song-row" draggable="true" data-index="${i}">
         <div class="drag-handle" title="ドラッグして並び替え">⠿</div>
         <div class="song-row-num">${i + 1}</div>
         <div class="song-row-info">
-          <div class="song-row-title">${escHtml(song.title)}</div>
-          <div class="song-row-sub">${escHtml(song.subtitle || '')} &nbsp;·&nbsp; ${escHtml(song.id)}${song.karaokeUrl ? ' &nbsp;<span style="color:var(--accent);font-size:0.6rem;letter-spacing:0.1em">🎤 カラオケあり</span>' : ''}</div>
+          <div class="song-row-title">${esc(s.title)}</div>
+          <div class="song-row-sub">${esc(s.subtitle||'')} · ${esc(s.id)}${s.karaokeUrl?' &nbsp;<span style="color:var(--accent);font-size:0.6rem">🎤 カラオケあり</span>':''}</div>
         </div>
         <div class="song-row-actions">
           <button class="btn-icon" onclick="openEdit(${i})">編集</button>
           <button class="btn-icon danger" onclick="deleteSong(${i})">削除</button>
         </div>
-      </div>
-    `).join('');
+      </div>`).join('');
     initDragDrop();
   }
 
-  // ── DRAG AND DROP ──
   let dragSrcIndex = null;
-
   function initDragDrop() {
     document.querySelectorAll('.song-row').forEach(row => {
-      const idx = parseInt(row.dataset.index);
-
-      row.addEventListener('dragstart', e => {
-        dragSrcIndex = idx;
-        setTimeout(() => row.classList.add('dragging'), 0);
-        e.dataTransfer.effectAllowed = 'move';
-      });
-
-      row.addEventListener('dragend', () => {
-        row.classList.remove('dragging');
-        document.querySelectorAll('.song-row').forEach(r => r.classList.remove('drag-over'));
-      });
-
-      row.addEventListener('dragover', e => {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-        document.querySelectorAll('.song-row').forEach(r => r.classList.remove('drag-over'));
-        if (idx !== dragSrcIndex) row.classList.add('drag-over');
-      });
-
+      const idx = +row.dataset.index;
+      row.addEventListener('dragstart', e => { dragSrcIndex = idx; setTimeout(() => row.classList.add('dragging'), 0); e.dataTransfer.effectAllowed = 'move'; });
+      row.addEventListener('dragend',   () => { row.classList.remove('dragging'); document.querySelectorAll('.song-row').forEach(r => r.classList.remove('drag-over')); });
+      row.addEventListener('dragover',  e => { e.preventDefault(); document.querySelectorAll('.song-row').forEach(r => r.classList.remove('drag-over')); if (idx !== dragSrcIndex) row.classList.add('drag-over'); });
       row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
-
       row.addEventListener('drop', e => {
         e.preventDefault();
         if (dragSrcIndex === null || dragSrcIndex === idx) return;
-        const moved = songs.splice(dragSrcIndex, 1)[0];
-        songs.splice(idx, 0, moved);
+        songs.splice(idx, 0, songs.splice(dragSrcIndex, 1)[0]);
         dragSrcIndex = null;
         renderSongList();
         saveToGitHub();
@@ -756,116 +514,78 @@
     });
   }
 
-  // ── SONG MODAL ──
   function openModal() { document.getElementById('song-modal').classList.add('open'); }
-  function closeModal() {
-    document.getElementById('song-modal').classList.remove('open');
-    editingIndex = -1;
-  }
-
-  document.getElementById('add-btn').addEventListener('click', () => {
-    editingIndex = -1;
-    document.getElementById('song-modal-title').textContent = '曲を追加';
-    clearSongForm();
-    openModal();
-  });
-
+  function closeModal() { document.getElementById('song-modal').classList.remove('open'); editingIndex = -1; }
+  document.getElementById('add-btn').addEventListener('click', () => { editingIndex = -1; document.getElementById('song-modal-title').textContent = '曲を追加'; clearSongForm(); openModal(); });
   document.getElementById('song-modal-close').addEventListener('click', closeModal);
   document.getElementById('song-modal-cancel').addEventListener('click', closeModal);
 
-  function openEdit(i) {
-    editingIndex = i;
-    document.getElementById('song-modal-title').textContent = '曲を編集';
-    fillSongForm(songs[i]);
-    openModal();
-  }
+  function openEdit(i) { editingIndex = i; document.getElementById('song-modal-title').textContent = '曲を編集'; fillSongForm(songs[i]); openModal(); }
 
   function clearSongForm() {
-    ['f-id','f-title','f-subtitle','f-youtube','f-karaoke','f-description',
-     'f-about-pre','f-about-quote','f-about-post'].forEach(id => {
-      document.getElementById(id).value = '';
-    });
+    ['f-id','f-title','f-subtitle','f-youtube','f-karaoke','f-description','f-about-pre','f-about-quote','f-about-post'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('lyric-blocks').innerHTML = '';
   }
-
-  function fillSongForm(song) {
-    document.getElementById('f-id').value         = song.id || '';
-    document.getElementById('f-title').value      = song.title || '';
-    document.getElementById('f-subtitle').value   = song.subtitle || '';
-    document.getElementById('f-youtube').value    = song.youtubeUrl || '';
-    document.getElementById('f-karaoke').value    = song.karaokeUrl || '';
-    document.getElementById('f-description').value = song.description || '';
-    document.getElementById('f-about-pre').value   = song.aboutPre || '';
-    document.getElementById('f-about-quote').value = song.aboutQuote || '';
-    document.getElementById('f-about-post').value  = song.aboutPost || '';
-    const blocksEl = document.getElementById('lyric-blocks');
-    blocksEl.innerHTML = '';
-    (song.lyrics || []).forEach(block => addLyricBlock(block));
+  function fillSongForm(s) {
+    document.getElementById('f-id').value        = s.id||'';
+    document.getElementById('f-title').value     = s.title||'';
+    document.getElementById('f-subtitle').value  = s.subtitle||'';
+    document.getElementById('f-youtube').value   = s.youtubeUrl||'';
+    document.getElementById('f-karaoke').value   = s.karaokeUrl||'';
+    document.getElementById('f-description').value = s.description||'';
+    document.getElementById('f-about-pre').value   = s.aboutPre||'';
+    document.getElementById('f-about-quote').value = s.aboutQuote||'';
+    document.getElementById('f-about-post').value  = s.aboutPost||'';
+    document.getElementById('lyric-blocks').innerHTML = '';
+    (s.lyrics||[]).forEach(b => addLyricBlock(b));
   }
-
   function readSongForm() {
-    const youtubeUrl = document.getElementById('f-youtube').value.trim();
-    const karaokeUrl = document.getElementById('f-karaoke').value.trim();
+    const yu = document.getElementById('f-youtube').value.trim();
+    const ku = document.getElementById('f-karaoke').value.trim();
     return {
-      id:          document.getElementById('f-id').value.trim().replace(/[^a-z0-9\-]/gi, '-').toLowerCase(),
-      title:       document.getElementById('f-title').value.trim(),
-      subtitle:    document.getElementById('f-subtitle').value.trim(),
-      youtubeUrl,
-      youtubeId:   extractYoutubeId(youtubeUrl),
-      karaokeUrl,
-      karaokeId:   extractYoutubeId(karaokeUrl),
+      id: document.getElementById('f-id').value.trim().replace(/[^a-z0-9\-]/gi,'-').toLowerCase(),
+      title: document.getElementById('f-title').value.trim(),
+      subtitle: document.getElementById('f-subtitle').value.trim(),
+      youtubeUrl: yu, youtubeId: extractYtId(yu),
+      karaokeUrl: ku, karaokeId: extractYtId(ku),
       description: document.getElementById('f-description').value.trim(),
       aboutPre:    document.getElementById('f-about-pre').value.trim(),
       aboutQuote:  document.getElementById('f-about-quote').value.trim(),
       aboutPost:   document.getElementById('f-about-post').value.trim(),
-      lyrics:      readLyricBlocks(),
+      lyrics: readLyricBlocks(),
     };
   }
 
   document.getElementById('song-modal-save').addEventListener('click', () => {
-    const song = readSongForm();
-    if (!song.id || !song.title || !song.youtubeUrl) {
-      showStatus('ID・タイトル・YouTube URLは必須です', 'error');
-      return;
-    }
-    const conflict = songs.findIndex((s, i) => s.id === song.id && i !== editingIndex);
-    if (conflict !== -1) { showStatus('同じIDの曲がすでに存在します', 'error'); return; }
-    if (editingIndex === -1) songs.push(song);
-    else songs[editingIndex] = song;
-    renderSongList();
-    closeModal();
-    saveToGitHub();
+    const s = readSongForm();
+    if (!s.id || !s.title || !s.youtubeUrl) { showStatus('ID・タイトル・YouTube URLは必須です', 'error'); return; }
+    if (songs.some((x, i) => x.id === s.id && i !== editingIndex)) { showStatus('同じIDがすでに存在します', 'error'); return; }
+    editingIndex === -1 ? songs.push(s) : (songs[editingIndex] = s);
+    renderSongList(); closeModal(); saveToGitHub();
   });
 
   function deleteSong(i) {
     if (!confirm(`「${songs[i].title}」を削除しますか？`)) return;
-    songs.splice(i, 1);
-    renderSongList();
-    saveToGitHub();
+    songs.splice(i, 1); renderSongList(); saveToGitHub();
   }
 
-  // ── LYRICS EDITOR ──
   document.getElementById('add-lyric-block').addEventListener('click', () => addLyricBlock());
-
   function addLyricBlock(data = {}) {
-    const container = document.getElementById('lyric-blocks');
     const el = document.createElement('div');
     el.className = 'lyric-block-editor';
     el.innerHTML = `
       <select class="form-input" data-field="type">
-        <option value="verse"  ${data.type === 'verse'  ? 'selected' : ''}>Verse</option>
-        <option value="chorus" ${data.type === 'chorus' ? 'selected' : ''}>Chorus</option>
-        <option value="bridge" ${data.type === 'bridge' ? 'selected' : ''}>Bridge</option>
-        <option value="outro"  ${data.type === 'outro'  ? 'selected' : ''}>Outro</option>
+        <option value="verse"  ${data.type==='verse' ?'selected':''}>Verse</option>
+        <option value="chorus" ${data.type==='chorus'?'selected':''}>Chorus</option>
+        <option value="bridge" ${data.type==='bridge'?'selected':''}>Bridge</option>
+        <option value="outro"  ${data.type==='outro' ?'selected':''}>Outro</option>
       </select>
-      <input class="form-input" type="text" data-field="tag" placeholder="VERSE 1" value="${escHtml(data.tag || '')}" />
-      <button class="remove-block-btn" title="削除">✕</button>
-      <textarea class="form-input" data-field="text" rows="3" placeholder="歌詞をここに...">${escHtml(data.text || '')}</textarea>
-    `;
+      <input class="form-input" type="text" data-field="tag" placeholder="VERSE 1" value="${esc(data.tag||'')}" />
+      <button class="remove-block-btn">✕</button>
+      <textarea class="form-input" data-field="text" rows="3">${esc(data.text||'')}</textarea>`;
     el.querySelector('.remove-block-btn').addEventListener('click', () => el.remove());
-    container.appendChild(el);
+    document.getElementById('lyric-blocks').appendChild(el);
   }
-
   function readLyricBlocks() {
     return Array.from(document.querySelectorAll('#lyric-blocks .lyric-block-editor')).map(el => ({
       type: el.querySelector('[data-field="type"]').value,
@@ -874,361 +594,308 @@
     }));
   }
 
-  // ── SONGS: GITHUB SAVE ──
   async function saveToGitHub() {
-    const json = JSON.stringify({ songs }, null, 2);
-    await saveJsonToGitHub('songs.json', json, 'Update songs.json via admin console', 'status-bar');
+    await saveJsonToGitHub('songs.json', JSON.stringify({songs},null,2), 'Update songs.json via admin', 'status-bar');
   }
-
   document.getElementById('export-btn').addEventListener('click', () => {
-    downloadJson(JSON.stringify({ songs }, null, 2), 'songs.json');
-    showStatus('songs.json をダウンロードしました。GitHubのファイルと置き換えてください。', 'info');
+    dlJson(JSON.stringify({songs},null,2), 'songs.json');
+    showStatus('songs.json をダウンロードしました', 'info');
   });
 
   // ══════════════════════════════
-  // ── VOICES ──
+  // VOICES (Artist-centric)
+  // Data: { id, vocal_name, profile, featured, status, songs:[{song_title,media_url,thumbnail,published_date,first_voice}] }
   // ══════════════════════════════
   async function loadVoices() {
     try {
       const res = await fetch('./voices.json?t=' + Date.now());
-      if (!res.ok) throw new Error();
-      const data = await res.json();
-      voices = data.voices || [];
+      voices = res.ok ? (await res.json()).voices || [] : [];
     } catch { voices = []; }
     renderVoiceList();
   }
 
   function renderVoiceList() {
     const list = document.getElementById('voice-list');
-    if (voices.length === 0) {
-      list.innerHTML = '<div class="empty-list">投稿がありません。「投稿を追加」から追加してください。</div>';
-      return;
-    }
-    list.innerHTML = voices.map((v, i) => `
-      <div class="voice-row">
-        <div class="voice-row-info">
-          <div class="voice-row-song">${escHtml(v.song_title || '')}</div>
-          <div class="voice-row-sub">
-            ${escHtml(v.vocal_name || '')}
-            ${v.published_date ? ' · ' + v.published_date : ''}
-            ${v.first_voice ? ' · <span style="color:var(--accent);font-size:0.58rem">🎤 First Voice</span>' : ''}
+    if (!voices.length) { list.innerHTML = '<div class="empty-list">アーティストがいません。「アーティストを追加」から追加してください。</div>'; return; }
+    list.innerHTML = voices.map((v, i) => {
+      const chips = (v.songs||[]).map(s => `<span class="song-chip">${esc(s.song_title||'')}</span>`).join('');
+      return `
+        <div class="artist-row">
+          <div class="artist-row-main">
+            <div class="artist-row-name">
+              ${esc(v.vocal_name||'—')}
+              <span class="featured-star ${v.featured?'on':''}" title="Featured切替" onclick="toggleVoiceFeatured(${i})">★</span>
+            </div>
+            ${v.profile ? `<div class="artist-row-profile">${esc(v.profile)}</div>` : ''}
+            <div class="artist-row-songs">${chips || '<span style="font-size:0.65rem;color:var(--ink-muted);letter-spacing:0.1em">曲なし</span>'}</div>
           </div>
-        </div>
-        <div class="voice-row-badges">
-          <span class="status-pill ${escHtml(v.status || 'draft')}">${v.status === 'published' ? '公開' : '下書き'}</span>
-          <span class="featured-star ${v.featured ? 'on' : ''}" title="Featured切替" onclick="toggleVoiceFeatured(${i})">★</span>
-        </div>
-        <div class="voice-row-actions">
-          <button class="btn-icon" onclick="openVoiceEdit(${i})">編集</button>
-          <button class="btn-icon ${v.status === 'published' ? '' : 'publish'}" onclick="toggleVoiceStatus(${i})">
-            ${v.status === 'published' ? '下書きに' : '公開する'}
-          </button>
-          <button class="btn-icon danger" onclick="deleteVoice(${i})">削除</button>
-        </div>
-      </div>
-    `).join('');
+          <div class="artist-row-right">
+            <span class="status-pill ${v.status==='published'?'published':'draft'}">${v.status==='published'?'公開':'下書き'}</span>
+            <div class="artist-row-actions">
+              <button class="btn-icon" onclick="openVoiceEdit(${i})">編集</button>
+              <button class="btn-icon ${v.status==='published'?'':'publish'}" onclick="toggleVoiceStatus(${i})">${v.status==='published'?'下書きに':'公開する'}</button>
+              <button class="btn-icon danger" onclick="deleteVoice(${i})">削除</button>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
   }
 
-  // ── VOICE MODAL ──
+  // ── Voice Modal ──
   function openVoiceModal() { document.getElementById('voice-modal').classList.add('open'); }
-  function closeVoiceModal() {
-    document.getElementById('voice-modal').classList.remove('open');
-    editingVoiceIndex = -1;
-  }
+  function closeVoiceModal() { document.getElementById('voice-modal').classList.remove('open'); editingVoiceIndex = -1; }
 
   document.getElementById('add-voice-btn').addEventListener('click', () => {
     editingVoiceIndex = -1;
-    document.getElementById('voice-modal-title').textContent = '投稿を追加';
+    document.getElementById('voice-modal-title').textContent = 'アーティストを追加';
+    populateVocalNames();
     clearVoiceForm();
-    populateVoiceAutocomplete();
     openVoiceModal();
   });
-
   document.getElementById('voice-modal-close').addEventListener('click', closeVoiceModal);
   document.getElementById('voice-modal-cancel').addEventListener('click', closeVoiceModal);
 
   function openVoiceEdit(i) {
     editingVoiceIndex = i;
-    document.getElementById('voice-modal-title').textContent = '投稿を編集';
-    populateVoiceAutocomplete();
+    document.getElementById('voice-modal-title').textContent = 'アーティストを編集';
+    populateVocalNames();
     fillVoiceForm(voices[i]);
     openVoiceModal();
   }
 
-  function populateVoiceAutocomplete() {
-    // Song titles from songs.json
-    const songList = document.getElementById('song-titles-list');
-    songList.innerHTML = songs.map(s => `<option value="${escHtml(s.title)}">`).join('');
-
-    // Vocal names from existing voices (deduplicated)
-    const vocalSet = [...new Set(voices.map(v => v.vocal_name).filter(Boolean))];
-    const vocalList = document.getElementById('vocal-names-list');
-    vocalList.innerHTML = vocalSet.map(n => `<option value="${escHtml(n)}">`).join('');
+  function populateVocalNames() {
+    const names = [...new Set(voices.map(v => v.vocal_name).filter(Boolean))];
+    document.getElementById('vocal-names-list').innerHTML = names.map(n => `<option value="${esc(n)}">`).join('');
   }
 
   function clearVoiceForm() {
-    document.getElementById('vf-song').value    = '';
     document.getElementById('vf-vocal').value   = '';
     document.getElementById('vf-profile').value = '';
-    document.getElementById('vf-media').value   = '';
-    document.getElementById('vf-thumb').value   = '';
-    document.getElementById('vf-date').value    = '';
     document.getElementById('vf-status').value  = 'draft';
     document.getElementById('vf-featured').checked = false;
-    document.getElementById('vf-first').checked    = false;
-    document.getElementById('auto-thumb-preview').style.display = 'none';
+    document.getElementById('voice-songs-list').innerHTML = '';
   }
 
   function fillVoiceForm(v) {
-    document.getElementById('vf-song').value    = v.song_title    || '';
-    document.getElementById('vf-vocal').value   = v.vocal_name   || '';
-    document.getElementById('vf-profile').value = v.profile      || '';
-    document.getElementById('vf-media').value   = v.media_url    || '';
-    document.getElementById('vf-thumb').value   = v.thumbnail    || '';
-    document.getElementById('vf-date').value    = v.published_date || '';
+    document.getElementById('vf-vocal').value   = v.vocal_name  || '';
+    document.getElementById('vf-profile').value = v.profile     || '';
     document.getElementById('vf-status').value  = v.status === 'published' ? 'published' : 'draft';
     document.getElementById('vf-featured').checked = !!v.featured;
-    document.getElementById('vf-first').checked    = !!v.first_voice;
-    updateThumbPreview(v.media_url || '');
+    document.getElementById('voice-songs-list').innerHTML = '';
+    (v.songs || []).forEach(s => addVoiceSong(s));
   }
 
   function readVoiceForm() {
     return {
-      id:             editingVoiceIndex >= 0 ? (voices[editingVoiceIndex].id || genVoiceId()) : genVoiceId(),
-      song_title:     document.getElementById('vf-song').value.trim(),
-      vocal_name:     document.getElementById('vf-vocal').value.trim(),
-      profile:        document.getElementById('vf-profile').value.trim(),
-      media_url:      document.getElementById('vf-media').value.trim(),
-      thumbnail:      document.getElementById('vf-thumb').value.trim(),
-      published_date: document.getElementById('vf-date').value || todayStr(),
-      featured:       document.getElementById('vf-featured').checked,
-      first_voice:    document.getElementById('vf-first').checked,
-      status:         document.getElementById('vf-status').value,
+      id:         editingVoiceIndex >= 0 ? (voices[editingVoiceIndex].id || genId()) : genId(),
+      vocal_name: document.getElementById('vf-vocal').value.trim(),
+      profile:    document.getElementById('vf-profile').value.trim(),
+      status:     document.getElementById('vf-status').value,
+      featured:   document.getElementById('vf-featured').checked,
+      songs:      readVoiceSongs(),
     };
   }
 
-  function genVoiceId() {
-    return 'v' + Date.now().toString(36);
+  // ── Song entries within artist form ──
+  document.getElementById('add-voice-song-btn').addEventListener('click', () => addVoiceSong());
+
+  function addVoiceSong(data = {}) {
+    const el = document.createElement('div');
+    el.className = 'voice-song-editor';
+    el.innerHTML = `
+      <button class="voice-song-remove" type="button" title="この曲を削除">✕</button>
+      <div class="voice-song-editor-grid">
+        <div class="full">
+          <label class="form-label">曲名 <span style="color:var(--danger)">*</span></label>
+          <input class="form-input" type="text" data-field="song_title"
+                 list="song-titles-list" placeholder="曲を選択または入力"
+                 autocomplete="off" value="${esc(data.song_title||'')}" />
+          <datalist id="song-titles-list">
+            ${songs.map(s => `<option value="${esc(s.title)}">`).join('')}
+          </datalist>
+        </div>
+        <div class="full">
+          <label class="form-label">音源 URL <span style="color:var(--danger)">*</span>（YouTube推奨）</label>
+          <input class="form-input" type="url" data-field="media_url"
+                 placeholder="https://www.youtube.com/..." value="${esc(data.media_url||'')}" />
+          <div class="voice-song-thumb-preview">
+            <div class="voice-song-thumb-label">AUTO THUMBNAIL</div>
+            <img src="" alt="thumb" />
+          </div>
+        </div>
+        <div>
+          <label class="form-label">サムネイル URL（任意）</label>
+          <input class="form-input" type="url" data-field="thumbnail"
+                 placeholder="空欄でYouTubeから自動取得" value="${esc(data.thumbnail||'')}" />
+        </div>
+        <div>
+          <label class="form-label">公開日（任意）</label>
+          <input class="form-input" type="date" data-field="published_date"
+                 value="${esc(data.published_date||'')}" />
+        </div>
+        <div class="full">
+          <label class="check-row">
+            <input type="checkbox" data-field="first_voice" ${data.first_voice?'checked':''} />
+            🎤 First Voice（この曲への最初の1件）
+          </label>
+        </div>
+      </div>`;
+
+    el.querySelector('.voice-song-remove').addEventListener('click', () => el.remove());
+
+    // YouTube thumbnail preview
+    const mediaInput = el.querySelector('[data-field="media_url"]');
+    const preview    = el.querySelector('.voice-song-thumb-preview');
+    const previewImg = el.querySelector('.voice-song-thumb-preview img');
+    function updatePreview(url) {
+      const id = extractYtId(url);
+      if (id) { previewImg.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`; preview.style.display = 'block'; }
+      else { preview.style.display = 'none'; }
+    }
+    mediaInput.addEventListener('input', () => updatePreview(mediaInput.value));
+    if (data.media_url) updatePreview(data.media_url);
+
+    document.getElementById('voice-songs-list').appendChild(el);
+  }
+
+  function readVoiceSongs() {
+    return Array.from(document.querySelectorAll('#voice-songs-list .voice-song-editor')).map(el => ({
+      song_title:     el.querySelector('[data-field="song_title"]').value.trim(),
+      media_url:      el.querySelector('[data-field="media_url"]').value.trim(),
+      thumbnail:      el.querySelector('[data-field="thumbnail"]').value.trim(),
+      published_date: el.querySelector('[data-field="published_date"]').value || todayStr(),
+      first_voice:    el.querySelector('[data-field="first_voice"]').checked,
+    }));
   }
 
   document.getElementById('voice-modal-save').addEventListener('click', () => {
     const v = readVoiceForm();
-    if (!v.song_title) { showVoicesStatus('曲名は必須です', 'error'); return; }
-    if (!v.vocal_name) { showVoicesStatus('Vocal名は必須です', 'error'); return; }
-    if (!v.media_url)  { showVoicesStatus('音源URLは必須です', 'error'); return; }
-    if (!isValidUrl(v.media_url)) { showVoicesStatus('音源URLの形式が正しくありません', 'error'); return; }
+    if (!v.vocal_name) { showVoicesStatus('アーティスト名は必須です', 'error'); return; }
+    const songEntries = v.songs.filter(s => s.song_title && s.media_url);
+    const invalid = v.songs.find(s => s.media_url && !isValidUrl(s.media_url));
+    if (invalid) { showVoicesStatus(`URLの形式が正しくありません: ${invalid.media_url}`, 'error'); return; }
+    v.songs = songEntries;
 
-    if (editingVoiceIndex === -1) voices.push(v);
-    else voices[editingVoiceIndex] = v;
-
+    editingVoiceIndex === -1 ? voices.push(v) : (voices[editingVoiceIndex] = v);
     renderVoiceList();
     closeVoiceModal();
     saveVoicesToGitHub();
   });
 
-  // ── VOICE OPERATIONS ──
   function deleteVoice(i) {
-    if (!confirm(`「${voices[i].song_title} / ${voices[i].vocal_name}」を削除しますか？`)) return;
-    voices.splice(i, 1);
-    renderVoiceList();
-    saveVoicesToGitHub();
+    if (!confirm(`「${voices[i].vocal_name}」を削除しますか？`)) return;
+    voices.splice(i, 1); renderVoiceList(); saveVoicesToGitHub();
   }
-
   function toggleVoiceStatus(i) {
     voices[i].status = voices[i].status === 'published' ? 'draft' : 'published';
-    renderVoiceList();
-    saveVoicesToGitHub();
+    renderVoiceList(); saveVoicesToGitHub();
   }
-
   function toggleVoiceFeatured(i) {
     voices[i].featured = !voices[i].featured;
-    renderVoiceList();
-    saveVoicesToGitHub();
+    renderVoiceList(); saveVoicesToGitHub();
   }
 
-  // ── VOICE THUMBNAIL PREVIEW ──
-  document.getElementById('vf-media').addEventListener('input', function() {
-    updateThumbPreview(this.value);
-  });
-
-  function updateThumbPreview(url) {
-    const thumbId = extractYoutubeId(url);
-    const preview = document.getElementById('auto-thumb-preview');
-    const img = document.getElementById('auto-thumb-img');
-    if (thumbId) {
-      img.src = `https://img.youtube.com/vi/${thumbId}/hqdefault.jpg`;
-      preview.style.display = 'block';
-    } else {
-      preview.style.display = 'none';
-    }
-  }
-
-  // ── VOICES: GITHUB SAVE ──
   async function saveVoicesToGitHub() {
-    const json = JSON.stringify({ voices }, null, 2);
-    await saveJsonToGitHub('voices.json', json, 'Update voices.json via admin console', 'voices-status-bar');
+    await saveJsonToGitHub('voices.json', JSON.stringify({voices},null,2), 'Update voices.json via admin', 'voices-status-bar');
   }
-
   document.getElementById('export-voices-btn').addEventListener('click', () => {
-    downloadJson(JSON.stringify({ voices }, null, 2), 'voices.json');
-    showVoicesStatus('voices.json をダウンロードしました。GitHubのファイルと置き換えてください。', 'info');
+    dlJson(JSON.stringify({voices},null,2), 'voices.json');
+    showVoicesStatus('voices.json をダウンロードしました', 'info');
   });
 
   // ══════════════════════════════
-  // ── SETTINGS MODAL ──
+  // SETTINGS
   // ══════════════════════════════
   document.getElementById('settings-btn').addEventListener('click', () => {
-    loadSettingsForm();
-    document.getElementById('settings-modal').classList.add('open');
-  });
-
-  document.getElementById('settings-modal-close').addEventListener('click', () => {
-    document.getElementById('settings-modal').classList.remove('open');
-  });
-  document.getElementById('settings-modal-cancel').addEventListener('click', () => {
-    document.getElementById('settings-modal').classList.remove('open');
-  });
-
-  function loadSettingsForm() {
     document.getElementById('s-owner').value  = localStorage.getItem('ghOwner')  || '';
     document.getElementById('s-repo').value   = localStorage.getItem('ghRepo')   || '';
     document.getElementById('s-branch').value = localStorage.getItem('ghBranch') || 'main';
     document.getElementById('s-token').value  = localStorage.getItem('ghToken')  || '';
-  }
-
+    document.getElementById('settings-modal').classList.add('open');
+  });
+  ['settings-modal-close','settings-modal-cancel'].forEach(id => {
+    document.getElementById(id).addEventListener('click', () => document.getElementById('settings-modal').classList.remove('open'));
+  });
   document.getElementById('settings-modal-save').addEventListener('click', () => {
-    const owner    = document.getElementById('s-owner').value.trim();
-    const repo     = document.getElementById('s-repo').value.trim();
-    const branch   = document.getElementById('s-branch').value.trim() || 'main';
-    const token    = document.getElementById('s-token').value.trim();
-    const newPw    = document.getElementById('s-new-pw').value;
-    const confirmPw = document.getElementById('s-confirm-pw').value;
-
-    if (owner)  localStorage.setItem('ghOwner',  owner);
-    if (repo)   localStorage.setItem('ghRepo',   repo);
+    const owner = document.getElementById('s-owner').value.trim();
+    const repo  = document.getElementById('s-repo').value.trim();
+    const branch= document.getElementById('s-branch').value.trim()||'main';
+    const token = document.getElementById('s-token').value.trim();
+    const newPw = document.getElementById('s-new-pw').value;
+    const confPw= document.getElementById('s-confirm-pw').value;
+    if (owner) localStorage.setItem('ghOwner', owner);
+    if (repo)  localStorage.setItem('ghRepo',  repo);
     localStorage.setItem('ghBranch', branch);
-    if (token)  localStorage.setItem('ghToken',  token);
-
+    if (token) localStorage.setItem('ghToken', token);
     if (newPw) {
-      if (newPw !== confirmPw) { alert('パスワードが一致しません'); return; }
+      if (newPw !== confPw) { alert('パスワードが一致しません'); return; }
       localStorage.setItem('adminPassword', newPw);
     }
     document.getElementById('settings-modal').classList.remove('open');
     showStatus('設定を保存しました', 'success');
   });
-
   document.getElementById('test-github-btn').addEventListener('click', async () => {
     const owner = document.getElementById('s-owner').value.trim();
     const repo  = document.getElementById('s-repo').value.trim();
     const token = document.getElementById('s-token').value.trim();
-    const statusEl = document.getElementById('github-test-status');
-
-    if (!owner || !repo || !token) {
-      showEl(statusEl, 'ユーザー名・リポジトリ名・トークンを入力してください', 'error'); return;
-    }
-    showEl(statusEl, '接続確認中...', 'info');
+    const el    = document.getElementById('github-test-status');
+    if (!owner||!repo||!token) { showEl(el,'ユーザー名・リポジトリ名・トークンを入力してください','error'); return; }
+    showEl(el,'接続確認中...','info');
     try {
-      const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
-        headers: { Authorization: `token ${token}` }
-      });
-      if (res.ok) showEl(statusEl, '✓ 接続成功', 'success');
-      else showEl(statusEl, `接続失敗: ${res.status} ${res.statusText}`, 'error');
-    } catch {
-      showEl(statusEl, 'ネットワークエラー', 'error');
-    }
+      const r = await fetch(`https://api.github.com/repos/${owner}/${repo}`, { headers:{ Authorization:`token ${token}` } });
+      showEl(el, r.ok ? '✓ 接続成功' : `接続失敗: ${r.status}`, r.ok ? 'success' : 'error');
+    } catch { showEl(el,'ネットワークエラー','error'); }
   });
 
   // ══════════════════════════════
-  // ── SHARED GITHUB SAVE ──
+  // SHARED GITHUB SAVE
   // ══════════════════════════════
-  async function saveJsonToGitHub(filePath, json, commitMessage, statusBarId) {
+  async function saveJsonToGitHub(filePath, json, msg, barId) {
     const owner  = localStorage.getItem('ghOwner');
     const repo   = localStorage.getItem('ghRepo');
     const branch = localStorage.getItem('ghBranch') || 'main';
     const token  = localStorage.getItem('ghToken');
-
-    if (!owner || !repo || !token) {
-      showEl(document.getElementById(statusBarId),
-        'GitHub未設定のため自動保存できません。⚙設定からGitHub連携を行うか、「JSONをダウンロード」して手動更新してください。', 'info');
-      return;
-    }
-
-    showEl(document.getElementById(statusBarId), 'GitHubに保存中...', 'info');
+    const el     = document.getElementById(barId);
+    if (!owner||!repo||!token) { showEl(el,'GitHub未設定のため自動保存できません。⚙設定からGitHub連携を行ってください。','info'); return; }
+    showEl(el,'GitHubに保存中...','info');
     try {
-      const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
-      const getRes = await fetch(`${apiBase}?ref=${branch}`, {
-        headers: { Authorization: `token ${token}` }
-      });
-      let sha;
-      if (getRes.ok) { const fd = await getRes.json(); sha = fd.sha; }
-
-      const content = btoa(unescape(encodeURIComponent(json)));
-      const putRes = await fetch(apiBase, {
+      const api = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+      const gr  = await fetch(`${api}?ref=${branch}`, { headers:{ Authorization:`token ${token}` } });
+      const sha = gr.ok ? (await gr.json()).sha : undefined;
+      const pr  = await fetch(api, {
         method: 'PUT',
-        headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: commitMessage, content, branch, ...(sha ? { sha } : {}) }),
+        headers: { Authorization:`token ${token}`, 'Content-Type':'application/json' },
+        body: JSON.stringify({ message:msg, content: btoa(unescape(encodeURIComponent(json))), branch, ...(sha?{sha}:{}) }),
       });
-
-      if (putRes.ok) {
-        showEl(document.getElementById(statusBarId), '✓ GitHubに保存しました。Vercelが自動デプロイします。', 'success');
-      } else {
-        const err = await putRes.json();
-        showEl(document.getElementById(statusBarId), `保存失敗: ${err.message}`, 'error');
-      }
-    } catch {
-      showEl(document.getElementById(statusBarId), '保存中にエラーが発生しました', 'error');
-    }
+      if (pr.ok) showEl(el,'✓ GitHubに保存しました。Vercelが自動デプロイします。','success');
+      else { const e = await pr.json(); showEl(el,`保存失敗: ${e.message}`,'error'); }
+    } catch { showEl(el,'保存中にエラーが発生しました','error'); }
   }
 
   // ══════════════════════════════
-  // ── UTILS ──
+  // UTILS
   // ══════════════════════════════
-  function showStatus(msg, type) {
-    showEl(document.getElementById('status-bar'), msg, type);
-  }
-  function showVoicesStatus(msg, type) {
-    showEl(document.getElementById('voices-status-bar'), msg, type);
-  }
-  function showEl(el, msg, type) {
-    el.textContent = msg;
-    el.className = `status-bar visible ${type}`;
-  }
+  function showStatus(msg, type)       { showEl(document.getElementById('status-bar'), msg, type); }
+  function showVoicesStatus(msg, type) { showEl(document.getElementById('voices-status-bar'), msg, type); }
+  function showEl(el, msg, type)       { el.textContent = msg; el.className = `status-bar visible ${type}`; }
 
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  function esc(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
-
-  function extractYoutubeId(url) {
-    const m = String(url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:shorts\/|watch\?v=|embed\/))([A-Za-z0-9_-]{11})/);
+  function extractYtId(url) {
+    const m = String(url||'').match(/(?:youtu\.be\/|youtube\.com\/(?:shorts\/|watch\?v=|embed\/))([A-Za-z0-9_-]{11})/);
     return m ? m[1] : '';
   }
-
-  function isValidUrl(url) {
-    try { new URL(url); return true; } catch { return false; }
+  function isValidUrl(url) { try { new URL(url); return true; } catch { return false; } }
+  function todayStr()  { return new Date().toISOString().slice(0,10); }
+  function genId()     { return 'a' + Date.now().toString(36); }
+  function dlJson(json, filename) {
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([json],{type:'application/json'})), download: filename });
+    a.click();
   }
 
-  function todayStr() {
-    return new Date().toISOString().slice(0, 10);
-  }
+  document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target===o) o.classList.remove('open'); }));
 
-  function downloadJson(json, filename) {
-    const blob = new Blob([json], { type: 'application/json' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href = url; a.download = filename; a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  // Close modals on overlay click
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) overlay.classList.remove('open');
-    });
-  });
-
-  // ── INIT ──
   checkAuth();
 </script>
 </body>

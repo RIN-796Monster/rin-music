@@ -612,9 +612,26 @@
           document.head.appendChild(m);
         })();
 
-        const songVoices = (vData.voices || []).filter(
-          v => v.status === 'published' && v.song_title === song.title
-        );
+        /* New structure: voices = artists with songs[] array */
+        const songVoices = [];
+        (vData.voices || []).forEach(artist => {
+          if (artist.status !== 'published') return;
+          (artist.songs || []).forEach(s => {
+            if (s.song_title === song.title) {
+              songVoices.push({
+                ...s,
+                vocal_name:      artist.vocal_name,
+                artist_featured: artist.featured,
+              });
+            }
+          });
+        });
+        /* Sort: artist featured first → first_voice → newest */
+        songVoices.sort((a, b) => {
+          if (!!a.artist_featured !== !!b.artist_featured) return a.artist_featured ? -1 : 1;
+          if (!!a.first_voice !== !!b.first_voice) return a.first_voice ? -1 : 1;
+          return new Date(b.published_date || 0) - new Date(a.published_date || 0);
+        });
         renderSong(song, songVoices, content);
       } catch {
         content.innerHTML = '<div class="error-msg">読み込みに失敗しました。<br><a href="index.html">トップへ戻る</a></div>';
@@ -689,7 +706,7 @@
               ${thumb ? `<div class="vbs-thumb"><img src="${esc(thumb)}" alt="${esc(v.vocal_name)}" loading="lazy" onerror="this.parentElement.style.display='none'" /></div>` : ''}
               <div class="vbs-body">
                 <div class="vbs-badges">
-                  ${v.featured    ? '<span class="vbs-badge featured">★ Featured</span>' : ''}
+                  ${v.artist_featured ? '<span class="vbs-badge featured">★ Featured</span>' : ''}
                   ${v.first_voice ? '<span class="vbs-badge first">First Voice</span>'   : ''}
                 </div>
                 <div class="vbs-name">${esc(v.vocal_name)}</div>

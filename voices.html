@@ -402,59 +402,46 @@
 
   function render(voices) {
     const container = document.getElementById('voices-content');
-    const published = voices.filter(v => v.status === 'published');
+    /* voices = [ { vocal_name, profile, featured, status, songs:[{song_title,media_url,thumbnail,published_date,first_voice}] } ] */
+    const published = voices.filter(v => v.status === 'published' && (v.songs||[]).length > 0);
 
     if (published.length === 0) {
-      container.innerHTML = `
-        <div class="v-empty">まだ投稿がありません</div>
-        ${guidelinesBlock()}
-      `;
+      container.innerHTML = `<div class="v-empty">まだ投稿がありません</div>${guidelinesBlock()}`;
       observeAll();
       return;
     }
 
-    /* Sort: featured first → newest */
+    /* Sort artists: featured first */
     published.sort((a, b) => {
       if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
-      return new Date(b.published_date || 0) - new Date(a.published_date || 0);
+      return 0;
     });
 
-    /* Group by vocal_name (insertion order = sort order of first entry per vocal) */
-    const order = [];
-    const groups = {};
-    published.forEach(v => {
-      if (!groups[v.vocal_name]) {
-        order.push(v.vocal_name);
-        groups[v.vocal_name] = { profile: v.profile || '', voices: [] };
-      }
-      groups[v.vocal_name].voices.push(v);
-    });
-
-    container.innerHTML =
-      order.map(name => renderGroup(name, groups[name])).join('') +
-      guidelinesBlock();
-
+    container.innerHTML = published.map(artist => renderGroup(artist)).join('') + guidelinesBlock();
     observeAll();
   }
 
-  function renderGroup(name, group) {
-    const cards = group.voices.map(v => {
-      const thumb = v.thumbnail || ytThumb(v.media_url);
+  function renderGroup(artist) {
+    /* Sort songs within artist: first_voice first → newest */
+    const songs = [...(artist.songs || [])].sort((a, b) => {
+      if (!!a.first_voice !== !!b.first_voice) return a.first_voice ? -1 : 1;
+      return new Date(b.published_date || 0) - new Date(a.published_date || 0);
+    });
+
+    const cards = songs.map(s => {
+      const thumb = s.thumbnail || ytThumb(s.media_url);
       return `
-        <div class="voice-card${v.featured ? ' featured' : ''}">
-          ${thumb
-            ? `<div class="voice-card-thumb"><img src="${esc(thumb)}" alt="${esc(v.song_title)}" loading="lazy" onerror="this.parentElement.style.display='none'" /></div>`
-            : ''}
+        <div class="voice-card${artist.featured ? ' featured' : ''}">
+          ${thumb ? `<div class="voice-card-thumb"><img src="${esc(thumb)}" alt="${esc(s.song_title)}" loading="lazy" onerror="this.parentElement.style.display='none'" /></div>` : ''}
           <div class="voice-card-body">
             <div class="badge-row">
-              ${v.featured   ? '<span class="badge badge-featured">★ Featured</span>' : ''}
-              ${v.first_voice ? '<span class="badge badge-first">First Voice</span>'  : ''}
+              ${artist.featured  ? '<span class="badge badge-featured">★ Featured</span>' : ''}
+              ${s.first_voice    ? '<span class="badge badge-first">First Voice</span>'   : ''}
             </div>
-            <div class="voice-card-song">${esc(v.song_title)}</div>
-            ${v.published_date ? `<div class="voice-card-date">${fmtDate(v.published_date)}</div>` : ''}
-            <a class="voice-card-btn" href="${esc(v.media_url)}" target="_blank" rel="noopener">
-              <span class="play-tri"></span>
-              <span>聴く</span>
+            <div class="voice-card-song">${esc(s.song_title)}</div>
+            ${s.published_date ? `<div class="voice-card-date">${fmtDate(s.published_date)}</div>` : ''}
+            <a class="voice-card-btn" href="${esc(s.media_url)}" target="_blank" rel="noopener">
+              <span class="play-tri"></span><span>聴く</span>
             </a>
           </div>
         </div>`;
@@ -464,10 +451,8 @@
       <div class="vocal-group">
         <div class="vocal-header">
           <div class="vocal-label">Vocal</div>
-          <div class="vocal-name">${esc(name)}</div>
-          ${group.profile
-            ? `<p class="vocal-profile">${esc(group.profile).replace(/\n/g, '<br>')}</p>`
-            : ''}
+          <div class="vocal-name">${esc(artist.vocal_name)}</div>
+          ${artist.profile ? `<p class="vocal-profile">${esc(artist.profile).replace(/\n/g,'<br>')}</p>` : ''}
         </div>
         <div class="voice-cards-grid">${cards}</div>
       </div>`;
