@@ -693,10 +693,11 @@
         `;
       }
 
-      /* ── Voices by Song ── */
-      if (songVoices.length > 0) {
+      /* ── Voices by Song ── always show section with link */
+      {
         songVoices.sort((a, b) => {
-          if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
+          if (!!a.artist_featured !== !!b.artist_featured) return a.artist_featured ? -1 : 1;
+          if (!!a.first_voice !== !!b.first_voice) return a.first_voice ? -1 : 1;
           return new Date(b.published_date || 0) - new Date(a.published_date || 0);
         });
         const cards = songVoices.map(v => {
@@ -707,7 +708,7 @@
               <div class="vbs-body">
                 <div class="vbs-badges">
                   ${v.artist_featured ? '<span class="vbs-badge featured">★ Featured</span>' : ''}
-                  ${v.first_voice ? '<span class="vbs-badge first">First Voice</span>'   : ''}
+                  ${v.first_voice     ? '<span class="vbs-badge first">First Voice</span>'   : ''}
                 </div>
                 <div class="vbs-name">${esc(v.vocal_name)}</div>
                 ${v.published_date ? `<div class="vbs-date">${fmtDate(v.published_date)}</div>` : ''}
@@ -721,8 +722,8 @@
         html += `
           <section class="section" id="voices">
             <div class="section-label">Voices</div>
-            <div class="voices-grid">${cards}</div>
-            <a class="vbs-all-link" href="voices.html">すべての Voices を見る →</a>
+            ${cards ? `<div class="voices-grid">${cards}</div>` : ''}
+            <a class="vbs-all-link" href="voices.html">▶ 声を届けて頂いた方のページはこちら</a>
           </section>`;
       }
 
