@@ -748,11 +748,18 @@
           </a>`;
       }
 
-      // Streaming platform links
+      // Streaming links — always shown regardless of lang toggle
+      // Both JP+EN → show two labelled links; only one → show unlabelled
+      function mkLink(url, urlEn, cls, icon, name) {
+        const out = [];
+        if (url)   out.push(`<a class="stream-link ${cls}" href="${esc(url)}"   target="_blank" rel="noopener">${icon} ${name}${urlEn ? ' JP' : ''}</a>`);
+        if (urlEn) out.push(`<a class="stream-link ${cls}" href="${esc(urlEn)}" target="_blank" rel="noopener">${icon} ${name}${url  ? ' EN' : ''}</a>`);
+        return out.join('');
+      }
       const streamLinks = [
-        song.spotifyUrl    ? `<a class="stream-link spotify"  href="${esc(song.spotifyUrl)}"    target="_blank" rel="noopener">♬ Spotify</a>`      : '',
-        song.appleMusicUrl ? `<a class="stream-link apple"    href="${esc(song.appleMusicUrl)}" target="_blank" rel="noopener">♪ Apple Music</a>`  : '',
-        song.bandcampUrl   ? `<a class="stream-link bandcamp" href="${esc(song.bandcampUrl)}"   target="_blank" rel="noopener">◈ Bandcamp</a>`      : '',
+        mkLink(song.spotifyUrl,    song.spotifyUrlEn,    'spotify',  '♬', 'Spotify'),
+        mkLink(song.appleMusicUrl, song.appleMusicUrlEn, 'apple',    '♪', 'Apple Music'),
+        mkLink(song.bandcampUrl,   song.bandcampUrlEn,   'bandcamp', '◈', 'Bandcamp'),
       ].filter(Boolean).join('');
 
       let html = `

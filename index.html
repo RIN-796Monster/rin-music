@@ -815,11 +815,18 @@
           if (url) ytBtn = `<a class="btn-small primary" href="${escHtml(url)}" target="_blank" rel="noopener"><span class="play-triangle"></span><span>${listenLbl}</span></a>`;
         }
 
-        // Streaming platform badges — always shown regardless of lang toggle
+        // Streaming badges — always shown regardless of lang toggle
+        // Both JP+EN → show two labelled badges; only one → show unlabelled
+        function mkBadge(url, urlEn, cls, icon, name) {
+          const out = [];
+          if (url)   out.push(`<a class="stream-badge ${cls}" href="${escHtml(url)}"   target="_blank" rel="noopener">${icon} ${name}${urlEn ? ' JP' : ''}</a>`);
+          if (urlEn) out.push(`<a class="stream-badge ${cls}" href="${escHtml(urlEn)}" target="_blank" rel="noopener">${icon} ${name}${url  ? ' EN' : ''}</a>`);
+          return out.join('');
+        }
         const badges = [
-          song.spotifyUrl    ? `<a class="stream-badge spotify"  href="${escHtml(song.spotifyUrl)}"    target="_blank" rel="noopener">♬ Spotify</a>`      : '',
-          song.appleMusicUrl ? `<a class="stream-badge apple"    href="${escHtml(song.appleMusicUrl)}" target="_blank" rel="noopener">♪ Apple Music</a>` : '',
-          song.bandcampUrl   ? `<a class="stream-badge bandcamp" href="${escHtml(song.bandcampUrl)}"   target="_blank" rel="noopener">◈ Bandcamp</a>`     : '',
+          mkBadge(song.spotifyUrl,    song.spotifyUrlEn,    'spotify',  '♬', 'Spotify'),
+          mkBadge(song.appleMusicUrl, song.appleMusicUrlEn, 'apple',    '♪', 'Apple Music'),
+          mkBadge(song.bandcampUrl,   song.bandcampUrlEn,   'bandcamp', '◈', 'Bandcamp'),
         ].filter(Boolean).join('');
 
         return `

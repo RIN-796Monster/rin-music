@@ -320,19 +320,35 @@
         <label class="form-label" for="f-youtube-en">YouTube URL（English Ver.）</label>
         <input class="form-input" type="url" id="f-youtube-en" />
       </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:1.2rem;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
         <div>
-          <label class="form-label" for="f-spotify">Spotify URL</label>
-          <input class="form-input" type="url" id="f-spotify" placeholder="https://open.spotify.com/..." />
+          <label class="form-label" for="f-spotify">Spotify（日本語）</label>
+          <input class="form-input" type="url" id="f-spotify" placeholder="https://open.spotify.com/intl-ja/..." />
         </div>
         <div>
-          <label class="form-label" for="f-apple-music">Apple Music URL</label>
-          <input class="form-input" type="url" id="f-apple-music" placeholder="https://music.apple.com/..." />
+          <label class="form-label" for="f-spotify-en">Spotify（English）</label>
+          <input class="form-input" type="url" id="f-spotify-en" placeholder="https://open.spotify.com/track/..." />
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="f-bandcamp">Bandcamp URL</label>
-        <input class="form-input" type="url" id="f-bandcamp" placeholder="https://...bandcamp.com/..." />
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+        <div>
+          <label class="form-label" for="f-apple-music">Apple Music（日本語）</label>
+          <input class="form-input" type="url" id="f-apple-music" placeholder="https://music.apple.com/jp/..." />
+        </div>
+        <div>
+          <label class="form-label" for="f-apple-music-en">Apple Music（English）</label>
+          <input class="form-input" type="url" id="f-apple-music-en" placeholder="https://music.apple.com/us/..." />
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:1.2rem;">
+        <div>
+          <label class="form-label" for="f-bandcamp">Bandcamp（日本語）</label>
+          <input class="form-input" type="url" id="f-bandcamp" placeholder="https://...bandcamp.com/..." />
+        </div>
+        <div>
+          <label class="form-label" for="f-bandcamp-en">Bandcamp（English）</label>
+          <input class="form-input" type="url" id="f-bandcamp-en" placeholder="https://...bandcamp.com/..." />
+        </div>
       </div>
       <div class="form-group">
         <label class="form-label" for="f-about-pre-en">About — 前半（English / HTMLタグ使用可）</label>
@@ -568,7 +584,7 @@
       'f-id','f-title','f-subtitle','f-youtube','f-karaoke','f-description',
       'f-about-pre','f-about-quote','f-about-post',
       'f-title-en','f-description-en','f-youtube-en',
-      'f-spotify','f-apple-music','f-bandcamp',
+      'f-spotify','f-spotify-en','f-apple-music','f-apple-music-en','f-bandcamp','f-bandcamp-en',
       'f-about-pre-en','f-about-quote-en','f-about-post-en',
     ].forEach(id => document.getElementById(id).value = '');
     document.getElementById('lyric-blocks').innerHTML = '';
@@ -587,9 +603,12 @@
     document.getElementById('f-title-en').value       = s.titleEn||'';
     document.getElementById('f-description-en').value = s.descriptionEn||'';
     document.getElementById('f-youtube-en').value     = s.youtubeUrlEn||'';
-    document.getElementById('f-spotify').value        = s.spotifyUrl||'';
-    document.getElementById('f-apple-music').value    = s.appleMusicUrl||'';
-    document.getElementById('f-bandcamp').value       = s.bandcampUrl||'';
+    document.getElementById('f-spotify').value           = s.spotifyUrl||'';
+    document.getElementById('f-spotify-en').value        = s.spotifyUrlEn||'';
+    document.getElementById('f-apple-music').value       = s.appleMusicUrl||'';
+    document.getElementById('f-apple-music-en').value    = s.appleMusicUrlEn||'';
+    document.getElementById('f-bandcamp').value          = s.bandcampUrl||'';
+    document.getElementById('f-bandcamp-en').value       = s.bandcampUrlEn||'';
     document.getElementById('f-about-pre-en').value   = s.aboutPreEn||'';
     document.getElementById('f-about-quote-en').value = s.aboutQuoteEn||'';
     document.getElementById('f-about-post-en').value  = s.aboutPostEn||'';
@@ -608,9 +627,12 @@
       youtubeUrl:   yu,   youtubeId:   extractYtId(yu),
       youtubeUrlEn: yuEn, youtubeIdEn: extractYtId(yuEn),
       karaokeUrl:   ku,   karaokeId:   extractYtId(ku),
-      spotifyUrl:    document.getElementById('f-spotify').value.trim(),
-      appleMusicUrl: document.getElementById('f-apple-music').value.trim(),
-      bandcampUrl:   document.getElementById('f-bandcamp').value.trim(),
+      spotifyUrl:      document.getElementById('f-spotify').value.trim(),
+      spotifyUrlEn:    document.getElementById('f-spotify-en').value.trim(),
+      appleMusicUrl:   document.getElementById('f-apple-music').value.trim(),
+      appleMusicUrlEn: document.getElementById('f-apple-music-en').value.trim(),
+      bandcampUrl:     document.getElementById('f-bandcamp').value.trim(),
+      bandcampUrlEn:   document.getElementById('f-bandcamp-en').value.trim(),
       description:   document.getElementById('f-description').value.trim(),
       descriptionEn: document.getElementById('f-description-en').value.trim(),
       aboutPre:      document.getElementById('f-about-pre').value.trim(),
