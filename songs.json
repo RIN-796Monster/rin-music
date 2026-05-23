@@ -5,20 +5,20 @@
       "title": "Look Up, Me",
       "titleEn": "Look Up, Me",
       "subtitle": "1st Single · 2026",
-      "youtubeUrl": "",
-      "youtubeId": "",
-      "youtubeUrlEn": "",
-      "youtubeIdEn": "",
+      "youtubeUrl": "https://youtube.com/shorts/40-bvfEKxWo?si=08gIEHcWHotbeczy",
+      "youtubeId": "40-bvfEKxWo",
+      "youtubeUrlEn": "https://youtu.be/mwLw3-Y3eMU?si=tlzKtLsx5tHqgH6Q",
+      "youtubeIdEn": "mwLw3-Y3eMU",
       "karaokeUrl": "",
       "karaokeId": "",
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/intl-ja/track/6oEmozbXMnf4n2aFeIlNci?si=e0f48c0b64d944fc",
       "appleMusicUrl": "",
       "bandcampUrl": "https://rin-music.bandcamp.com",
       "description": "夜明け前の街角。好きな人が、誰かの家から帰ってくる。",
       "descriptionEn": "Running into the person you love returning from someone else's night. Choosing to walk forward anyway.",
       "aboutPre": "夜明け前の街角。好きな人が、誰かの家から帰ってくる。\n偶然すれ違ったのは一瞬だけど、「置きっぱなしの歯ブラシ」を今日で終わりにするには十分な時間だった。",
       "aboutPreEn": "Running into the person you love returning from someone else's night.\nA split-second crossing — just enough to decide that the toothbrush you left at their place stays there no more.",
-      "aboutQuote": "Look up, Me——うつむきそうになる自分への、静かな命令。",
+      "aboutQuote": "Look up, Me——うつむきそうになる自分への応援歌。",
       "aboutQuoteEn": "Look up, Me — a quiet command to yourself when you feel like looking down.",
       "aboutPost": "日本語・英語バイリンガル収録。",
       "aboutPostEn": "RIN.'s debut single. Available in Japanese and English.",
@@ -47,10 +47,26 @@
       "aboutPost": "恋愛の中で立ち止まって、自分を見つめ直す瞬間—\n<strong>愛することと、自分であることは、矛盾しない。</strong>\n\nこの曲は、そう気づいた夜に生まれた。",
       "aboutPostEn": "",
       "lyrics": [
-        { "type": "verse", "tag": "", "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" },
-        { "type": "verse", "tag": "VERSE2", "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" }
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE2",
+          "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        }
       ]
     },
     {
@@ -124,10 +140,26 @@
       "aboutPost": "大切な人、大事にしたいふたりの時間",
       "aboutPostEn": "",
       "lyrics": [
-        { "type": "verse", "tag": "VERSE 1", "text": "最近来るのはいつもSunday\n軽く駆け上がる足音\nドア越しの気配に\n少し胸が弾む\n\nいつでもここにいるよ\nあなたを待ってる" },
-        { "type": "chorus", "tag": "", "text": "オルタナティブでオーライ\nそれでも会いたいオーライ\n想いは違ってもここであなたを待ってる" },
-        { "type": "verse", "tag": "VERSE 2", "text": "髪を切って綺麗になったね\nでもそれだけじゃないね\n誰かに触れられた\n余韻がまだ残ってる\n\n同じ場所にいるのに\n見てる未来は違う" },
-        { "type": "chorus", "tag": "", "text": "オルタナティブでオーライ\nそれでも隣にいたいオーライ\n越えられないものがあってもここであなたを待ってる\n\nオルタナティブでオーライ\nそれでも好きだよオーライ\n同じ未来じゃなくてもいい\nただあなたを想ってる" }
+        {
+          "type": "verse",
+          "tag": "VERSE 1",
+          "text": "最近来るのはいつもSunday\n軽く駆け上がる足音\nドア越しの気配に\n少し胸が弾む\n\nいつでもここにいるよ\nあなたを待ってる"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "オルタナティブでオーライ\nそれでも会いたいオーライ\n想いは違ってもここであなたを待ってる"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE 2",
+          "text": "髪を切って綺麗になったね\nでもそれだけじゃないね\n誰かに触れられた\n余韻がまだ残ってる\n\n同じ場所にいるのに\n見てる未来は違う"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "オルタナティブでオーライ\nそれでも隣にいたいオーライ\n越えられないものがあってもここであなたを待ってる\n\nオルタナティブでオーライ\nそれでも好きだよオーライ\n同じ未来じゃなくてもいい\nただあなたを想ってる"
+        }
       ]
     },
     {
@@ -153,10 +185,26 @@
       "aboutPost": "恋愛の中で立ち止まって、自分を見つめ直す瞬間—\n<strong>愛することと、自分であることは、矛盾しない。</strong>\n\nこの曲は、そう気づいた夜に生まれた。",
       "aboutPostEn": "",
       "lyrics": [
-        { "type": "verse", "tag": "VERSE 1", "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" },
-        { "type": "verse", "tag": "VERSE 2", "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" }
+        {
+          "type": "verse",
+          "tag": "VERSE 1",
+          "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE 2",
+          "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        }
       ]
     }
   ]
