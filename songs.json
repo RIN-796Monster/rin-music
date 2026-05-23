@@ -28,36 +28,67 @@
       "lyrics": [
         {
           "type": "verse",
-          "tag": "",
+          "tag": "VERCE 1",
           "text": "ネオンにほどける影\n振り返らないふりをした\n\nバイブに触れるたび\n期待なんていらないのに\n\n少し困った your last face\nまだ胸に残るけど\n\n流れる街の灯りが\nそっと消していく"
         },
         {
           "type": "chorus",
-          "tag": "",
+          "tag": "VERCE 1",
           "text": "ねぇ このままでいい\n夜にまかせて\n\nLook up, Me\nLook up, Me\n\n止まらないで このまま\n止まらないで このまま\n\nLook up, Me\nLook up, Me\n\n笑っていく tonight\n笑っていく tonight"
         },
         {
           "type": "verse",
-          "tag": "",
+          "tag": "VERCE 1",
           "text": "思い出はただのノイズ\n遠ざかっていく\n\n待つだけの夜なんて\n似合わないよね\n\n置きっぱなしの歯ブラシ\n今日で終わりにする\n\nやわらかな風に\n身をゆだねて"
         },
         {
           "type": "chorus",
-          "tag": "",
+          "tag": "VERCE 1",
           "text": "ねぇ これでいいよね\nもう戻らない\n\nLook up, Me\nLook up, Me\n\n止まらないで このまま\n止まらないで このまま\n\nLook up, Me\nLook up, Me\n\n笑っていく tonight\n笑っていく tonight"
         },
         {
           "type": "bridge",
-          "tag": "",
+          "tag": "VERCE 1",
           "text": "ミッドナイトブルーの中\nほどけていく記憶\n\nさよならも言わずに\n静かに消えていく"
         },
         {
           "type": "chorus",
-          "tag": "",
+          "tag": "VERCE 1",
           "text": "Look up, Me\nLook up, Me\n\n止まらないで このまま\n止まらないで このまま\n\nLook up, Me\nLook up, Me\n\n笑っていく tonight\n笑っていく tonight"
         }
       ],
-      "lyricsEn": []
+      "lyricsEn": [
+        {
+          "type": "verse",
+          "tag": "VERCE 1",
+          "text": "Shadows melting in the neon\nI pretend I never turn around\n\nEvery time my phone is buzzing\nI don’t need that hope to pull me down\n\nLittle worried by your last face\nLingers somewhere deep inside\n\nBut the streaming city lights now\nGently make it fade with the night"
+        },
+        {
+          "type": "chorus",
+          "tag": "VERCE 1",
+          "text": "Hey, if we leave it this way\nLet the dark lead the way\n\nLook up, Me\nLook up, Me\n\nDon’t you stop now, keep it going\nDon’t you stop now, keep it going\n\nLook up, Me\nLook up, Me\n\nI’ll be laughing through tonight\nI’ll be laughing through tonight"
+        },
+        {
+          "type": "verse",
+          "tag": "VERCE 2",
+          "text": "Memories just turning to noise\nSlowly drifting far away\n\nNights of waiting by the window\nNever really suited me anyway\n\nLeft your lonely little toothbrush\nToday I’ll put it all aside\n\nLet the gentle breeze surround me\nAnd I’ll give my body to the night"
+        },
+        {
+          "type": "verse",
+          "tag": "VERCE 2",
+          "text": "Hey, it’s better this way\nWe won’t turn back again\n\nLook up, Me\nLook up, Me\n\nDon’t you stop now, keep it going\nDon’t you stop now, keep it going\n\nLook up, Me\nLook up, Me\n\nI’ll be laughing through tonight\nI’ll be laughing through tonight"
+        },
+        {
+          "type": "bridge",
+          "tag": "VERCE 2",
+          "text": "In the midnight blue I’m floating\nAll the memories come undone\n\nWithout saying any goodbye\nQuietly they fade one by one"
+        },
+        {
+          "type": "chorus",
+          "tag": "VERCE 2",
+          "text": "Look up, Me\nLook up, Me\n\nDon’t you stop now, keep it going\nDon’t you stop now, keep it going\n\nLook up, Me\nLook up, Me\n\nI’ll be laughing through tonight\nI’ll be laughing through tonight"
+        }
+      ]
     },
     {
       "id": "i-am-here-adlutver",
