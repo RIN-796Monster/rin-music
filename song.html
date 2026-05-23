@@ -546,6 +546,62 @@
     }
     .vbs-all-link:hover { border-color: var(--accent); }
 
+    /* ── LANG TOGGLE (nav) ── */
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(237,232,220,0.15);
+      color: rgba(237,232,220,0.4);
+      font-family: var(--font-sans-jp);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lang-btn:hover, .lang-btn.en-active {
+      color: var(--accent);
+      border-color: rgba(200,154,58,0.4);
+    }
+
+    /* ── CTA EN VARIANT ── */
+    .cta-btn.cta-btn-en {
+      background: transparent;
+      color: var(--accent);
+      border-color: rgba(200,154,58,0.5);
+    }
+    .cta-btn.cta-btn-en:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    /* ── STREAMING LINKS ── */
+    .stream-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    .stream-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      font-family: var(--font-sans-jp);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border: 1px solid;
+      transition: opacity 0.2s;
+    }
+    .stream-link:hover { opacity: 0.75; }
+    .stream-link.spotify  { color: #1DB954; border-color: rgba(29,185,84,0.4);  background: rgba(29,185,84,0.06); }
+    .stream-link.apple    { color: #FC3C44; border-color: rgba(252,60,68,0.4);  background: rgba(252,60,68,0.06); }
+    .stream-link.bandcamp { color: #1DA0C3; border-color: rgba(29,160,195,0.4); background: rgba(29,160,195,0.06); }
+
     /* ── ERROR ── */
     .error-msg {
       text-align: center;
@@ -566,8 +622,9 @@
 <body>
 
   <nav class="top-nav">
-    <a class="nav-back" href="index.html">すべての曲</a>
+    <a class="nav-back" href="index.html" id="nav-back-link">すべての曲</a>
     <a class="nav-logo" href="index.html">RIN.</a>
+    <button class="lang-btn" id="lang-btn">JP</button>
   </nav>
 
   <div id="page-content"></div>
@@ -578,10 +635,15 @@
   </footer>
 
   <script>
+    let lang = localStorage.getItem('rinLang') || 'ja';
+    let currentSong = null;
+    let currentSongVoices = [];
+
     async function loadSong() {
       const params = new URLSearchParams(location.search);
       const id = params.get('id');
       const content = document.getElementById('page-content');
+      updateLangBtn();
 
       if (!id) {
         content.innerHTML = '<div class="error-msg">曲が見つかりません。<br><a href="index.html">トップへ戻る</a></div>';
@@ -595,9 +657,9 @@
           fetch('./voices.json?t=' + t),
         ]);
         if (!songsRes.ok) throw new Error();
-        const data   = await songsRes.json();
-        const vData  = voicesRes.ok ? await voicesRes.json() : { voices: [] };
-        const song   = data.songs.find(s => s.id === id);
+        const data  = await songsRes.json();
+        const vData = voicesRes.ok ? await voicesRes.json() : { voices: [] };
+        const song  = data.songs.find(s => s.id === id);
 
         if (!song) {
           content.innerHTML = '<div class="error-msg">曲が見つかりません。<br><a href="index.html">トップへ戻る</a></div>';
@@ -606,73 +668,121 @@
 
         document.title = `RIN. — ${song.title}`;
         document.querySelector('meta[name="description"]').content = song.description || `RIN. — ${song.title}`;
-        document.querySelector('meta[property="og:title"]') || (() => {
-          const m = document.createElement('meta');
-          m.setAttribute('property','og:title');
-          document.head.appendChild(m);
-        })();
 
-        /* New structure: voices = artists with songs[] array */
         const songVoices = [];
         (vData.voices || []).forEach(artist => {
           if (artist.status !== 'published') return;
           (artist.songs || []).forEach(s => {
             if (s.song_title === song.title) {
-              songVoices.push({
-                ...s,
-                vocal_name:      artist.vocal_name,
-                artist_featured: artist.featured,
-              });
+              songVoices.push({ ...s, vocal_name: artist.vocal_name, artist_featured: artist.featured });
             }
           });
         });
-        /* Sort: artist featured first → first_voice → newest */
         songVoices.sort((a, b) => {
           if (!!a.artist_featured !== !!b.artist_featured) return a.artist_featured ? -1 : 1;
           if (!!a.first_voice !== !!b.first_voice) return a.first_voice ? -1 : 1;
           return new Date(b.published_date || 0) - new Date(a.published_date || 0);
         });
-        renderSong(song, songVoices, content);
+
+        currentSong = song;
+        currentSongVoices = songVoices;
+        renderSong(song, songVoices, content, lang);
       } catch {
         content.innerHTML = '<div class="error-msg">読み込みに失敗しました。<br><a href="index.html">トップへ戻る</a></div>';
       }
     }
 
-    function renderSong(song, songVoices, container) {
+    function updateLangBtn() {
+      const btn = document.getElementById('lang-btn');
+      const backLink = document.getElementById('nav-back-link');
+      if (!btn) return;
+      if (lang === 'en') {
+        btn.textContent = 'EN';
+        btn.classList.add('en-active');
+        if (backLink) backLink.textContent = 'All Songs';
+      } else {
+        btn.textContent = 'JP';
+        btn.classList.remove('en-active');
+        if (backLink) backLink.textContent = 'すべての曲';
+      }
+    }
+
+    document.getElementById('lang-btn').addEventListener('click', () => {
+      lang = lang === 'ja' ? 'en' : 'ja';
+      localStorage.setItem('rinLang', lang);
+      updateLangBtn();
+      if (currentSong) {
+        renderSong(currentSong, currentSongVoices, document.getElementById('page-content'), lang);
+      }
+    });
+
+    function renderSong(song, songVoices, container, lang) {
+      const isEn = lang === 'en';
+
+      // Pick bilingual content (fall back to JP if EN is empty)
+      const title    = (isEn && song.titleEn)       ? song.titleEn       : song.title;
+      const desc     = (isEn && song.descriptionEn) ? song.descriptionEn : (song.description || '');
+      const aboutPre = (isEn && song.aboutPreEn)    ? song.aboutPreEn    : (song.aboutPre  || '');
+      const aboutQ   = (isEn && song.aboutQuoteEn)  ? song.aboutQuoteEn  : (song.aboutQuote || '');
+      const aboutPost= (isEn && song.aboutPostEn)   ? song.aboutPostEn   : (song.aboutPost  || '');
+      const voicesLinkText = isEn ? '▶ Cover Voices page' : '▶ 声を届けて頂いた方のページはこちら';
+
+      // YouTube button(s): if both JP+EN exist, always show both labelled
+      let ytBtnsHtml = '';
+      if (song.youtubeUrl && song.youtubeUrlEn) {
+        ytBtnsHtml = `
+          <a class="cta-btn" href="${esc(song.youtubeUrl)}" target="_blank" rel="noopener">
+            <span class="play-triangle"></span><span>日本語版</span>
+          </a>
+          <a class="cta-btn cta-btn-en" href="${esc(song.youtubeUrlEn)}" target="_blank" rel="noopener">
+            <span class="play-triangle"></span><span>English</span>
+          </a>`;
+      } else {
+        const url = song.youtubeUrl || song.youtubeUrlEn || '';
+        if (url) ytBtnsHtml = `
+          <a class="cta-btn" href="${esc(url)}" target="_blank" rel="noopener">
+            <span class="play-triangle"></span>
+            <span>${isEn ? 'Listen Now' : '今すぐ聴く'}</span>
+          </a>`;
+      }
+
+      // Streaming platform links
+      const streamLinks = [
+        song.spotifyUrl    ? `<a class="stream-link spotify"  href="${esc(song.spotifyUrl)}"    target="_blank" rel="noopener">♬ Spotify</a>`      : '',
+        song.appleMusicUrl ? `<a class="stream-link apple"    href="${esc(song.appleMusicUrl)}" target="_blank" rel="noopener">♪ Apple Music</a>`  : '',
+        song.bandcampUrl   ? `<a class="stream-link bandcamp" href="${esc(song.bandcampUrl)}"   target="_blank" rel="noopener">◈ Bandcamp</a>`      : '',
+      ].filter(Boolean).join('');
+
       let html = `
         <section class="hero">
           <div class="hero-bg-line"></div>
           <div class="hero-content">
             <div class="artist-label">RIN.</div>
             <div class="divider-line"></div>
-            <div class="song-title-jp">${esc(song.title)}</div>
+            <div class="song-title-jp">${esc(title)}</div>
             <div class="song-subtitle">${esc(song.subtitle || '')}</div>
-            ${song.description ? `<p class="hero-copy">${esc(song.description)}</p>` : ''}
+            ${desc ? `<p class="hero-copy">${esc(desc)}</p>` : ''}
             <div class="hero-btns">
-              <a class="cta-btn" href="${esc(song.youtubeUrl)}" target="_blank" rel="noopener">
-                <span class="play-triangle"></span>
-                <span>今すぐ聴く</span>
-              </a>
+              ${ytBtnsHtml}
               ${song.karaokeUrl ? `
               <a class="cta-btn karaoke-btn" href="${esc(song.karaokeUrl)}" target="_blank" rel="noopener">
                 <span class="mic-icon">🎤</span>
-                <span>カラオケで歌う</span>
+                <span>${isEn ? 'Karaoke' : 'カラオケで歌う'}</span>
               </a>` : ''}
             </div>
+            ${streamLinks ? `<div class="stream-links">${streamLinks}</div>` : ''}
           </div>
         </section>
       `;
 
-      const hasAbout = song.aboutPre || song.aboutQuote || song.aboutPost;
+      const hasAbout = aboutPre || aboutQ || aboutPost;
       if (hasAbout) {
         html += `
           <section class="section" id="about">
             <div class="section-label">About this song</div>
-            ${song.aboutPre ? `<p class="about-text">${song.aboutPre}</p>` : ''}
-            ${song.aboutQuote ? `
-              <div class="about-quote"><p>${esc(song.aboutQuote)}</p></div>
-            ` : ''}
-            ${song.aboutPost ? `<p class="about-text">${song.aboutPost}</p>` : ''}
+            ${aboutPre ? `<p class="about-text">${aboutPre}</p>` : ''}
+            ${aboutQ   ? `<div class="about-quote"><p>${esc(aboutQ)}</p></div>` : ''}
+            ${aboutPost? `<p class="about-text">${aboutPost}</p>` : ''}
           </section>
         `;
       }
@@ -684,7 +794,6 @@
             <div class="lyric-text">${esc(block.text)}</div>
           </div>
         `).join('');
-
         html += `
           <section class="section" id="lyrics">
             <div class="section-label">Lyrics</div>
@@ -695,11 +804,6 @@
 
       /* ── Voices by Song ── always show section with link */
       {
-        songVoices.sort((a, b) => {
-          if (!!a.artist_featured !== !!b.artist_featured) return a.artist_featured ? -1 : 1;
-          if (!!a.first_voice !== !!b.first_voice) return a.first_voice ? -1 : 1;
-          return new Date(b.published_date || 0) - new Date(a.published_date || 0);
-        });
         const cards = songVoices.map(v => {
           const thumb = v.thumbnail || ytThumb(v.media_url);
           return `
@@ -714,7 +818,7 @@
                 ${v.published_date ? `<div class="vbs-date">${fmtDate(v.published_date)}</div>` : ''}
                 <a class="vbs-btn" href="${esc(v.media_url)}" target="_blank" rel="noopener">
                   <span style="width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid currentColor;flex-shrink:0"></span>
-                  <span>聴く</span>
+                  <span>${isEn ? 'Listen' : '聴く'}</span>
                 </a>
               </div>
             </div>`;
@@ -723,7 +827,7 @@
           <section class="section" id="voices">
             <div class="section-label">Voices</div>
             ${cards ? `<div class="voices-grid">${cards}</div>` : ''}
-            <a class="vbs-all-link" href="voices.html">▶ 声を届けて頂いた方のページはこちら</a>
+            <a class="vbs-all-link" href="voices.html">${voicesLinkText}</a>
           </section>`;
       }
 
