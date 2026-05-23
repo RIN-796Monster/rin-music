@@ -364,9 +364,14 @@
       </div>
       <div class="form-divider"></div>
       <div>
-        <div class="lyrics-editor-label">Lyrics</div>
+        <div class="lyrics-editor-label">Lyrics（日本語）</div>
         <div class="lyric-blocks-list" id="lyric-blocks"></div>
         <button class="add-block-btn" id="add-lyric-block">＋ ブロックを追加</button>
+      </div>
+      <div style="margin-top:1rem;">
+        <div class="lyrics-editor-label" style="color:var(--accent)">Lyrics（English）</div>
+        <div class="lyric-blocks-list" id="lyric-blocks-en"></div>
+        <button class="add-block-btn" id="add-lyric-block-en">＋ Add block (English)</button>
       </div>
     </div>
     <div class="modal-footer">
@@ -588,6 +593,7 @@
       'f-about-pre-en','f-about-quote-en','f-about-post-en',
     ].forEach(id => document.getElementById(id).value = '');
     document.getElementById('lyric-blocks').innerHTML = '';
+    document.getElementById('lyric-blocks-en').innerHTML = '';
   }
   function fillSongForm(s) {
     document.getElementById('f-id').value          = s.id||'';
@@ -613,7 +619,9 @@
     document.getElementById('f-about-quote-en').value = s.aboutQuoteEn||'';
     document.getElementById('f-about-post-en').value  = s.aboutPostEn||'';
     document.getElementById('lyric-blocks').innerHTML = '';
-    (s.lyrics||[]).forEach(b => addLyricBlock(b));
+    document.getElementById('lyric-blocks-en').innerHTML = '';
+    (s.lyrics||[]).forEach(b => addLyricBlock(b, 'lyric-blocks'));
+    (s.lyricsEn||[]).forEach(b => addLyricBlock(b, 'lyric-blocks-en'));
   }
   function readSongForm() {
     const yu   = document.getElementById('f-youtube').value.trim();
@@ -641,7 +649,8 @@
       aboutQuoteEn:  document.getElementById('f-about-quote-en').value.trim(),
       aboutPost:     document.getElementById('f-about-post').value.trim(),
       aboutPostEn:   document.getElementById('f-about-post-en').value.trim(),
-      lyrics:        readLyricBlocks(),
+      lyrics:        readLyricBlocks('lyric-blocks'),
+      lyricsEn:      readLyricBlocks('lyric-blocks-en'),
     };
   }
 
@@ -658,8 +667,9 @@
     songs.splice(i, 1); renderSongList(); saveToGitHub();
   }
 
-  document.getElementById('add-lyric-block').addEventListener('click', () => addLyricBlock());
-  function addLyricBlock(data = {}) {
+  document.getElementById('add-lyric-block').addEventListener('click', () => addLyricBlock({}, 'lyric-blocks'));
+  document.getElementById('add-lyric-block-en').addEventListener('click', () => addLyricBlock({}, 'lyric-blocks-en'));
+  function addLyricBlock(data = {}, containerId = 'lyric-blocks') {
     const el = document.createElement('div');
     el.className = 'lyric-block-editor';
     el.innerHTML = `
@@ -673,10 +683,10 @@
       <button class="remove-block-btn">✕</button>
       <textarea class="form-input" data-field="text" rows="3">${esc(data.text||'')}</textarea>`;
     el.querySelector('.remove-block-btn').addEventListener('click', () => el.remove());
-    document.getElementById('lyric-blocks').appendChild(el);
+    document.getElementById(containerId).appendChild(el);
   }
-  function readLyricBlocks() {
-    return Array.from(document.querySelectorAll('#lyric-blocks .lyric-block-editor')).map(el => ({
+  function readLyricBlocks(containerId = 'lyric-blocks') {
+    return Array.from(document.querySelectorAll(`#${containerId} .lyric-block-editor`)).map(el => ({
       type: el.querySelector('[data-field="type"]').value,
       tag:  el.querySelector('[data-field="tag"]').value.trim(),
       text: el.querySelector('[data-field="text"]').value.trim(),

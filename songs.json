@@ -25,7 +25,8 @@
       "aboutQuoteEn": "Look up, Me — a quiet command to yourself when you feel like looking down.",
       "aboutPost": "日本語・英語バイリンガル収録。",
       "aboutPostEn": "RIN.'s debut single. Available in Japanese and English.",
-      "lyrics": []
+      "lyrics": [],
+      "lyricsEn": []
     },
     {
       "id": "i-am-here-adlutver",
@@ -73,7 +74,8 @@
           "tag": "CHORUS",
           "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
         }
-      ]
+      ],
+      "lyricsEn": []
     },
     {
       "id": "all-night",
@@ -100,7 +102,8 @@
       "aboutQuoteEn": "",
       "aboutPost": "[Verse 2]  \n帰り道　言葉はなく  \n同じ夜　見てるだけ  \nこのままで　いられるなら  \nそれでいい　それだけでいい  \n\n[Pre-Chorus]  \n朝が来れば　終わるなら  \nいまだけでいい  \n\n[Chorus]  \nあなたの声は　子守歌  \nねえ　消えないで　all night  \nほどけそうな　my heart  \nこのままで　take me high  \n\n[Bridge]  \n消えそうで　消えなくて  \nこの距離が　痛いまま  \n\n[Drop / Chorus]  \nあなたの声は　子守歌  \nねえ　消えないで　all night  \n揺れてるだけの　my heart  \nこのままで　take me high  \n\n[Outro]  \nall night　all night  \nねえ　消えないで  \nall night",
       "aboutPostEn": "",
-      "lyrics": []
+      "lyrics": [],
+      "lyricsEn": []
     },
     {
       "id": "weekend-lonely",
@@ -127,7 +130,8 @@
       "aboutQuoteEn": "",
       "aboutPost": "氷の音だけが  \nやけに大きく響いて  \n言葉の代わりになる  \n\nグラス越しに  \n思い出を薄めながら  \n夜に溶けていく  \n\nあなたのいない Weekend  \n時の止まった Weekend  \nただ　グラスの中だけが  \nゆっくり揺れている",
       "aboutPostEn": "",
-      "lyrics": []
+      "lyrics": [],
+      "lyricsEn": []
     },
     {
       "id": "alternative-love",
@@ -175,7 +179,8 @@
           "tag": "",
           "text": "オルタナティブでオーライ\nそれでも隣にいたいオーライ\n越えられないものがあってもここであなたを待ってる\n\nオルタナティブでオーライ\nそれでも好きだよオーライ\n同じ未来じゃなくてもいい\nただあなたを想ってる"
         }
-      ]
+      ],
+      "lyricsEn": []
     },
     {
       "id": "watashi-wa-koko-ni-iru",
@@ -223,7 +228,8 @@
           "tag": "CHORUS",
           "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
         }
-      ]
+      ],
+      "lyricsEn": []
     }
   ]
 }

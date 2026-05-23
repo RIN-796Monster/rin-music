@@ -796,8 +796,12 @@
         `;
       }
 
-      if (song.lyrics && song.lyrics.length > 0) {
-        const lyricBlocks = song.lyrics.map(block => `
+      // Lyrics: use EN when lang=en AND lyricsEn is non-empty, else fall back to JP
+      const lyricsToShow = (isEn && song.lyricsEn && song.lyricsEn.length > 0)
+        ? song.lyricsEn
+        : (song.lyrics || []);
+      if (lyricsToShow.length > 0) {
+        const lyricBlocks = lyricsToShow.map(block => `
           <div class="lyric-block ${block.type === 'chorus' ? 'chorus' : ''}">
             <div class="lyric-tag">${esc(block.tag)}</div>
             <div class="lyric-text">${esc(block.text)}</div>
