@@ -25,7 +25,38 @@
       "aboutQuoteEn": "Look up, Me — a quiet command to yourself when you feel like looking down.",
       "aboutPost": "日本語・英語バイリンガル収録。",
       "aboutPostEn": "RIN.'s debut single. Available in Japanese and English.",
-      "lyrics": [],
+      "lyrics": [
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "ネオンにほどける影\n振り返らないふりをした\n\nバイブに触れるたび\n期待なんていらないのに\n\n少し困った your last face\nまだ胸に残るけど\n\n流れる街の灯りが\nそっと消していく"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "ねぇ このままでいい\n夜にまかせて\n\nLook up, Me\nLook up, Me\n\n止まらないで このまま\n止まらないで このまま\n\nLook up, Me\nLook up, Me\n\n笑っていく tonight\n笑っていく tonight"
+        },
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "思い出はただのノイズ\n遠ざかっていく\n\n待つだけの夜なんて\n似合わないよね\n\n置きっぱなしの歯ブラシ\n今日で終わりにする\n\nやわらかな風に\n身をゆだねて"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "ねぇ これでいいよね\nもう戻らない\n\nLook up, Me\nLook up, Me\n\n止まらないで このまま\n止まらないで このまま\n\nLook up, Me\nLook up, Me\n\n笑っていく tonight\n笑っていく tonight"
+        },
+        {
+          "type": "bridge",
+          "tag": "",
+          "text": "ミッドナイトブルーの中\nほどけていく記憶\n\nさよならも言わずに\n静かに消えていく"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "Look up, Me\nLook up, Me\n\n止まらないで このまま\n止まらないで このまま\n\nLook up, Me\nLook up, Me\n\n笑っていく tonight\n笑っていく tonight"
+        }
+      ],
       "lyricsEn": []
     },
     {
