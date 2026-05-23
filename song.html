@@ -581,26 +581,28 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
       justify-content: center;
     }
     .stream-link {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 6px 14px;
+      gap: 6px;
+      padding: 8px 18px;
       font-family: var(--font-sans-jp);
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
       text-decoration: none;
       border: 1px solid;
-      transition: opacity 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
-    .stream-link:hover { opacity: 0.75; }
-    .stream-link.spotify  { color: #1DB954; border-color: rgba(29,185,84,0.4);  background: rgba(29,185,84,0.06); }
-    .stream-link.apple    { color: #FC3C44; border-color: rgba(252,60,68,0.4);  background: rgba(252,60,68,0.06); }
-    .stream-link.bandcamp { color: #1DA0C3; border-color: rgba(29,160,195,0.4); background: rgba(29,160,195,0.06); }
+    .stream-link.spotify  { color: #1DB954; border-color: rgba(29,185,84,0.5);  background: rgba(29,185,84,0.08); }
+    .stream-link.apple    { color: #FC3C44; border-color: rgba(252,60,68,0.5);  background: rgba(252,60,68,0.08); }
+    .stream-link.bandcamp { color: #1DA0C3; border-color: rgba(29,160,195,0.5); background: rgba(29,160,195,0.08); }
+    .stream-link.spotify:hover  { background: rgba(29,185,84,0.2); }
+    .stream-link.apple:hover    { background: rgba(252,60,68,0.2); }
+    .stream-link.bandcamp:hover { background: rgba(29,160,195,0.2); }
 
     /* ── ERROR ── */
     .error-msg {

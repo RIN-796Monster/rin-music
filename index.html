@@ -666,32 +666,38 @@
     /* ── STREAM BADGES ── */
     .stream-badges {
       display: flex;
-      gap: 5px;
+      gap: 6px;
       flex-wrap: wrap;
+      margin-top: 0.1rem;
     }
     .stream-badge {
       font-family: var(--font-sans-jp);
-      font-size: 0.55rem;
+      font-size: 0.64rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
-      padding: 2px 7px;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
       text-decoration: none;
       border: 1px solid;
-      transition: opacity 0.2s;
+      transition: background 0.2s, color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
-    .stream-badge:hover { opacity: 0.75; }
-    .stream-badge.spotify  { color: #1DB954; border-color: rgba(29,185,84,0.45); }
-    .stream-badge.apple    { color: #FC3C44; border-color: rgba(252,60,68,0.45); }
-    .stream-badge.bandcamp { color: #1DA0C3; border-color: rgba(29,160,195,0.45); }
+    .stream-badge.spotify  { color: #1DB954; border-color: rgba(29,185,84,0.5);  background: rgba(29,185,84,0.07); }
+    .stream-badge.apple    { color: #FC3C44; border-color: rgba(252,60,68,0.5);  background: rgba(252,60,68,0.07); }
+    .stream-badge.bandcamp { color: #1DA0C3; border-color: rgba(29,160,195,0.5); background: rgba(29,160,195,0.07); }
+    .stream-badge.spotify:hover  { background: rgba(29,185,84,0.18); }
+    .stream-badge.apple:hover    { background: rgba(252,60,68,0.18); }
+    .stream-badge.bandcamp:hover { background: rgba(29,160,195,0.18); }
 
     /* ── SONG CARD DESC ── */
     .song-card-desc {
       font-family: var(--font-sans-jp);
-      font-size: 0.68rem;
+      font-size: 0.72rem;
       font-weight: 300;
-      color: var(--ink-muted);
-      letter-spacing: 0.05em;
-      line-height: 1.7;
+      color: var(--ink-light);
+      letter-spacing: 0.03em;
+      line-height: 1.8;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -809,11 +815,11 @@
           if (url) ytBtn = `<a class="btn-small primary" href="${escHtml(url)}" target="_blank" rel="noopener"><span class="play-triangle"></span><span>${listenLbl}</span></a>`;
         }
 
-        // Streaming platform badges
+        // Streaming platform badges — always shown regardless of lang toggle
         const badges = [
-          song.spotifyUrl    ? `<a class="stream-badge spotify"  href="${escHtml(song.spotifyUrl)}"    target="_blank" rel="noopener" title="Spotify">Spotify</a>`      : '',
-          song.appleMusicUrl ? `<a class="stream-badge apple"    href="${escHtml(song.appleMusicUrl)}" target="_blank" rel="noopener" title="Apple Music">Apple Music</a>` : '',
-          song.bandcampUrl   ? `<a class="stream-badge bandcamp" href="${escHtml(song.bandcampUrl)}"   target="_blank" rel="noopener" title="Bandcamp">Bandcamp</a>`     : '',
+          song.spotifyUrl    ? `<a class="stream-badge spotify"  href="${escHtml(song.spotifyUrl)}"    target="_blank" rel="noopener">♬ Spotify</a>`      : '',
+          song.appleMusicUrl ? `<a class="stream-badge apple"    href="${escHtml(song.appleMusicUrl)}" target="_blank" rel="noopener">♪ Apple Music</a>` : '',
+          song.bandcampUrl   ? `<a class="stream-badge bandcamp" href="${escHtml(song.bandcampUrl)}"   target="_blank" rel="noopener">◈ Bandcamp</a>`     : '',
         ].filter(Boolean).join('');
 
         return `
