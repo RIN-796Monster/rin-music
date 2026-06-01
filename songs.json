@@ -356,7 +356,33 @@
           "text": "オルタナティブでオーライ\nそれでも隣にいたいオーライ\n越えられないものがあってもここであなたを待ってる\n\nオルタナティブでオーライ\nそれでも好きだよオーライ\n同じ未来じゃなくてもいい\nただあなたを想ってる"
         }
       ],
-      "lyricsEn": []
+      "lyricsEn": [
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "Lately you’re showing up only Sundays\nLight steps running up the stairway\nThrough the door I feel you near\nAnd my heartbeat starts to sway\n\nAnytime you know where I’ll be\nHere waiting patiently"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "Alternative but it’s alright\nStill I just want you here tonight\nEven if we don’t agree\nI’ll be here where you can find me"
+        },
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "Cut your hair and somehow you shine brighter\nBut there’s something sitting inside you\nTraces where someone’s touch\nStill is softly holding you\n\nStanding in the same old place\nDreaming of a different space"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "Alternative but it’s alright\nStill want to hold you by my side\nEven if there’s things we can’t\nEver cross or understand\nI’ll be here where you can find me"
+        },
+        {
+          "type": "outro",
+          "tag": "",
+          "text": "Alternative but it’s alright\nStill I love you, it’s alright\nEven if our futures never\nTurn into the same forever\nI’ll be here and think about you"
+        }
+      ]
     },
     {
       "id": "watashi-wa-koko-ni-iru",
