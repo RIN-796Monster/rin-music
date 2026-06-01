@@ -137,7 +137,28 @@
           "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
         }
       ],
-      "lyricsEn": []
+      "lyricsEn": [
+        {
+          "type": "verse",
+          "tag": "VERSE 1",
+          "text": "Morning light brings back the girl I used to be\nPretending that I knew how tender love should feel\nWhat is love supposed to mean\nWho is love supposed to heal\nI only want the space to still be me"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "Tell me who is love for\nTell me who is love for\nNot for anyone at all\nStill I am standing here"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE 2",
+          "text": "Twilight on the Tama River, I walk alone\nDrifting in the quiet I recall that younger me\nTasting how it feels to breathe\nWeaving all this love for me\nI only want the right to just be me"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "Tell me who is love for\nTell me who is love for\nNot for anyone at all\nStill I am here, I’m here"
+        }
+      ]
     },
     {
       "id": "all-night",
