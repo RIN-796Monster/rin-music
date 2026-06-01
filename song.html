@@ -549,20 +549,20 @@
     /* ── LANG TOGGLE (nav) ── */
     .lang-btn {
       background: transparent;
-      border: 1px solid rgba(237,232,220,0.15);
-      color: rgba(237,232,220,0.4);
+      border: 1px solid rgba(237,232,220,0.18);
       font-family: var(--font-sans-jp);
-      font-size: 0.58rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      padding: 5px 10px;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      padding: 5px 12px;
       cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
+      transition: border-color 0.2s;
+      white-space: nowrap;
     }
-    .lang-btn:hover, .lang-btn.en-active {
-      color: var(--accent);
-      border-color: rgba(200,154,58,0.4);
-    }
+    .lang-btn:hover { border-color: rgba(200,154,58,0.5); }
+    .lang-btn .lbl-ja { transition: color 0.2s; }
+    .lang-btn .lbl-sep { color: rgba(237,232,220,0.25); margin: 0 5px; }
+    .lang-btn .lbl-en { transition: color 0.2s; }
 
     /* ── CTA EN VARIANT ── */
     .cta-btn.cta-btn-en {
@@ -626,7 +626,9 @@
   <nav class="top-nav">
     <a class="nav-back" href="index.html" id="nav-back-link">すべての曲</a>
     <a class="nav-logo" href="index.html">RIN.</a>
-    <button class="lang-btn" id="lang-btn">JP</button>
+    <button class="lang-btn" id="lang-btn">
+      <span class="lbl-ja">日本語</span><span class="lbl-sep">|</span><span class="lbl-en">English</span>
+    </button>
   </nav>
 
   <div id="page-content"></div>
@@ -698,15 +700,11 @@
       const btn = document.getElementById('lang-btn');
       const backLink = document.getElementById('nav-back-link');
       if (!btn) return;
-      if (lang === 'en') {
-        btn.textContent = 'EN';
-        btn.classList.add('en-active');
-        if (backLink) backLink.textContent = 'All Songs';
-      } else {
-        btn.textContent = 'JP';
-        btn.classList.remove('en-active');
-        if (backLink) backLink.textContent = 'すべての曲';
-      }
+      const ja = btn.querySelector('.lbl-ja');
+      const en = btn.querySelector('.lbl-en');
+      if (ja) ja.style.color = lang === 'ja' ? 'var(--accent)' : 'rgba(237,232,220,0.35)';
+      if (en) en.style.color = lang === 'en' ? 'var(--accent)' : 'rgba(237,232,220,0.35)';
+      if (backLink) backLink.textContent = lang === 'en' ? 'All Songs' : 'すべての曲';
     }
 
     document.getElementById('lang-btn').addEventListener('click', () => {
@@ -730,14 +728,16 @@
       const voicesLinkText = isEn ? '▶ Cover Voices page' : '▶ 声を届けて頂いた方のページはこちら';
 
       // YouTube button(s): if both JP+EN exist, always show both labelled
+      const jpLyricsLbl = isEn ? 'Japanese Lyrics' : '日本語歌詞';
+      const enLyricsLbl = isEn ? 'English Lyrics'  : '英語歌詞';
       let ytBtnsHtml = '';
       if (song.youtubeUrl && song.youtubeUrlEn) {
         ytBtnsHtml = `
           <a class="cta-btn" href="${esc(song.youtubeUrl)}" target="_blank" rel="noopener">
-            <span class="play-triangle"></span><span>日本語版</span>
+            <span class="play-triangle"></span><span>${jpLyricsLbl}</span>
           </a>
           <a class="cta-btn cta-btn-en" href="${esc(song.youtubeUrlEn)}" target="_blank" rel="noopener">
-            <span class="play-triangle"></span><span>English</span>
+            <span class="play-triangle"></span><span>${enLyricsLbl}</span>
           </a>`;
       } else {
         const url = song.youtubeUrl || song.youtubeUrlEn || '';
