@@ -93,7 +93,7 @@
     {
       "id": "i-am-here-adlutver",
       "title": "私はここにいる（Adult Ver.)",
-      "titleEn": "I Am Here (Adult Ver.)",
+      "titleEn": "I'm Here (Adult Ver.)",
       "subtitle": "Single・2026",
       "youtubeUrl": "https://youtube.com/shorts/BbqR_wUAPn8?feature=share",
       "youtubeId": "BbqR_wUAPn8",
@@ -116,10 +116,26 @@
       "aboutPost": "恋愛の中で立ち止まって、自分を見つめ直す瞬間—\n<strong>愛することと、自分であることは、矛盾しない。</strong>\n\nこの曲は、そう気づいた夜に生まれた。",
       "aboutPostEn": "That moment when you pause in the middle of love and look honestly at yourself —\n<strong>Loving someone and being yourself are not contradictions.</strong>\n\nThis song was born on the night I understood that.",
       "lyrics": [
-        { "type": "verse", "tag": "", "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" },
-        { "type": "verse", "tag": "VERSE2", "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" }
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE2",
+          "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        }
       ],
       "lyricsEn": []
     },
@@ -205,10 +221,26 @@
       "aboutPost": "大切な人、大事にしたいふたりの時間",
       "aboutPostEn": "Someone precious. Time together I want to hold close.",
       "lyrics": [
-        { "type": "verse", "tag": "VERSE 1", "text": "最近来るのはいつもSunday\n軽く駆け上がる足音\nドア越しの気配に\n少し胸が弾む\n\nいつでもここにいるよ\nあなたを待ってる" },
-        { "type": "chorus", "tag": "", "text": "オルタナティブでオーライ\nそれでも会いたいオーライ\n想いは違ってもここであなたを待ってる" },
-        { "type": "verse", "tag": "VERSE 2", "text": "髪を切って綺麗になったね\nでもそれだけじゃないね\n誰かに触れられた\n余韻がまだ残ってる\n\n同じ場所にいるのに\n見てる未来は違う" },
-        { "type": "chorus", "tag": "", "text": "オルタナティブでオーライ\nそれでも隣にいたいオーライ\n越えられないものがあってもここであなたを待ってる\n\nオルタナティブでオーライ\nそれでも好きだよオーライ\n同じ未来じゃなくてもいい\nただあなたを想ってる" }
+        {
+          "type": "verse",
+          "tag": "VERSE 1",
+          "text": "最近来るのはいつもSunday\n軽く駆け上がる足音\nドア越しの気配に\n少し胸が弾む\n\nいつでもここにいるよ\nあなたを待ってる"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "オルタナティブでオーライ\nそれでも会いたいオーライ\n想いは違ってもここであなたを待ってる"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE 2",
+          "text": "髪を切って綺麗になったね\nでもそれだけじゃないね\n誰かに触れられた\n余韻がまだ残ってる\n\n同じ場所にいるのに\n見てる未来は違う"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "オルタナティブでオーライ\nそれでも隣にいたいオーライ\n越えられないものがあってもここであなたを待ってる\n\nオルタナティブでオーライ\nそれでも好きだよオーライ\n同じ未来じゃなくてもいい\nただあなたを想ってる"
+        }
       ],
       "lyricsEn": []
     },
@@ -238,10 +270,26 @@
       "aboutPost": "恋愛の中で立ち止まって、自分を見つめ直す瞬間—\n<strong>愛することと、自分であることは、矛盾しない。</strong>\n\nこの曲は、そう気づいた夜に生まれた。",
       "aboutPostEn": "That moment when you pause in the middle of love and look honestly at yourself —\n<strong>Loving someone and being yourself are not contradictions.</strong>\n\nThis song was born on the night I understood that.",
       "lyrics": [
-        { "type": "verse", "tag": "VERSE 1", "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" },
-        { "type": "verse", "tag": "VERSE 2", "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ" },
-        { "type": "chorus", "tag": "CHORUS", "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる" }
+        {
+          "type": "verse",
+          "tag": "VERSE 1",
+          "text": "朝の光にあの頃の私を思い出す\n手探りの愛を愛おしむフリをして\n何のために愛を注ぐ\n誰のために愛を紡ぐ\n私はわたしで居たいのに"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE 2",
+          "text": "夕暮れの多摩川をひとり歩く\nひとりになった今あの頃の私を思い出す\n生きる自由をかみしめる\n私のために愛を紡ぐ\n私はわたしで居たいだけ"
+        },
+        {
+          "type": "chorus",
+          "tag": "CHORUS",
+          "text": "愛は誰のため\n恋は誰のため\n誰のためでもなく\n私はここにいる"
+        }
       ],
       "lyricsEn": []
     }
