@@ -179,14 +179,86 @@
       "bandcampUrlEn": "",
       "description": "恋にときめく歳なんてもうとっくに過ぎていると思っていた\n明けてしまうのが怖いそんな夜",
       "descriptionEn": "I thought the age of fluttering hearts was long behind me.\nA night too afraid to let the dawn come.",
-      "aboutPre": "[Intro]  \nねえ　消えないで  \nall night  \n\n[Verse 1]  \n夜の街　ネオンの中  \nふたりだけ　浮かんでる  \n言えないまま　触れた手が  \n離れない　離せないまま  \n\n[Pre-Chorus]  \n近づくほど　遠くなる  \nわかってるのに  \n\n[Chorus]  \nあなたの声は　子守歌  \nねえ　消えないで　all night  \n揺れてるままの　my heart  \nこのままで　take me high",
-      "aboutPreEn": "[Intro]  \nHey, don't disappear  \nAll night  \n\n[Verse 1]  \nIn the neon-lit streets of night  \nJust the two of us, adrift  \nWords I couldn't say, hands that touched  \nWon't release — can't let go  \n\n[Pre-Chorus]  \nThe closer we get, the further apart  \nI know, and yet  \n\n[Chorus]  \nYour voice is a lullaby  \nHey, don't disappear, all night  \nMy swaying heart  \nJust like this, take me high",
-      "aboutQuote": "all night　all night   消えないで　all night",
-      "aboutQuoteEn": "all night　all night　don't disappear　all night",
-      "aboutPost": "[Verse 2]  \n帰り道　言葉はなく  \n同じ夜　見てるだけ  \nこのままで　いられるなら  \nそれでいい　それだけでいい  \n\n[Pre-Chorus]  \n朝が来れば　終わるなら  \nいまだけでいい  \n\n[Chorus]  \nあなたの声は　子守歌  \nねえ　消えないで　all night  \nほどけそうな　my heart  \nこのままで　take me high  \n\n[Bridge]  \n消えそうで　消えなくて  \nこの距離が　痛いまま  \n\n[Drop / Chorus]  \nあなたの声は　子守歌  \nねえ　消えないで　all night  \n揺れてるだけの　my heart  \nこのままで　take me high  \n\n[Outro]  \nall night　all night  \nねえ　消えないで  \nall night",
-      "aboutPostEn": "[Verse 2]  \nWalking home in silence  \nWatching the same night together  \nIf we could stay just like this  \nThat's enough — just that  \n\n[Pre-Chorus]  \nIf the morning will end it all  \nJust this moment is enough  \n\n[Chorus]  \nYour voice is a lullaby  \nHey, don't disappear, all night  \nMy heart about to come undone  \nJust like this, take me high  \n\n[Bridge]  \nAlmost gone, yet still here  \nThis distance still aches  \n\n[Drop / Chorus]  \nYour voice is a lullaby  \nHey, don't disappear, all night  \nMy heart, just swaying  \nJust like this, take me high  \n\n[Outro]  \nAll night　all night  \nHey, don't disappear  \nAll night",
-      "lyrics": [],
-      "lyricsEn": []
+      "aboutPre": "",
+      "aboutPreEn": "",
+      "aboutQuote": "",
+      "aboutQuoteEn": "",
+      "aboutPost": "",
+      "aboutPostEn": "",
+      "lyrics": [
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "ねえ　消えないで  \nall night  \n\n夜の街　ネオンの中  \nふたりだけ　浮かんでる  \n言えないまま　触れた手が  \n離れない　離せないまま"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "近づくほど　遠くなる  \nわかってるのに  \n\nあなたの声は　子守歌  \nねえ　消えないで　all night  \n揺れてるままの　my heart  \nこのままで　take me high  \n\nall night　all night  \n消えないで　all night"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE 2",
+          "text": "帰り道　言葉はなく  \n同じ夜　見てるだけ  \nこのままで　いられるなら  \nそれでいい　それだけでいい"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "朝が来れば　終わるなら  \nいまだけでいい  \n\nあなたの声は　子守歌  \nねえ　消えないで　all night  \nほどけそうな　my heart  \nこのままで　take me high"
+        },
+        {
+          "type": "bridge",
+          "tag": "",
+          "text": "消えそうで　消えなくて  \nこの距離が　痛いまま"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "あなたの声は　子守歌  \nねえ　消えないで　all night  \n揺れてるだけの　my heart  \nこのままで　take me high"
+        },
+        {
+          "type": "outro",
+          "tag": "",
+          "text": "all night　all night  \nねえ　消えないで  \nall night"
+        }
+      ],
+      "lyricsEn": [
+        {
+          "type": "verse",
+          "tag": "VERSE 1",
+          "text": "Hey, don’t fade away\nall night\n\nCity at night, swimming in neon\nOnly we two, drifting alone\nCouldn’t say it when our hands tangled\nDidn’t let go, couldn’t let you go"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "Closer we get, the farther you feel\nI know it but still\n\nYour gentle voice is my lullaby\nHey, don’t fade away, all night\nSwaying and trembling, my heart\nHold me like this, take me high\n\nall night, all night\nDon’t fade away, all night"
+        },
+        {
+          "type": "verse",
+          "tag": "VERSE 2",
+          "text": "Homeward we walk, nothing between us\nSharing the same silent night sky\nIf we could stay just like this always\nThat would be enough, that would be just fine"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "Your gentle voice is my lullaby\nHey, don’t fade away, all night\nHeart coming loose inside my quiet chest\nHold me like this, take me high"
+        },
+        {
+          "type": "bridge",
+          "tag": "",
+          "text": "Feels like you’ll fade, but still you linger\nThis space between keeps hurting on"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "Your gentle voice is my lullaby\nHey, don’t fade away, all night\nOnly just swaying, this heart of mine\nHold me like this, take me high"
+        },
+        {
+          "type": "outro",
+          "tag": "",
+          "text": "all night, all night\nHey, don’t fade away\nall night"
+        }
+      ]
     },
     {
       "id": "weekend-lonely",
