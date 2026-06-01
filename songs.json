@@ -279,13 +279,34 @@
       "bandcampUrlEn": "",
       "description": "誰かのことを想いながらひとりグラスを傾ける\nそんな夜があってもいい",
       "descriptionEn": "Pouring a glass alone, thinking of someone.\nIt's okay to have nights like that.",
-      "aboutPre": "Weekend lonely  \nストレートのスコッチ  \n乾いた心に流し込む  \n\n来るのなら  \n安酒でよかったのにと  \nありもしない冗談　浮かべて  \nひとり飲む  \n\nあなたのいない Weekend  \n時の止まった Weekend  \nただ　グラスの中だけが  \nゆっくり揺れている",
-      "aboutPreEn": "Weekend lonely  \nA straight scotch  \nPoured into a dried-out heart  \n\nIf you were coming  \nCheap wine would have done, I thought,  \nFloating a joke that was never real  \nDrinking alone  \n\nA Weekend without you  \nA Weekend where time has stopped  \nOnly the glass  \nSways slowly",
+      "aboutPre": "",
+      "aboutPreEn": "",
       "aboutQuote": "",
       "aboutQuoteEn": "",
-      "aboutPost": "氷の音だけが  \nやけに大きく響いて  \n言葉の代わりになる  \n\nグラス越しに  \n思い出を薄めながら  \n夜に溶けていく  \n\nあなたのいない Weekend  \n時の止まった Weekend  \nただ　グラスの中だけが  \nゆっくり揺れている",
-      "aboutPostEn": "Only the sound of ice  \nEchoes strangely loud  \nStanding in for words  \n\nThrough the glass  \nDiluting the memories  \nMelting into the night  \n\nA Weekend without you  \nA Weekend where time has stopped  \nOnly the glass  \nSways slowly",
-      "lyrics": [],
+      "aboutPost": "",
+      "aboutPostEn": "",
+      "lyrics": [
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "Weekend lonely \nストレートのスコッチ \n乾いた心に流し込む\n来るのなら \n安酒でよかったのにと \nありもしない冗談 浮かべて \nひとり飲む"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "あなたのいない Weekend \n時の止まった Weekend \nただ グラスの中だけが \nゆっくり揺れている\nあなたのいない Weekend \n終わらないような Weekend \n通り過ぎる日々を \nただ 待っている"
+        },
+        {
+          "type": "verse",
+          "tag": "",
+          "text": "氷の音だけが \nやけに大きく響いて \n言葉の代わりになる\nグラス越しに \n思い出を薄めながら \n夜に溶けていく"
+        },
+        {
+          "type": "chorus",
+          "tag": "",
+          "text": "あなたのいない Weekend \n時の止まった Weekend \nただ グラスの中だけが \nゆっくり揺れている\nあなたのいない Weekend \n夜に溶け込む Weekend \n笑いあった日々が \nグラスに揺れて"
+        }
+      ],
       "lyricsEn": []
     },
     {
