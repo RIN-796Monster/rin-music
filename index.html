@@ -691,6 +691,36 @@
     .stream-badge.apple:hover    { background: rgba(252,60,68,0.18); }
     .stream-badge.bandcamp:hover { background: rgba(29,160,195,0.18); }
 
+    /* ── PLATFORM ICON ROW (teaser style) ── */
+    .song-icons {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 0.9rem;
+    }
+    .song-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.92rem;
+      text-decoration: none;
+      border: 1px solid rgba(237,232,220,0.18);
+      color: rgba(237,232,220,0.55);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .song-icon:hover { transform: translateY(-2px); }
+    .song-icon.yt       { color:#e8645f; }
+    .song-icon.spotify  { color:#1DB954; }
+    .song-icon.apple    { color:#FC6066; }
+    .song-icon.bandcamp { color:#3FB5D6; }
+    .song-icon.yt:hover       { background: rgba(232,100,95,0.16);  border-color: rgba(232,100,95,0.5); }
+    .song-icon.spotify:hover  { background: rgba(29,185,84,0.16);   border-color: rgba(29,185,84,0.5); }
+    .song-icon.apple:hover    { background: rgba(252,96,102,0.16);  border-color: rgba(252,96,102,0.5); }
+    .song-icon.bandcamp:hover { background: rgba(63,181,214,0.16);  border-color: rgba(63,181,214,0.5); }
+
     /* ── SONG CARD DESC ── */
     .song-card-desc {
       font-family: var(--font-sans-jp);
@@ -803,35 +833,21 @@
       grid.innerHTML = songs.map((song, i) => {
         const title      = (lang === 'en' && song.titleEn)       ? song.titleEn       : song.title;
         const desc       = (lang === 'en' && song.descriptionEn) ? song.descriptionEn : (song.description || '');
-        const listenLbl  = lang === 'en' ? 'Listen'         : '聴く';
-        const lyricsLbl  = lang === 'en' ? 'Lyrics & Story' : '歌詞・エピソード';
-        const karaokeLbl = lang === 'en' ? 'Karaoke'        : 'カラオケ';
+        const ctaLbl     = lang === 'en' ? 'Lyrics & Story' : '歌詞・エピソードを見る';
 
-        // YouTube button(s): if both JP+EN exist, always show both
-        const jpLyricsLbl = lang === 'en' ? 'Japanese Lyrics' : '日本語歌詞';
-        const enLyricsLbl = lang === 'en' ? 'English Lyrics'  : '英語歌詞';
-        let ytBtn = '';
-        if (song.youtubeUrl && song.youtubeUrlEn) {
-          ytBtn = `
-            <a class="btn-small primary" href="${escHtml(song.youtubeUrl)}" target="_blank" rel="noopener"><span class="play-triangle"></span><span>${jpLyricsLbl}</span></a>
-            <a class="btn-small karaoke" href="${escHtml(song.youtubeUrlEn)}" target="_blank" rel="noopener"><span class="play-triangle"></span><span>${enLyricsLbl}</span></a>`;
-        } else {
-          const url = song.youtubeUrl || song.youtubeUrlEn || '';
-          if (url) ytBtn = `<a class="btn-small primary" href="${escHtml(url)}" target="_blank" rel="noopener"><span class="play-triangle"></span><span>${listenLbl}</span></a>`;
+        // Teaser-style platform icon row (icons only). Picks the current-lang URL,
+        // falling back to whichever language exists. All lyrics videos / karaoke /
+        // JP·EN switching live on the detail page (song.html).
+        const pick = (a, b) => (lang === 'en' ? (b || a) : (a || b)) || '';
+        function mkIcon(url, cls, icon, name) {
+          if (!url) return '';
+          return `<a class="song-icon ${cls}" href="${escHtml(url)}" target="_blank" rel="noopener" aria-label="${name}" title="${name}">${icon}</a>`;
         }
-
-        // Streaming badges — always shown regardless of lang toggle
-        // Both JP+EN → show two labelled badges; only one → show unlabelled
-        function mkBadge(url, urlEn, cls, icon, name) {
-          const out = [];
-          if (url)   out.push(`<a class="stream-badge ${cls}" href="${escHtml(url)}"   target="_blank" rel="noopener">${icon} ${name}${urlEn ? ' JP' : ''}</a>`);
-          if (urlEn) out.push(`<a class="stream-badge ${cls}" href="${escHtml(urlEn)}" target="_blank" rel="noopener">${icon} ${name}${url  ? ' EN' : ''}</a>`);
-          return out.join('');
-        }
-        const badges = [
-          mkBadge(song.spotifyUrl,    song.spotifyUrlEn,    'spotify',  '♬', 'Spotify'),
-          mkBadge(song.appleMusicUrl, song.appleMusicUrlEn, 'apple',    '♪', 'Apple Music'),
-          mkBadge(song.bandcampUrl,   song.bandcampUrlEn,   'bandcamp', '◈', 'Bandcamp'),
+        const icons = [
+          mkIcon(pick(song.youtubeUrl,    song.youtubeUrlEn),    'yt',       '▶', 'YouTube'),
+          mkIcon(pick(song.spotifyUrl,    song.spotifyUrlEn),    'spotify',  '♬', 'Spotify'),
+          mkIcon(pick(song.appleMusicUrl, song.appleMusicUrlEn), 'apple',    '♪', 'Apple Music'),
+          mkIcon(pick(song.bandcampUrl,   song.bandcampUrlEn),   'bandcamp', '◈', 'Bandcamp'),
         ].filter(Boolean).join('');
 
         return `
@@ -841,12 +857,10 @@
               <div class="song-card-title">${escHtml(title)}</div>
               <div class="song-card-subtitle">${escHtml(song.subtitle || '')}</div>
               ${desc ? `<div class="song-card-desc">${escHtml(desc)}</div>` : ''}
-              ${badges ? `<div class="stream-badges">${badges}</div>` : ''}
               <div class="song-card-actions">
-                ${ytBtn}
-                ${song.karaokeUrl ? `<a class="btn-small karaoke" href="${escHtml(song.karaokeUrl)}" target="_blank" rel="noopener">🎤 ${karaokeLbl}</a>` : ''}
-                <a class="btn-small secondary" href="song.html?id=${escHtml(song.id)}">${lyricsLbl}</a>
+                <a class="btn-small primary" href="song.html?id=${escHtml(song.id)}">${ctaLbl}</a>
               </div>
+              ${icons ? `<div class="song-icons">${icons}</div>` : ''}
             </div>
           </div>`;
       }).join('');
