@@ -268,7 +268,7 @@
     /* ── MUSIC GRID ── */
     .music-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: 1fr;
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
@@ -691,35 +691,57 @@
     .stream-badge.apple:hover    { background: rgba(252,60,68,0.18); }
     .stream-badge.bandcamp:hover { background: rgba(29,160,195,0.18); }
 
-    /* ── PLATFORM ICON ROW (teaser style) ── */
-    .song-icons {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-      margin-top: 0.9rem;
+    /* ── SONG ACTION ROWS (1-column, grouped by language) ── */
+    .sc-ep {
+      display: inline-block;
+      font-family: var(--font-sans-jp);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 0.5px solid rgba(200,154,58,0.4);
+      padding-bottom: 1px;
+      align-self: flex-start;
+      transition: color 0.2s, border-color 0.2s;
     }
-    .song-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
+    .sc-ep:hover { color: var(--accent-light); border-color: var(--accent-light); }
+    .sc-div { height: 0.5px; background: var(--line); margin: 0.4rem 0 0.2rem; }
+    .arow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .rlbl {
+      font-family: var(--font-sans-jp);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      width: 54px;
+      flex: none;
+    }
+    .vbtn, .kbtn, .chip {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 0.92rem;
+      gap: 6px;
+      font-family: var(--font-sans-jp);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      padding: 7px 13px;
+      border-radius: 7px;
       text-decoration: none;
-      border: 1px solid rgba(237,232,220,0.18);
-      color: rgba(237,232,220,0.55);
-      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
-    .song-icon:hover { transform: translateY(-2px); }
-    .song-icon.yt       { color:#e8645f; }
-    .song-icon.spotify  { color:#1DB954; }
-    .song-icon.apple    { color:#FC6066; }
-    .song-icon.bandcamp { color:#3FB5D6; }
-    .song-icon.yt:hover       { background: rgba(232,100,95,0.16);  border-color: rgba(232,100,95,0.5); }
-    .song-icon.spotify:hover  { background: rgba(29,185,84,0.16);   border-color: rgba(29,185,84,0.5); }
-    .song-icon.apple:hover    { background: rgba(252,96,102,0.16);  border-color: rgba(252,96,102,0.5); }
-    .song-icon.bandcamp:hover { background: rgba(63,181,214,0.16);  border-color: rgba(63,181,214,0.5); }
+    .vbtn { border: 1px solid var(--accent); color: var(--accent-light); background: transparent; }
+    .vbtn.fill { background: var(--accent); color: var(--bg); font-weight: 500; }
+    .vbtn:hover { background: var(--accent); color: var(--bg); }
+    .vtri { width: 0; height: 0; border-style: solid; border-width: 4px 0 4px 6px; border-color: transparent transparent transparent currentColor; }
+    .kbtn { border: 1px solid rgba(200,154,58,0.4); color: var(--accent); background: transparent; }
+    .kbtn:hover { border-color: var(--accent); }
+    .chip { border: 0.5px solid rgba(237,232,220,0.18); color: rgba(237,232,220,0.82); background: transparent; }
+    .chip:hover { border-color: var(--accent); color: var(--ink); }
+    .lg { width: 15px; height: 15px; flex: none; display: block; }
 
     /* ── SONG CARD DESC ── */
     .song-card-desc {
@@ -824,31 +846,55 @@
       }
     }
 
+    // Brand logos (inline SVG)
+    const LOGO = {
+      spotify:  '<svg class="lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#1DB954"/><g fill="none" stroke="#06180c" stroke-width="1.7" stroke-linecap="round"><path d="M5.6 8.6c4-1.2 9.4-.9 13.2 1.4"/><path d="M6.2 12c3.4-1 7.9-.8 11.1 1.2"/><path d="M6.9 15.1c2.7-.8 6.1-.6 8.6 1"/></g></svg>',
+      apple:    '<svg class="lg" viewBox="0 0 24 24"><defs><linearGradient id="amg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FB5C74"/><stop offset="1" stop-color="#FA233B"/></linearGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#amg)"/><path d="M16 6l-6.4 1.5v7.7a2.1 2.1 0 1 1-1.3-1.95V8.4L16 6.8z" fill="#fff"/><circle cx="14.3" cy="14.1" r="2.1" fill="#fff"/></svg>',
+      bandcamp: '<svg class="lg" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="5" fill="#1DA0C3"/><path d="M7 9h10l-3 6H4z" fill="#fff"/></svg>',
+    };
+    const MIC = '<svg class="lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v3"/></svg>';
+
     function renderSongs(songs) {
       const grid = document.getElementById('music-grid');
       if (!songs || songs.length === 0) {
         grid.innerHTML = '<div class="loading-placeholder">曲はまだありません</div>';
         return;
       }
+      const en = lang === 'en';
       grid.innerHTML = songs.map((song, i) => {
-        const title      = (lang === 'en' && song.titleEn)       ? song.titleEn       : song.title;
-        const desc       = (lang === 'en' && song.descriptionEn) ? song.descriptionEn : (song.description || '');
-        const ctaLbl     = lang === 'en' ? 'Lyrics & Story' : '歌詞・エピソードを見る';
+        const title   = (en && song.titleEn)       ? song.titleEn       : song.title;
+        const desc    = (en && song.descriptionEn) ? song.descriptionEn : (song.description || '');
+        const epLbl   = en ? 'Lyrics & Story →' : '歌詞・エピソードを読む →';
+        const vidLbl  = en ? 'Video'   : '動画';
+        const karaLbl = en ? 'Karaoke' : 'カラオケ';
 
-        // Teaser-style platform icon row (icons only). Picks the current-lang URL,
-        // falling back to whichever language exists. All lyrics videos / karaoke /
-        // JP·EN switching live on the detail page (song.html).
-        const pick = (a, b) => (lang === 'en' ? (b || a) : (a || b)) || '';
-        function mkIcon(url, cls, icon, name) {
-          if (!url) return '';
-          return `<a class="song-icon ${cls}" href="${escHtml(url)}" target="_blank" rel="noopener" aria-label="${name}" title="${name}">${icon}</a>`;
-        }
-        const icons = [
-          mkIcon(pick(song.youtubeUrl,    song.youtubeUrlEn),    'yt',       '▶', 'YouTube'),
-          mkIcon(pick(song.spotifyUrl,    song.spotifyUrlEn),    'spotify',  '♬', 'Spotify'),
-          mkIcon(pick(song.appleMusicUrl, song.appleMusicUrlEn), 'apple',    '♪', 'Apple Music'),
-          mkIcon(pick(song.bandcampUrl,   song.bandcampUrlEn),   'bandcamp', '◈', 'Bandcamp'),
-        ].filter(Boolean).join('');
+        const vBtn = (url, fill) => url
+          ? `<a class="vbtn${fill ? ' fill' : ''}" href="${escHtml(url)}" target="_blank" rel="noopener"><span class="vtri"></span>${vidLbl}</a>` : '';
+        const kBtn = (url) => url
+          ? `<a class="kbtn" href="${escHtml(url)}" target="_blank" rel="noopener">${MIC}${karaLbl}</a>` : '';
+        const chip = (url, logo, name) => url
+          ? `<a class="chip" href="${escHtml(url)}" target="_blank" rel="noopener" aria-label="${name}">${logo}${name}</a>` : '';
+
+        // Japanese row
+        const jpParts = [
+          vBtn(song.youtubeUrl, true),
+          kBtn(song.karaokeUrl),
+          chip(song.spotifyUrl,    LOGO.spotify,  'Spotify'),
+          chip(song.appleMusicUrl, LOGO.apple,    'Apple Music'),
+          chip(song.bandcampUrl,   LOGO.bandcamp, 'Bandcamp'),
+        ].filter(Boolean);
+        const jpRow = jpParts.length
+          ? `<div class="arow"><span class="rlbl">日本語</span>${jpParts.join('')}</div>` : '';
+
+        // English row
+        const enParts = [
+          vBtn(song.youtubeUrlEn, false),
+          chip(song.spotifyUrlEn,    LOGO.spotify,  'Spotify'),
+          chip(song.appleMusicUrlEn, LOGO.apple,    'Apple Music'),
+          chip(song.bandcampUrlEn,   LOGO.bandcamp, 'Bandcamp'),
+        ].filter(Boolean);
+        const enRow = enParts.length
+          ? `<div class="arow"><span class="rlbl">English</span>${enParts.join('')}</div>` : '';
 
         return `
           <div class="song-card">
@@ -857,10 +903,10 @@
               <div class="song-card-title">${escHtml(title)}</div>
               <div class="song-card-subtitle">${escHtml(song.subtitle || '')}</div>
               ${desc ? `<div class="song-card-desc">${escHtml(desc)}</div>` : ''}
-              <div class="song-card-actions">
-                <a class="btn-small primary" href="song.html?id=${escHtml(song.id)}">${ctaLbl}</a>
-              </div>
-              ${icons ? `<div class="song-icons">${icons}</div>` : ''}
+              <a class="sc-ep" href="song.html?id=${escHtml(song.id)}">${epLbl}</a>
+              ${(jpRow || enRow) ? '<div class="sc-div"></div>' : ''}
+              ${jpRow}
+              ${enRow}
             </div>
           </div>`;
       }).join('');
